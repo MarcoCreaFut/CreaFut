@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CreaFut — Créations artisanales faites main</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kraft: #e4dbc9;
+    --kraft-dark: #cfc2a6;
+    --ink: #2b2620;
+    --clay: #8a4a2f;
+    --sage: #5c6b4f;
+    --paper: #f7f4ec;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; }
+
+  header {
+    background: var(--kraft);
+    padding: 3rem 1.5rem 2.5rem;
+    border-bottom: 3px solid var(--ink);
+  }
+
+  header .inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    color: var(--clay);
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin-top: 0.4rem;
+    max-width: 14ch;
+  }
+
+  header p {
+    margin-top: 1rem;
+    max-width: 48ch;
+    font-size: 1.05rem;
+  }
+
+  nav {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  nav a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+  nav a:hover { border-bottom-color: var(--clay); }
+
+  main { max-width: 880px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+  section { margin-top: 3.5rem; }
+
+  section h2 {
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--kraft-dark);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .piece {
+    background: white;
+    border: 1px solid var(--kraft-dark);
+  }
+
+  .piece img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    background: var(--kraft);
+  }
+
+  .piece .caption {
+    padding: 0.9rem 1rem 1.1rem;
+  }
+
+  .piece .caption h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .piece .caption .price {
+    color: var(--clay);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .piece .caption p {
+    font-size: 0.9rem;
+    color: #55503f;
+    margin-top: 0.35rem;
+  }
+
+  .contact {
+    background: var(--sage);
+    color: var(--paper);
+    padding: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  .contact h2 { color: var(--paper); border-color: rgba(247,244,236,0.3); }
+
+  .contact a {
+    color: var(--paper);
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  .contact ul { list-style: none; margin-top: 1rem; }
+  .contact li { margin-top: 0.5rem; }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    color: #857f6c;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <p class="eyebrow">Atelier · fait main</p>
+    <h1>CreaFut</h1>
+    <p>Des créations artisanales façonnées à la main, pièce par pièce. Chaque objet est unique — parcourez la collection ci-dessous.</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#collection">Collection</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+  <section id="collection">
+    <h2>La collection</h2>
+    <div class="gallery">
+
+      <!-- Pour chaque création : dupliquez ce bloc et remplacez l'URL Cloudinary, le nom, le prix et la description -->
+      <div class="piece">
+        <img src="https://res.cloudinary.com/VOTRE_COMPTE/image/upload/nom-de-votre-image-1.jpg" alt="Nom de la création">
+        <div class="caption">
+          <h3>Nom de la création</h3>
+          <p class="price">25 €</p>
+          <p>Courte description : matière, dimensions, particularité.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <img src="https://res.cloudinary.com/VOTRE_COMPTE/image/upload/nom-de-votre-image-2.jpg" alt="Nom de la création">
+        <div class="caption">
+          <h3>Nom de la création</h3>
+          <p class="price">32 €</p>
+          <p>Courte description : matière, dimensions, particularité.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <img src="https://res.cloudinary.com/VOTRE_COMPTE/image/upload/nom-de-votre-image-3.jpg" alt="Nom de la création">
+        <div class="caption">
+          <h3>Nom de la création</h3>
+          <p class="price">18 €</p>
+          <p>Courte description : matière, dimensions, particularité.</p>
+        </div>
+      </div>
+
+      <!-- Copiez ce bloc autant de fois que nécessaire pour ajouter vos créations -->
+
+    </div>
+  </section>
+</main>
+
+<div class="contact" id="contact">
+  <h2>Envie d'une pièce ?</h2>
+  <p>Écrivez-moi pour commander ou poser une question — je réponds sous 48h.</p>
+  <ul>
+    <li>Email : <a href="mailto:votre-email@exemple.com">votre-email@exemple.com</a></li>
+    <li>Instagram : <a href="https://instagram.com/votre-compte">@votre-compte</a></li>
+    <li>Paiement : <a href="https://paypal.me/votrenom">PayPal.me/votrenom</a></li>
+  </ul>
+</div>
+
+<footer>
+  CreaFut — créations faites main
+</footer>
+
+</body>
+</html>

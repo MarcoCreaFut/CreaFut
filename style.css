@@ -195,6 +195,17 @@ section.collection {
   padding-left: 0.2rem;
   border-left: 2px solid var(--gold);
 }
+.team-block {
+  margin-bottom: 1.6rem;
+  padding-left: 1rem;
+}
+.team-title {
+  font-size: 0.78rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.7rem;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

@@ -135,6 +135,54 @@ header {
   margin: 0 auto 0.8rem;
   display: block;
 }
+
+/* Grille façon "écusson" avec étiquette dorée en dessous */
+.shield-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem 2rem;
+  justify-items: center;
+}
+.shield-tile {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}
+.shield-tile .shield-icon {
+  width: 150px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--gold);
+  display: block;
+  margin: 0 auto 1rem;
+  background: var(--charcoal);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.shield-tile .shield-icon.emoji-shield {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+}
+.shield-tile:hover .shield-icon {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(201,162,75,0.25);
+}
+.shield-tile .label-box {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 0.4rem 1.3rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+  font-size: 1.15rem;
+}
 .category-tile h2 {
   font-family: 'Marcellus', serif;
   color: var(--cream);

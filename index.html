@@ -3,207 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CreaFut — Créations artisanales faites main</title>
+<title>CreaFut — Cartes collector</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --kraft: #e4dbc9;
-    --kraft-dark: #cfc2a6;
-    --ink: #2b2620;
-    --clay: #8a4a2f;
-    --sage: #5c6b4f;
-    --paper: #f7f4ec;
+    --black: #0c0c0d;
+    --charcoal: #161617;
+    --gold: #c9a24b;
+    --gold-soft: rgba(201,162,75,0.35);
+    --cream: #f3ede1;
+    --grey: #8b8b8b;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--black);
+    color: var(--cream);
     font-family: 'Work Sans', sans-serif;
-    line-height: 1.5;
   }
-
-  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; }
 
   header {
-    background: var(--kraft);
-    padding: 3rem 1.5rem 2.5rem;
-    border-bottom: 3px solid var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--black);
+    border-bottom: 2px solid var(--gold);
   }
 
-  header .inner {
-    max-width: 880px;
+  .nav {
+    max-width: 1100px;
     margin: 0 auto;
-  }
-
-  .eyebrow {
-    font-size: 0.85rem;
-    color: var(--clay);
-    letter-spacing: 0.02em;
-  }
-
-  h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    margin-top: 0.4rem;
-    max-width: 14ch;
-  }
-
-  header p {
-    margin-top: 1rem;
-    max-width: 48ch;
-    font-size: 1.05rem;
-  }
-
-  nav {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 1rem 1.5rem;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.5rem;
+  }
+
+  .logo {
+    font-family: 'Marcellus', serif;
+    letter-spacing: 0.12em;
+    font-size: 1.3rem;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.2rem;
+    list-style: none;
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .contact-badge {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    text-decoration: none;
     font-size: 0.95rem;
   }
 
-  nav a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
-  nav a:hover { border-bottom-color: var(--clay); }
-
-  main { max-width: 880px; margin: 0 auto; padding: 0 1.5rem 4rem; }
-
-  section { margin-top: 3.5rem; }
-
-  section h2 {
-    font-size: 1.6rem;
-    border-bottom: 2px solid var(--kraft-dark);
-    padding-bottom: 0.6rem;
-    margin-bottom: 1.5rem;
+  .hero {
+    text-align: center;
+    padding: 4.5rem 1.5rem 3rem;
   }
 
-  .gallery {
+  .hero .eyebrow {
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: clamp(2.6rem, 7vw, 4.2rem);
+    color: var(--cream);
+    margin-top: 0.5rem;
+  }
+
+  .divider {
+    width: 90px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1.4rem auto 0;
+  }
+
+  section.collection {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 5rem;
+  }
+
+  .category-title {
+    text-align: center;
+    font-family: 'Marcellus', serif;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.4rem;
+    gap: 2rem 1.5rem;
   }
 
-  .piece {
-    background: white;
-    border: 1px solid var(--kraft-dark);
+  .card {
+    text-align: center;
   }
 
-  .piece img {
+  .card .frame {
+    background: var(--charcoal);
+    border: 1px solid var(--gold-soft);
+    border-radius: 4px;
+    padding: 1.5rem 1.2rem 1.1rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .card .frame:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .card img {
     width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
+    max-width: 170px;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
     display: block;
-    background: var(--kraft);
+    margin: 0 auto 1rem;
   }
 
-  .piece .caption {
-    padding: 0.9rem 1rem 1.1rem;
+  .card h3 {
+    font-family: 'Marcellus', serif;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    color: var(--cream);
   }
 
-  .piece .caption h3 {
-    font-size: 1.05rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .piece .caption .price {
-    color: var(--clay);
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-
-  .piece .caption p {
+  .card .price {
+    color: var(--gold);
     font-size: 0.9rem;
-    color: #55503f;
     margin-top: 0.35rem;
   }
 
   .contact {
-    background: var(--sage);
-    color: var(--paper);
-    padding: 2.5rem;
-    margin-top: 4rem;
+    border-top: 2px solid var(--gold);
+    padding: 3rem 1.5rem;
+    text-align: center;
   }
 
-  .contact h2 { color: var(--paper); border-color: rgba(247,244,236,0.3); }
+  .contact h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--cream);
+  }
+
+  .contact p { color: var(--grey); margin-top: 0.6rem; }
+
+  .contact ul {
+    list-style: none;
+    margin-top: 1.3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
 
   .contact a {
-    color: var(--paper);
-    font-weight: 500;
-    text-decoration: underline;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-soft);
   }
-
-  .contact ul { list-style: none; margin-top: 1rem; }
-  .contact li { margin-top: 0.5rem; }
 
   footer {
     text-align: center;
-    padding: 2rem;
-    font-size: 0.85rem;
-    color: #857f6c;
+    padding: 1.8rem;
+    color: var(--grey);
+    font-size: 0.8rem;
+    border-top: 1px solid #222;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="inner">
-    <p class="eyebrow">Atelier · fait main</p>
-    <h1>CreaFut</h1>
-    <p>Des créations artisanales façonnées à la main, pièce par pièce. Chaque objet est unique — parcourez la collection ci-dessous.</p>
+  <div class="nav">
+    <div class="logo">CreaFut</div>
+    <ul class="nav-links">
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#collection">Galerie</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="contact-badge" title="Contact">✉</a>
   </div>
 </header>
 
-<nav>
-  <a href="#collection">Collection</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<main>
-  <section id="collection">
-    <h2>La collection</h2>
-    <div class="gallery">
-
-      <!-- Pour chaque création : dupliquez ce bloc et remplacez l'URL Cloudinary, le nom, le prix et la description -->
-      
-<div class="piece">
-  <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Yamal.webp" alt="Yamal">
-  <div class="caption">
-    <h3>Yamal</h3>
-    <p class="price">20 €</p>
-    <p>Courte description : matière, dimensions, particularité.</p>
-  </div>
+<div class="hero">
+  <p class="eyebrow">Cartes collector</p>
+  <h1>La Collection</h1>
+  <div class="divider"></div>
 </div>
 
-<div class="piece">
-  <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Tillman.webp" alt="Tillman">
-  <div class="caption">
-    <h3>Tillman</h3>
-    <p class="price">20 €</p>
-    <p>Courte description : matière, dimensions, particularité.</p>
-  </div>
-</div>
+<section class="collection" id="collection">
+  <p class="category-title">Sélection du moment</p>
+  <div class="grid">
 
-      <!-- Copiez ce bloc autant de fois que nécessaire pour ajouter vos créations -->
-
+    <!-- Pour chaque carte : dupliquez ce bloc et changez l'URL Cloudinary, le nom et le prix -->
+    <div class="card">
+      <div class="frame">
+        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Yamal.webp" alt="Yamal">
+        <h3>Yamal</h3>
+        <p class="price">20 €</p>
+      </div>
     </div>
-  </section>
-</main>
+
+    <div class="card">
+      <div class="frame">
+        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Tillman.webp" alt="Tillman">
+        <h3>Tillman</h3>
+        <p class="price">20 €</p>
+      </div>
+    </div>
+
+    <!-- Copiez ce bloc autant de fois que nécessaire -->
+
+  </div>
+</section>
 
 <div class="contact" id="contact">
-  <h2>Envie d'une pièce ?</h2>
-  <p>Écrivez-moi pour commander ou poser une question — je réponds sous 48h.</p>
+  <h2>Envie d'une carte ?</h2>
+  <p>Écrivez-moi pour commander ou poser une question.</p>
   <ul>
-    <li>Email : <a href="mailto:votre-email@exemple.com">votre-email@exemple.com</a></li>
-    <li>Instagram : <a href="https://instagram.com/votre-compte">@votre-compte</a></li>
-    <li>Paiement : <a href="https://paypal.me/votrenom">PayPal.me/votrenom</a></li>
+    <li><a href="mailto:votre-email@exemple.com">Email</a></li>
+    <li><a href="https://instagram.com/votre-compte">Instagram</a></li>
+    <li><a href="https://paypal.me/votrenom">PayPal</a></li>
   </ul>
 </div>
 
 <footer>
-  CreaFut — créations faites main
+  CreaFut — Cartes collector
 </footer>
 
 </body>

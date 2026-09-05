@@ -42,74 +42,143 @@
   <a href="#selection-cdm">Coupe du monde</a>
 </nav>
 
+<!--
+  STRUCTURE POUR CHAQUE CHAMPIONNAT :
+  Chaque club est un bloc .subgroup avec son propre titre et sa propre grille de joueurs.
+  Rangez les clubs par ordre alphabétique, et les joueurs par ordre alphabétique à l'intérieur de chaque club.
+  Dupliquez le bloc .subgroup pour chaque nouveau club, et le bloc .card pour chaque nouveau joueur.
+-->
+
 <section class="collection" id="clubs-france">
   <p class="category-title">Clubs — France</p>
-  <div class="grid">
-    <!-- Dupliquez ce bloc pour chaque carte, en changeant l'URL Cloudinary, le nom et le prix -->
-    <!-- Ajoutez vos cartes ici -->
+
+  <!-- Exemple de structure pour un club (à dupliquer et renommer) -->
+  <div class="subgroup">
+    <p class="subgroup-title">Nom du club</p>
+    <div class="grid">
+      <!-- Ajoutez vos cartes de joueurs ici, triées par ordre alphabétique -->
+    </div>
   </div>
+
 </section>
 
 <section class="collection" id="clubs-angleterre">
   <p class="category-title">Clubs — Angleterre</p>
-  <div class="grid">
-    <!-- Ajoutez vos cartes ici -->
+
+  <div class="subgroup">
+    <p class="subgroup-title">Nom du club</p>
+    <div class="grid">
+      <!-- Ajoutez vos cartes de joueurs ici -->
+    </div>
   </div>
+
 </section>
 
 <section class="collection" id="clubs-espagne">
   <p class="category-title">Clubs — Espagne</p>
-  <div class="grid">
-    <!-- Ajoutez vos cartes ici -->
+
+  <div class="subgroup">
+    <p class="subgroup-title">Nom du club</p>
+    <div class="grid">
+      <!-- Ajoutez vos cartes de joueurs ici -->
+    </div>
   </div>
+
 </section>
 
 <section class="collection" id="clubs-italie">
   <p class="category-title">Clubs — Italie</p>
-  <div class="grid">
-    <!-- Ajoutez vos cartes ici -->
+
+  <div class="subgroup">
+    <p class="subgroup-title">Nom du club</p>
+    <div class="grid">
+      <!-- Ajoutez vos cartes de joueurs ici -->
+    </div>
   </div>
+
 </section>
 
 <section class="collection" id="clubs-allemagne">
   <p class="category-title">Clubs — Allemagne</p>
-  <div class="grid">
-    <!-- Ajoutez vos cartes ici -->
+
+  <div class="subgroup">
+    <p class="subgroup-title">Nom du club</p>
+    <div class="grid">
+      <!-- Ajoutez vos cartes de joueurs ici -->
+    </div>
   </div>
+
 </section>
 
 <section class="collection" id="selection-can">
   <p class="category-title">Sélections — CAN</p>
-  <div class="grid">
-    <!-- Ajoutez vos cartes ici -->
+
+  <div class="subgroup">
+    <p class="subgroup-title">Légendes</p>
+    <div class="grid">
+      <!-- Anciens joueurs -->
+    </div>
   </div>
+
+  <div class="subgroup">
+    <p class="subgroup-title">Équipes</p>
+    <div class="grid">
+      <!-- Joueurs actuels par équipe nationale -->
+    </div>
+  </div>
+
+  <div class="subgroup">
+    <p class="subgroup-title">Man of the Match</p>
+    <div class="grid">
+      <!-- Cartes spéciales -->
+    </div>
+  </div>
+
 </section>
 
 <section class="collection" id="selection-cdm">
   <p class="category-title">Sélections — Coupe du monde</p>
-  <div class="grid">
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/2006_-_Klose.webp" alt="Miroslav Klose">
-        <h3>Miroslav Klose</h3>
-        <p class="price">20 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Yamal.webp" alt="Yamal">
-        <h3>Yamal</h3>
-        <p class="price">20 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Tillman.webp" alt="Tillman">
-        <h3>Tillman</h3>
-        <p class="price">20 €</p>
+
+  <div class="subgroup">
+    <p class="subgroup-title">Légendes</p>
+    <div class="grid">
+      <div class="card">
+        <div class="frame">
+          <img src="https://res.cloudinary.com/qwlhmio0/image/upload/2006_-_Klose.webp" alt="Miroslav Klose">
+          <h3>Miroslav Klose</h3>
+          <p class="price">20 €</p>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="subgroup">
+    <p class="subgroup-title">Équipes</p>
+    <div class="grid">
+      <div class="card">
+        <div class="frame">
+          <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Tillman.webp" alt="Tillman">
+          <h3>Tillman</h3>
+          <p class="price">20 €</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="frame">
+          <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Yamal.webp" alt="Yamal">
+          <h3>Yamal</h3>
+          <p class="price">20 €</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subgroup">
+    <p class="subgroup-title">Man of the Match</p>
+    <div class="grid">
+      <!-- Cartes spéciales -->
+    </div>
+  </div>
+
 </section>
 
 <div class="contact" id="contact">

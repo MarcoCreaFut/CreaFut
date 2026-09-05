@@ -182,6 +182,19 @@ section.collection {
   border-bottom: 1px solid #222;
   padding-bottom: 1rem;
 }
+.subgroup {
+  margin-bottom: 2.8rem;
+}
+.subgroup-title {
+  font-family: 'Marcellus', serif;
+  letter-spacing: 0.05em;
+  color: var(--cream);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+  padding-left: 0.2rem;
+  border-left: 2px solid var(--gold);
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

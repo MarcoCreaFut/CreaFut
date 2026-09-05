@@ -28,13 +28,13 @@
   header {
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
     background: var(--black);
     border-bottom: 2px solid var(--gold);
   }
 
   .nav {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -47,27 +47,66 @@
     letter-spacing: 0.12em;
     font-size: 1.3rem;
     color: var(--gold);
+    cursor: pointer;
+    background: none;
+    border: none;
   }
 
   .nav-links {
     display: flex;
-    gap: 2.2rem;
+    gap: 1.8rem;
     list-style: none;
-    font-size: 0.92rem;
-    letter-spacing: 0.03em;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
   }
 
-  .nav-links a {
+  .nav-item { position: relative; }
+
+  .nav-item > button {
+    background: none;
+    border: none;
     color: var(--cream);
-    text-decoration: none;
-    padding-bottom: 0.3rem;
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    padding: 0.4rem 0;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
   }
 
-  .nav-links a:hover {
+  .nav-item > button:hover,
+  .nav-item.open > button {
     color: var(--gold);
     border-bottom-color: var(--gold);
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--charcoal);
+    border: 1px solid var(--gold-soft);
+    min-width: 190px;
+    display: none;
+    flex-direction: column;
+    padding: 0.4rem 0;
+    z-index: 30;
+  }
+
+  .nav-item.open .dropdown { display: flex; }
+
+  .dropdown button {
+    background: none;
+    border: none;
+    color: var(--cream);
+    text-align: left;
+    padding: 0.55rem 1.1rem;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .dropdown button:hover {
+    background: rgba(201,162,75,0.12);
+    color: var(--gold);
   }
 
   .contact-badge {
@@ -81,11 +120,12 @@
     color: var(--gold);
     text-decoration: none;
     font-size: 0.95rem;
+    flex-shrink: 0;
   }
 
   .hero {
     text-align: center;
-    padding: 4.5rem 1.5rem 3rem;
+    padding: 3.5rem 1.5rem 2.2rem;
   }
 
   .hero .eyebrow {
@@ -99,7 +139,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
     font-style: italic;
-    font-size: clamp(2.6rem, 7vw, 4.2rem);
+    font-size: clamp(2.4rem, 6.5vw, 3.8rem);
     color: var(--cream);
     margin-top: 0.5rem;
   }
@@ -108,11 +148,11 @@
     width: 90px;
     height: 2px;
     background: var(--gold);
-    margin: 1.4rem auto 0;
+    margin: 1.3rem auto 0;
   }
 
   section.collection {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: 0 auto;
     padding: 1rem 1.5rem 5rem;
   }
@@ -122,26 +162,32 @@
     font-family: 'Marcellus', serif;
     letter-spacing: 0.08em;
     color: var(--gold);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     text-transform: uppercase;
     margin-bottom: 2.5rem;
   }
 
+  .empty-msg {
+    text-align: center;
+    color: var(--grey);
+    font-size: 0.95rem;
+    padding: 2rem 0;
+    display: none;
+  }
+
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 2rem 1.5rem;
   }
 
-  .card {
-    text-align: center;
-  }
+  .card { text-align: center; }
 
   .card .frame {
     background: var(--charcoal);
     border: 1px solid var(--gold-soft);
     border-radius: 4px;
-    padding: 1.5rem 1.2rem 1.1rem;
+    padding: 1.4rem 1.1rem 1rem;
     transition: border-color 0.25s, transform 0.25s;
   }
 
@@ -152,7 +198,7 @@
 
   .card img {
     width: 100%;
-    max-width: 170px;
+    max-width: 165px;
     aspect-ratio: 3 / 4;
     object-fit: contain;
     display: block;
@@ -161,14 +207,14 @@
 
   .card h3 {
     font-family: 'Marcellus', serif;
-    font-size: 1rem;
-    letter-spacing: 0.04em;
+    font-size: 0.98rem;
+    letter-spacing: 0.03em;
     color: var(--cream);
   }
 
   .card .price {
     color: var(--gold);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     margin-top: 0.35rem;
   }
 
@@ -209,18 +255,62 @@
     font-size: 0.8rem;
     border-top: 1px solid #222;
   }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
 </style>
 </head>
 <body>
 
 <header>
   <div class="nav">
-    <div class="logo">CreaFut</div>
-    <ul class="nav-links">
-      <li><a href="#">Accueil</a></li>
-      <li><a href="#">Collections</a></li>
-      <li><a href="#collection">Galerie</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <button class="logo" onclick="showCategory('all')">CreaFut</button>
+    <ul class="nav-links" id="navLinks">
+
+      <li class="nav-item">
+        <button onclick="toggleDropdown(this)">Championnats ▾</button>
+        <div class="dropdown">
+          <button onclick="showCategory('france')">France</button>
+          <button onclick="showCategory('angleterre')">Angleterre</button>
+          <button onclick="showCategory('espagne')">Espagne</button>
+          <button onclick="showCategory('italie')">Italie</button>
+          <button onclick="showCategory('allemagne')">Allemagne</button>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <button onclick="toggleDropdown(this)">Sélections nationales ▾</button>
+        <div class="dropdown">
+          <button onclick="showCategory('can')">CAN</button>
+          <button onclick="showCategory('coupe-du-monde')">Coupe du Monde</button>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <button onclick="toggleDropdown(this)">Animés ▾</button>
+        <div class="dropdown">
+          <button onclick="showCategory('dbz')">Dragon Ball Z</button>
+          <button onclick="showCategory('captain-tsubasa')">Captain Tsubasa</button>
+          <button onclick="showCategory('saint-seiya')">Saint Seiya</button>
+          <button onclick="showCategory('one-piece')">One Piece</button>
+          <button onclick="showCategory('pokemon')">Pokémon</button>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <button onclick="toggleDropdown(this)">Gaming ▾</button>
+        <div class="dropdown">
+          <button onclick="showCategory('call-of-duty')">Call of Duty</button>
+          <button onclick="showCategory('gta')">GTA</button>
+          <button onclick="showCategory('minecraft')">Minecraft</button>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+      </li>
+
     </ul>
     <a href="#contact" class="contact-badge" title="Contact">✉</a>
   </div>
@@ -228,16 +318,25 @@
 
 <div class="hero">
   <p class="eyebrow">Cartes collector</p>
-  <h1>La Collection</h1>
+  <h1 id="heroTitle">La Collection</h1>
   <div class="divider"></div>
 </div>
 
 <section class="collection" id="collection">
-  <p class="category-title">Sélection du moment</p>
-  <div class="grid">
+  <p class="category-title" id="categoryTitle">Toutes les cartes</p>
 
-    <!-- Pour chaque carte : dupliquez ce bloc et changez l'URL Cloudinary, le nom et le prix -->
-    <div class="card">
+  <p class="empty-msg" id="emptyMsg">Aucune carte dans cette catégorie pour le moment — revenez bientôt !</p>
+
+  <div class="grid" id="grid">
+
+    <!-- CHAQUE CARTE : dupliquez ce bloc. Changez data-category selon la liste ci-dessous, l'URL Cloudinary, le nom et le prix.
+    Valeurs possibles pour data-category :
+    france, angleterre, espagne, italie, allemagne,
+    can, coupe-du-monde,
+    dbz, captain-tsubasa, saint-seiya, one-piece, pokemon,
+    call-of-duty, gta, minecraft -->
+
+    <div class="card" data-category="espagne">
       <div class="frame">
         <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Yamal.webp" alt="Yamal">
         <h3>Yamal</h3>
@@ -245,7 +344,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-category="coupe-du-monde">
       <div class="frame">
         <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Tillman.webp" alt="Tillman">
         <h3>Tillman</h3>
@@ -253,7 +352,7 @@
       </div>
     </div>
 
-    <!-- Copiez ce bloc autant de fois que nécessaire -->
+    <!-- Copiez ce bloc autant de fois que nécessaire pour ajouter vos cartes -->
 
   </div>
 </section>
@@ -271,6 +370,59 @@
 <footer>
   CreaFut — Cartes collector
 </footer>
+
+<script>
+  const categoryLabels = {
+    all: "Toutes les cartes",
+    france: "Championnat de France",
+    angleterre: "Championnat d'Angleterre",
+    espagne: "Championnat d'Espagne",
+    italie: "Championnat d'Italie",
+    allemagne: "Championnat d'Allemagne",
+    "can": "Coupe d'Afrique des Nations",
+    "coupe-du-monde": "Coupe du Monde",
+    dbz: "Dragon Ball Z",
+    "captain-tsubasa": "Captain Tsubasa",
+    "saint-seiya": "Saint Seiya",
+    "one-piece": "One Piece",
+    pokemon: "Pokémon",
+    "call-of-duty": "Call of Duty",
+    gta: "GTA",
+    minecraft: "Minecraft"
+  };
+
+  function showCategory(cat) {
+    document.getElementById("categoryTitle").textContent = categoryLabels[cat] || cat;
+    const cards = document.querySelectorAll(".card");
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const match = cat === "all" || card.dataset.category === cat;
+      card.style.display = match ? "" : "none";
+      if (match) visibleCount++;
+    });
+
+    document.getElementById("emptyMsg").style.display = visibleCount === 0 ? "block" : "none";
+
+    // Ferme tous les menus déroulants ouverts et fait défiler vers la collection
+    document.querySelectorAll(".nav-item.open").forEach(item => item.classList.remove("open"));
+    document.getElementById("collection").scrollIntoView({behavior: "smooth"});
+  }
+
+  function toggleDropdown(button) {
+    const item = button.parentElement;
+    const wasOpen = item.classList.contains("open");
+    document.querySelectorAll(".nav-item.open").forEach(el => el.classList.remove("open"));
+    if (!wasOpen) item.classList.add("open");
+  }
+
+  // Ferme les menus si on clique ailleurs sur la page
+  document.addEventListener("click", function(e) {
+    if (!e.target.closest(".nav-item")) {
+      document.querySelectorAll(".nav-item.open").forEach(el => el.classList.remove("open"));
+    }
+  });
+</script>
 
 </body>
 </html>

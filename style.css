@@ -154,13 +154,10 @@ header {
 .shield-tile .shield-icon {
   width: 150px;
   height: 190px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--gold);
+  object-fit: contain;
   display: block;
   margin: 0 auto 1rem;
-  background: var(--charcoal);
-  transition: transform 0.25s, box-shadow 0.25s;
+  transition: transform 0.25s;
 }
 .shield-tile .shield-icon.emoji-shield {
   display: flex;
@@ -170,7 +167,6 @@ header {
 }
 .shield-tile:hover .shield-icon {
   transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(201,162,75,0.25);
 }
 .shield-tile .label-box {
   display: inline-block;

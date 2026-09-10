@@ -30,7 +30,9 @@ header {
   gap: 0.8rem;
 }
 .logo {
-  font-family: 'Marcellus', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
   letter-spacing: 0.12em;
   font-size: 1.3rem;
   color: var(--gold);
@@ -114,6 +116,13 @@ header {
   max-width: 42ch;
   margin-left: auto;
   margin-right: auto;
+}
+.hero-logo {
+  width: 150px;
+  height: 190px;
+  object-fit: contain;
+  display: block;
+  margin: 0.5rem auto 0;
 }
 .divider {
   width: 90px;
@@ -202,7 +211,9 @@ header {
   font-size: 1.15rem;
 }
 .category-tile h2 {
-  font-family: 'Marcellus', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
   color: var(--cream);
   font-size: 1.15rem;
   letter-spacing: 0.04em;
@@ -246,7 +257,9 @@ section.collection {
 }
 .category-title {
   text-align: center;
-  font-family: 'Marcellus', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--gold);
   font-size: 1.15rem;
@@ -259,7 +272,9 @@ section.collection {
   margin-bottom: 2.8rem;
 }
 .subgroup-title {
-  font-family: 'Marcellus', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--cream);
   font-size: 0.95rem;
@@ -305,7 +320,9 @@ section.collection {
   margin: 0 auto 1rem;
 }
 .card h3 {
-  font-family: 'Marcellus', serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.04em;
   color: var(--cream);

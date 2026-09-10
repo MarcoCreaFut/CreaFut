@@ -10,7 +10,7 @@
 body {
   background: var(--black);
   color: var(--cream);
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 header {
   position: sticky;
@@ -35,6 +35,19 @@ header {
   font-size: 1.3rem;
   color: var(--gold);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+.footer-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }
 .nav-links {
   display: flex;

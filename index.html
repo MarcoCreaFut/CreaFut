@@ -1,26 +1,486 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CreaFut — Cartes collector</title>
+
+<title>Personnalisation — CreaFut</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
+
+
+<style>
+
+/* =====================================================
+   PERSONNALISATION — STYLES SPÉCIFIQUES
+===================================================== */
+
+.custom-page {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.custom-hero {
+    text-align: center;
+    padding: 85px 30px 75px;
+}
+
+.custom-eyebrow {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-size: 11px;
+    color: #c9a227;
+    margin-bottom: 28px;
+}
+
+.custom-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: 1.05;
+    margin-bottom: 25px;
+}
+
+.custom-hero h1 span {
+    color: #c9a227;
+}
+
+.custom-divider {
+    width: 95px;
+    height: 1px;
+    background: #c9a227;
+    margin: 0 auto 35px;
+}
+
+.custom-introduction {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #a49e95;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.custom-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: #f3eee4;
+    margin-top: 25px;
+}
+
+
+/* =====================================================
+   ICONE PERSONNALISATION
+===================================================== */
+
+.custom-hero-icon {
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+    margin: 0 auto 30px;
+}
+
+
+/* =====================================================
+   BOUTON
+===================================================== */
+
+.custom-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 35px;
+    padding: 15px 30px;
+
+    border: 1px solid #c9a227;
+    color: #c9a227;
+
+    font-family: 'Marcellus', serif;
+    font-size: 13px;
+
+    transition: all .3s ease;
+}
+
+.custom-button:hover {
+    background: #c9a227;
+    color: #090909;
+}
+
+.custom-button span {
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   SÉPARATEUR
+===================================================== */
+
+.custom-line {
+    width: 100%;
+    height: 1px;
+    background: rgba(201,162,39,.35);
+}
+
+
+/* =====================================================
+   SECTION ÉTAPES
+===================================================== */
+
+.custom-steps-section {
+    padding: 90px 30px;
+    text-align: center;
+}
+
+.custom-section-label {
+    font-family: 'Marcellus', serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 10px;
+    color: #c9a227;
+    margin-bottom: 20px;
+}
+
+.custom-steps-section h2,
+.custom-options-section h2,
+.custom-unique-section h2,
+.custom-contact-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(38px, 4vw, 56px);
+    margin-bottom: 55px;
+}
+
+
+.custom-steps-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.custom-step {
+    padding: 35px 25px;
+    border: 1px solid rgba(201,162,39,.2);
+    background: rgba(255,255,255,.015);
+
+    transition: all .3s ease;
+}
+
+.custom-step:hover {
+    transform: translateY(-6px);
+    border-color: #c9a227;
+}
+
+.custom-step-number {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #c9a227;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 25px;
+
+    font-family: 'Marcellus', serif;
+    font-size: 14px;
+    color: #c9a227;
+}
+
+.custom-step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.custom-step p {
+    color: #a49e95;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   SECTION OPTIONS
+===================================================== */
+
+.custom-options-section {
+    padding: 100px 30px;
+    background: #0d0d0d;
+    text-align: center;
+}
+
+.custom-options-intro {
+    max-width: 650px;
+    margin: -25px auto 55px;
+    color: #a49e95;
+    font-size: 15px;
+}
+
+.custom-options-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.custom-option {
+    padding: 30px 20px;
+    border-top: 1px solid rgba(201,162,39,.4);
+}
+
+.custom-option-icon {
+    font-size: 27px;
+    color: #c9a227;
+    margin-bottom: 18px;
+}
+
+.custom-option h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.custom-option p {
+    color: #a49e95;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   SECTION UNIQUE
+===================================================== */
+
+.custom-unique-section {
+    padding: 105px 30px;
+    text-align: center;
+    border-top: 1px solid rgba(201,162,39,.25);
+    border-bottom: 1px solid rgba(201,162,39,.25);
+
+    background:
+        radial-gradient(circle at center, rgba(201,162,39,.08), transparent 60%);
+}
+
+.custom-unique-section h2 {
+    margin-bottom: 25px;
+}
+
+.custom-unique-section p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #a49e95;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.custom-highlight {
+    display: block;
+    margin-top: 30px;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 27px;
+    color: #c9a227;
+}
+
+
+/* =====================================================
+   SECTION CONTACT
+===================================================== */
+
+.custom-contact-section {
+    padding: 100px 30px;
+    text-align: center;
+}
+
+.custom-contact-section h2 {
+    margin-bottom: 20px;
+}
+
+.custom-contact-intro {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #a49e95;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+
+/* =====================================================
+   FORMULAIRE
+===================================================== */
+
+.custom-form {
+    max-width: 700px;
+    margin: 50px auto 0;
+    text-align: left;
+}
+
+.custom-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.custom-form-group {
+    margin-bottom: 25px;
+}
+
+.custom-form-group label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a227;
+    margin-bottom: 10px;
+}
+
+.custom-form-group input,
+.custom-form-group select,
+.custom-form-group textarea {
+    width: 100%;
+    padding: 14px 15px;
+
+    background: #111;
+    border: 1px solid rgba(201,162,39,.3);
+
+    color: #f3eee4;
+
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color .3s ease;
+}
+
+.custom-form-group input:focus,
+.custom-form-group select:focus,
+.custom-form-group textarea:focus {
+    border-color: #c9a227;
+}
+
+.custom-form-group textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.custom-submit {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.custom-submit button {
+    cursor: pointer;
+
+    padding: 16px 35px;
+
+    border: 1px solid #c9a227;
+    background: transparent;
+    color: #c9a227;
+
+    font-family: 'Marcellus', serif;
+    font-size: 13px;
+
+    transition: all .3s ease;
+}
+
+.custom-submit button:hover {
+    background: #c9a227;
+    color: #090909;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .custom-steps-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .custom-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .custom-hero {
+        padding: 65px 20px;
+    }
+
+    .custom-hero h1 {
+        font-size: 50px;
+    }
+
+    .custom-options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+}
+
+</style>
+
 </head>
+
+
 <body>
+
+
+<!-- =====================================================
+     HEADER IDENTIQUE AU SITE PRINCIPAL
+===================================================== -->
 
 <header>
   <div class="nav">
-    <a href="index.html" class="logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="logo-img"></a>
+
+    <a href="index.html" class="logo">
+      <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png"
+           alt="CreaFut"
+           class="logo-img">
+    </a>
+
     <ul class="nav-links">
       <li><a href="foot.html">Foot</a></li>
       <li><a href="hand.html">Hand</a></li>
       <li><a href="basket.html">Basket</a></li>
       <li><a href="animes.html">Animés</a></li>
       <li><a href="gaming.html">Gaming</a></li>
-      <li><a href="personnalisation.html">Personnalisation</a></li>
+      <li><a href="personnalisation.html" class="active">Personnalisation</a></li>
       <li><a href="graffitis.html">Graffitis</a></li>
       <li><a href="supporters.html">Supporters</a></li>
       <li><a href="hockey.html">Hockey</a></li>
@@ -29,85 +489,398 @@
       <li><a href="foot-us.html">Foot US</a></li>
       <li><a href="volley.html">Volley</a></li>
     </ul>
+
     <a href="#contact" class="contact-badge" title="Contact">✉</a>
+
   </div>
 </header>
 
-<div class="hero">
-  <p class="eyebrow">Cartes collector</p>
-  <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="hero-logo">
-  <p class="subtitle">Cartes façon FUT de joueurs pro, héros d'animés et univers gaming — et un service de personnalisation sur demande.</p>
-  <div class="divider"></div>
-</div>
 
-<div class="categories">
-  <a href="foot.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789099309/Football.png" alt="Foot" class="shield-icon">
-    <div class="label-box">Foot</div>
-  </a>
-  <a href="hand.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789125531/Hand.png" alt="Hand" class="shield-icon">
-    <div class="label-box">Hand</div>
-  </a>
-  <a href="basket.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789099230/Basket.png" alt="Basket" class="shield-icon">
-    <div class="label-box">Basket</div>
-  </a>
-  <a href="hockey.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789099407/Hockey.png" alt="Hockey" class="shield-icon">
-    <div class="label-box">Hockey</div>
-  </a>
-  <a href="water-polo.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789099473/Water_Polo.png" alt="Water Polo" class="shield-icon">
-    <div class="label-box">Water Polo</div>
-  </a>
-  <a href="rugby.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789099530/Rugby.png" alt="Rugby" class="shield-icon">
-    <div class="label-box">Rugby</div>
-  </a>
-  <a href="foot-us.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789100123/Foot_US.png" alt="Foot US" class="shield-icon">
-    <div class="label-box">Foot US</div>
-  </a>
-  <a href="volley.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789100176/Volley.png" alt="Volley" class="shield-icon">
-    <div class="label-box">Volley</div>
-  </a>
-  <a href="animes.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1788948419/Animes.png" alt="Animés" class="shield-icon">
-    <div class="label-box">Animés</div>
-  </a>
-  <a href="gaming.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1788948424/Gaming.png" alt="Gaming" class="shield-icon">
-    <div class="label-box">Gaming</div>
-  </a>
-  <a href="personnalisation.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1788948423/Personnalisation.png" alt="Personnalisation" class="shield-icon">
-    <div class="label-box">Personnalisation</div>
-  </a>
-  <a href="supporters.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789029729/Supporters.png" alt="Supporters" class="shield-icon">
-    <div class="label-box">Supporters</div>
-  </a>
-  <a href="graffitis.html" class="shield-tile">
-    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Graffitis.png" alt="Graffitis" class="shield-icon">
-    <div class="label-box">Graffitis</div>
-  </a>
-</div>
+
+<!-- =====================================================
+     CONTENU PRINCIPAL
+===================================================== -->
+
+<main class="custom-page">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="custom-hero">
+
+    <p class="custom-eyebrow">Sur mesure</p>
+
+    <img
+        src="https://res.cloudinary.com/qwlhmio0/image/upload/v1788948423/Personnalisation.png"
+        alt="Personnalisation"
+        class="custom-hero-icon"
+    >
+
+    <h1>
+        Votre carte.<br>
+        <span>Votre histoire.</span>
+    </h1>
+
+    <div class="custom-divider"></div>
+
+    <p class="custom-introduction">
+        Imaginez une carte qui n'existe nulle part ailleurs.
+    </p>
+
+    <p class="custom-introduction">
+        Un joueur mythique, un proche, vous-même... ou simplement une idée que vous aimeriez voir prendre vie.
+    </p>
+
+    <p class="custom-introduction">
+        Chez CreaFut, nous transformons vos envies en cartes personnalisées inspirées de l'univers FUT.
+    </p>
+
+    <p class="custom-tagline">
+        Unique. Originale. Entièrement à votre image.
+    </p>
+
+    <a href="#commande" class="custom-button">
+        Créer ma carte <span>→</span>
+    </a>
+
+</section>
+
+
+
+<div class="custom-line"></div>
+
+
+
+<!-- =====================================================
+     ÉTAPES
+===================================================== -->
+
+<section class="custom-steps-section">
+
+    <p class="custom-section-label">En 3 étapes</p>
+
+    <h2>Donnez vie à votre carte.</h2>
+
+
+    <div class="custom-steps-grid">
+
+        <div class="custom-step">
+
+            <div class="custom-step-number">01</div>
+
+            <h3>Imaginez</h3>
+
+            <p>
+                Choisissez la personne, le joueur ou le personnage qui mérite sa propre carte.
+            </p>
+
+        </div>
+
+
+        <div class="custom-step">
+
+            <div class="custom-step-number">02</div>
+
+            <h3>Personnalisez</h3>
+
+            <p>
+                Envoyez une photo et partagez vos envies : style, couleurs, nom, poste ou univers.
+            </p>
+
+        </div>
+
+
+        <div class="custom-step">
+
+            <div class="custom-step-number">03</div>
+
+            <h3>Découvrez</h3>
+
+            <p>
+                Recevez un aperçu de votre création avant validation et donnez naissance à une carte unique.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     OPTIONS
+===================================================== -->
+
+<section class="custom-options-section">
+
+    <p class="custom-section-label">Votre carte, vos règles</p>
+
+    <h2>Tout commence avec votre idée.</h2>
+
+    <p class="custom-options-intro">
+        Chaque création est pensée selon vos envies. Rien n'est imposé : vous imaginez, nous donnons vie à votre vision.
+    </p>
+
+
+    <div class="custom-options-grid">
+
+        <div class="custom-option">
+
+            <div class="custom-option-icon">♙</div>
+
+            <h3>Le joueur</h3>
+
+            <p>
+                Vous, un proche, une idole ou un personnage totalement inventé.
+            </p>
+
+        </div>
+
+
+        <div class="custom-option">
+
+            <div class="custom-option-icon">✦</div>
+
+            <h3>Le style</h3>
+
+            <p>
+                FUT, légende, rétro, premium, fantasy, street ou totalement original.
+            </p>
+
+        </div>
+
+
+        <div class="custom-option">
+
+            <div class="custom-option-icon">◈</div>
+
+            <h3>Les détails</h3>
+
+            <p>
+                Nom, poste, note, statistiques, club, nationalité et bien plus encore.
+            </p>
+
+        </div>
+
+
+        <div class="custom-option">
+
+            <div class="custom-option-icon">◇</div>
+
+            <h3>L'univers</h3>
+
+            <p>
+                Football, animé, gaming, sport ou toute autre idée qui vous ressemble.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CRÉATION UNIQUE
+===================================================== -->
+
+<section class="custom-unique-section">
+
+    <p class="custom-section-label">Une création unique</p>
+
+    <h2>
+        Pas une simple image.<br>
+        Une véritable carte.
+    </h2>
+
+    <p>
+        Chaque carte est imaginée et créée spécialement pour vous.
+        Que ce soit pour offrir, collectionner ou simplement faire plaisir,
+        votre carte mérite d'être unique.
+    </p>
+
+    <span class="custom-highlight">
+        Chez CreaFut, chacun peut devenir une légende.
+    </span>
+
+</section>
+
+
+
+<!-- =====================================================
+     FORMULAIRE
+===================================================== -->
+
+<section class="custom-contact-section" id="commande">
+
+    <p class="custom-section-label">Votre projet commence ici</p>
+
+    <h2>Prêt à créer la vôtre ?</h2>
+
+    <p class="custom-contact-intro">
+        Quelques informations suffisent pour commencer votre création.
+        Envoyez votre idée, partagez vos envies et laissez CreaFut donner vie à votre carte.
+    </p>
+
+
+    <form
+        class="custom-form"
+        action="mailto:votre-email@exemple.com"
+        method="post"
+        enctype="text/plain"
+    >
+
+
+        <div class="custom-form-row">
+
+            <div class="custom-form-group">
+
+                <label for="nom">Votre nom</label>
+
+                <input
+                    type="text"
+                    id="nom"
+                    name="Nom"
+                    placeholder="Votre nom"
+                    required
+                >
+
+            </div>
+
+
+            <div class="custom-form-group">
+
+                <label for="email">Votre email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="Email"
+                    placeholder="votre@email.com"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="custom-form-group">
+
+            <label for="type">Type de carte souhaité</label>
+
+            <select id="type" name="Type de carte">
+
+                <option value="">Sélectionnez un univers</option>
+
+                <option>Football / FUT</option>
+                <option>Handball</option>
+                <option>Basketball</option>
+                <option>Animés</option>
+                <option>Gaming</option>
+                <option>Autre projet personnalisé</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="custom-form-group">
+
+            <label for="personnage">Nom du joueur ou personnage</label>
+
+            <input
+                type="text"
+                id="personnage"
+                name="Joueur ou personnage"
+                placeholder="Exemple : Marc, votre joueur préféré..."
+            >
+
+        </div>
+
+
+        <div class="custom-form-group">
+
+            <label for="message">Votre idée</label>
+
+            <textarea
+                id="message"
+                name="Message"
+                placeholder="Décrivez votre projet : style souhaité, couleurs, informations à afficher..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <div class="custom-form-group">
+
+            <label for="photo">Photo à utiliser</label>
+
+            <input
+                type="file"
+                id="photo"
+                name="Photo"
+                accept="image/*"
+            >
+
+        </div>
+
+
+        <div class="custom-submit">
+
+            <button type="submit">
+                Envoyer ma demande →
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     CONTACT IDENTIQUE AU SITE PRINCIPAL
+===================================================== -->
 
 <div class="contact" id="contact">
+
   <h2>Envie d'une carte ?</h2>
+
   <p>Écrivez-moi pour commander ou poser une question.</p>
+
   <ul>
     <li><a href="mailto:votre-email@exemple.com">Email</a></li>
     <li><a href="https://instagram.com/votre-compte">Instagram</a></li>
     <li><a href="https://paypal.me/votrenom">PayPal</a></li>
   </ul>
+
 </div>
 
+
+
+<!-- =====================================================
+     FOOTER IDENTIQUE AU SITE PRINCIPAL
+===================================================== -->
+
 <footer>
-  <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="footer-logo">
+
+  <img
+    src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png"
+    alt="CreaFut"
+    class="footer-logo"
+  >
+
 </footer>
+
 
 </body>
 </html>

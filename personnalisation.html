@@ -241,6 +241,28 @@ header {
     flex-shrink: 0;
 }
 
+.gallery-link {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+
+    font-family: 'Marcellus', serif;
+    font-size: 13px;
+    letter-spacing: .5px;
+    color: var(--gold-light);
+
+    transition: color .3s ease;
+}
+
+.gallery-link:hover {
+    color: var(--cream);
+}
+
+.gallery-link .cta-arrow {
+    display: inline-block;
+    margin-left: 6px;
+}
+
 .hero-card {
     position: absolute;
     width: 280px;
@@ -819,6 +841,11 @@ footer {
             </div>
 
         </div>
+
+        <a href="personnalisation-clubs.html" class="gallery-link">
+            Voir les clubs déjà disponibles
+            <span class="cta-arrow">→</span>
+        </a>
 
     </div>
 

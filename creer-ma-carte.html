@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer ma carte — CreaFut</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root{
+    --gold:#caa147;
+    --gold-soft:rgba(202,161,71,.35);
+    --panel:#111111;
+    --panel-border:#2a2a2a;
+  }
+  .creator{
+    max-width:1200px;
+    margin:0 auto;
+    padding:20px 24px 80px;
+    display:flex;
+    gap:48px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .controls{
+    flex:1 1 380px;
+    max-width:420px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{
+    font-family:'Marcellus',serif;
+    color:var(--gold);
+    font-size:.8rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .field input[type="text"],
+  .field select{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    color:#f2f2f2;
+    padding:10px 12px;
+    border-radius:6px;
+    font-family:'Work Sans',sans-serif;
+    font-size:.95rem;
+  }
+  .field input[type="text"]:focus,
+  .field select:focus{ outline:1px solid var(--gold); border-color:var(--gold); }
+  .file-btn{
+    display:inline-block;
+    text-align:center;
+    padding:10px 12px;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    border-radius:6px;
+    cursor:pointer;
+    font-family:'Marcellus',serif;
+    letter-spacing:.04em;
+    background:transparent;
+    transition:background .2s,color .2s;
+  }
+  .file-btn:hover{ background:var(--gold); color:#111; }
+  .file-btn input{ display:none; }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px 22px;
+  }
+  .stat-row{ display:flex; flex-direction:column; gap:4px; }
+  .stat-row .stat-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'Work Sans',sans-serif; font-size:.85rem; color:#ddd;
+  }
+  .stat-row .stat-head span.val{ color:var(--gold); font-weight:600; }
+  input[type="range"]{
+    -webkit-appearance:none; width:100%; height:4px; border-radius:2px;
+    background:#333; outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:16px; height:16px; border-radius:50%;
+    background:var(--gold); cursor:pointer; border:2px solid #111;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:16px; height:16px; border-radius:50%;
+    background:var(--gold); cursor:pointer; border:2px solid #111;
+  }
+  .preview-col{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    position:sticky;
+    top:24px;
+  }
+  #cardCanvas{
+    width:300px;
+    max-width:80vw;
+    height:auto;
+    filter:drop-shadow(0 12px 30px rgba(0,0,0,.6));
+  }
+  .price-box{
+    border:1px solid var(--gold);
+    color:var(--gold);
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1.3rem;
+    padding:8px 26px;
+    border-radius:6px;
+  }
+  .action-btns{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .action-btns a{
+    font-family:'Marcellus',serif;
+    letter-spacing:.05em;
+    padding:12px 22px;
+    border-radius:6px;
+    text-decoration:none;
+    font-size:.9rem;
+    cursor:pointer;
+    border:1px solid var(--gold);
+  }
+  .btn-solid{ background:var(--gold); color:#111; }
+  .btn-solid:hover{ opacity:.85; }
+  .btn-outline{ color:var(--gold); background:transparent; }
+  .btn-outline:hover{ background:var(--gold-soft); }
+  .hint{
+    font-family:'Work Sans',sans-serif;
+    color:#999;
+    font-size:.78rem;
+    max-width:300px;
+    text-align:center;
+  }
+  @media (max-width:760px){
+    .creator{ flex-direction:column-reverse; align-items:center; }
+    .preview-col{ position:static; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="logo-img"></a>
+    <ul class="nav-links">
+      <li><a href="foot.html">Foot</a></li>
+      <li><a href="hand.html">Hand</a></li>
+      <li><a href="basket.html">Basket</a></li>
+      <li><a href="animes.html">Animés</a></li>
+      <li><a href="gaming.html">Gaming</a></li>
+      <li><a href="personnalisation.html">Personnalisation</a></li>
+      <li><a href="graffitis.html">Graffitis</a></li>
+      <li><a href="supporters.html">Supporters</a></li>
+      <li><a href="hockey.html">Hockey</a></li>
+      <li><a href="water-polo.html">Water Polo</a></li>
+      <li><a href="rugby.html">Rugby</a></li>
+      <li><a href="foot-us.html">Foot US</a></li>
+      <li><a href="volley.html">Volley</a></li>
+    </ul>
+    <a href="index.html#contact" class="contact-badge" title="Contact">✉</a>
+  </div>
+</header>
+
+<div class="hero">
+  <p class="eyebrow">Personnalisation</p>
+  <h1>Créer ma carte</h1>
+  <div class="divider"></div>
+</div>
+
+<nav class="subnav">
+  <a href="personnalisation.html">← Retour</a>
+</nav>
+
+<div class="creator">
+
+  <div class="controls">
+
+    <div class="field">
+      <label for="photoInput">Photo</label>
+      <label class="file-btn">Choisir une photo
+        <input type="file" id="photoInput" accept="image/*">
+      </label>
+    </div>
+
+    <div class="field">
+      <label for="nameInput">Nom du joueur</label>
+      <input type="text" id="nameInput" maxlength="18" value="VOTRE NOM">
+    </div>
+
+    <div class="field">
+      <label for="clubInput">Club</label>
+      <input type="text" id="clubInput" maxlength="24" value="Mon Club">
+    </div>
+
+    <div class="field">
+      <label for="posSelect">Poste</label>
+      <select id="posSelect">
+        <option value="GB">Gardien (GB)</option>
+        <option value="DC">Défenseur central (DC)</option>
+        <option value="DG">Défenseur gauche (DG)</option>
+        <option value="DD">Défenseur droit (DD)</option>
+        <option value="MDC">Milieu défensif (MDC)</option>
+        <option value="MC" selected>Milieu central (MC)</option>
+        <option value="MOC">Milieu offensif (MOC)</option>
+        <option value="MG">Milieu gauche (MG)</option>
+        <option value="MD">Milieu droit (MD)</option>
+        <option value="AG">Ailier gauche (AG)</option>
+        <option value="AD">Ailier droit (AD)</option>
+        <option value="BU">Buteur (BU)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="styleSelect">Visuel de la carte</label>
+      <select id="styleSelect">
+        <option value="or" selected>Édition Or</option>
+        <option value="argent">Édition Argent</option>
+        <option value="bronze">Édition Bronze</option>
+        <option value="special">Édition Spéciale</option>
+      </select>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-row">
+        <div class="stat-head"><span>Vitesse</span><span class="val" id="vitVal">80</span></div>
+        <input type="range" min="40" max="99" value="80" id="vit">
+      </div>
+      <div class="stat-row">
+        <div class="stat-head"><span>Tir</span><span class="val" id="tirVal">75</span></div>
+        <input type="range" min="40" max="99" value="75" id="tir">
+      </div>
+      <div class="stat-row">
+        <div class="stat-head"><span>Passe</span><span class="val" id="pasVal">78</span></div>
+        <input type="range" min="40" max="99" value="78" id="pas">
+      </div>
+      <div class="stat-row">
+        <div class="stat-head"><span>Dribble</span><span class="val" id="driVal">82</span></div>
+        <input type="range" min="40" max="99" value="82" id="dri">
+      </div>
+      <div class="stat-row">
+        <div class="stat-head"><span>Défense</span><span class="val" id="defVal">70</span></div>
+        <input type="range" min="40" max="99" value="70" id="def">
+      </div>
+      <div class="stat-row">
+        <div class="stat-head"><span>Physique</span><span class="val" id="phyVal">76</span></div>
+        <input type="range" min="40" max="99" value="76" id="phy">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="preview-col">
+    <canvas id="cardCanvas" width="500" height="720"></canvas>
+    <div class="price-box">Carte personnalisée — 25 €</div>
+    <div class="action-btns">
+      <a class="btn-outline" id="downloadBtn">Télécharger l'aperçu</a>
+      <a class="btn-solid" id="orderBtn" href="#">Commander cette carte</a>
+    </div>
+    <p class="hint">Le bouton « Commander » ouvre votre messagerie avec le récapitulatif. Pensez à joindre l'aperçu téléchargé à l'email.</p>
+  </div>
+
+</div>
+
+<div class="contact" id="contact">
+  <h2>Envie d'une carte ?</h2>
+  <p>Écrivez-moi pour commander ou poser une question.</p>
+  <ul>
+    <li><a href="mailto:votre-email@exemple.com">Email</a></li>
+    <li><a href="https://instagram.com/votre-compte">Instagram</a></li>
+    <li><a href="https://paypal.me/votrenom">PayPal</a></li>
+  </ul>
+</div>
+<footer>
+  <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="footer-logo">
+</footer>
+
+<script>
+const canvas = document.getElementById('cardCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+const STYLES = {
+  or:      { top:'#f5da8a', bottom:'#8a6a1f', text:'#3a2a06', ring:'#fff3cf' },
+  argent:  { top:'#e7e7e7', bottom:'#8c8c8c', text:'#2b2b2b', ring:'#ffffff' },
+  bronze:  { top:'#d69a5c', bottom:'#7a4c22', text:'#3a2410', ring:'#ffd9ab' },
+  special: { top:'#3a1d5c', bottom:'#0d0517', text:'#f0d97a', ring:'#c9a4ff' }
+};
+
+let photoImg = null;
+
+const els = {
+  name: document.getElementById('nameInput'),
+  club: document.getElementById('clubInput'),
+  pos: document.getElementById('posSelect'),
+  style: document.getElementById('styleSelect'),
+  vit: document.getElementById('vit'),
+  tir: document.getElementById('tir'),
+  pas: document.getElementById('pas'),
+  dri: document.getElementById('dri'),
+  def: document.getElementById('def'),
+  phy: document.getElementById('phy'),
+};
+
+function roundRect(c, x, y, w, h, r){
+  c.beginPath();
+  c.moveTo(x+r, y);
+  c.arcTo(x+w, y,   x+w, y+h, r);
+  c.arcTo(x+w, y+h, x,   y+h, r);
+  c.arcTo(x,   y+h, x,   y,   r);
+  c.arcTo(x,   y,   x+w, y,   r);
+  c.closePath();
+}
+
+function drawCard(){
+  const s = STYLES[els.style.value];
+  const stats = {
+    VIT: +els.vit.value, TIR: +els.tir.value, PAS: +els.pas.value,
+    DRI: +els.dri.value, DEF: +els.def.value, PHY: +els.phy.value
+  };
+  const overall = Math.round(Object.values(stats).reduce((a,b)=>a+b,0)/6);
+
+  ctx.clearRect(0,0,W,H);
+
+  const grad = ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0, s.top);
+  grad.addColorStop(1, s.bottom);
+  roundRect(ctx, 8, 8, W-16, H-16, 28);
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = s.ring;
+  ctx.stroke();
+
+  ctx.textAlign = 'left';
+  ctx.fillStyle = s.text;
+  ctx.font = '700 62px Marcellus, serif';
+  ctx.fillText(String(overall), 42, 100);
+  ctx.font = '600 26px "Work Sans", sans-serif';
+  ctx.fillText(els.pos.value, 46, 132);
+
+  const cx = W/2, cy = 250, r = 118;
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI*2);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(0,0,0,.15)';
+  ctx.fill();
+  ctx.clip();
+  if(photoImg){
+    const ratio = Math.max((2*r)/photoImg.width, (2*r)/photoImg.height);
+    const iw = photoImg.width*ratio, ih = photoImg.height*ratio;
+    ctx.drawImage(photoImg, cx-iw/2, cy-ih/2, iw, ih);
+  } else {
+    ctx.fillStyle = 'rgba(0,0,0,.25)';
+    ctx.fillRect(cx-r, cy-r, 2*r, 2*r);
+    ctx.beginPath();
+    ctx.arc(cx, cy-22, 40, 0, Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx, cy+95, 78, Math.PI, 2*Math.PI);
+    ctx.fill();
+  }
+  ctx.restore();
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI*2);
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = s.ring;
+  ctx.stroke();
+
+  ctx.textAlign = 'center';
+  ctx.fillStyle = s.text;
+  ctx.font = '700 34px Marcellus, serif';
+  ctx.fillText((els.name.value || 'VOTRE NOM').toUpperCase(), cx, 410);
+
+  ctx.font = 'italic 500 22px "Cormorant Garamond", serif';
+  ctx.fillText(els.club.value || 'Mon Club', cx, 442);
+
+  ctx.strokeStyle = s.text;
+  ctx.globalAlpha = .35;
+  ctx.beginPath();
+  ctx.moveTo(60, 470);
+  ctx.lineTo(W-60, 470);
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  const rows = [['VIT','TIR','PAS'],['DRI','DEF','PHY']];
+  const colX = [W*0.32, W*0.68];
+  const startY = 520, lineGap = 62;
+  ctx.textAlign = 'center';
+  rows[0].forEach((k,i)=>{
+    const y = startY + i*lineGap;
+    ctx.font = '700 30px "Work Sans", sans-serif';
+    ctx.fillText(String(stats[k]), colX[0], y);
+    ctx.font = '500 16px "Work Sans", sans-serif';
+    ctx.fillText(k, colX[0], y+22);
+  });
+  rows[1].forEach((k,i)=>{
+    const y = startY + i*lineGap;
+    ctx.font = '700 30px "Work Sans", sans-serif';
+    ctx.fillText(String(stats[k]), colX[1], y);
+    ctx.font = '500 16px "Work Sans", sans-serif';
+    ctx.fillText(k, colX[1], y+22);
+  });
+
+  updateOrderLink(overall, stats);
+}
+
+function updateOrderLink(overall, stats){
+  const body = [
+    "Bonjour,",
+    "",
+    "Je souhaite commander la carte personnalisée suivante :",
+    "Nom : " + els.name.value,
+    "Club : " + els.club.value,
+    "Poste : " + els.pos.value,
+    "Visuel : " + els.style.options[els.style.selectedIndex].text,
+    "Note globale : " + overall,
+    "VIT " + stats.VIT + " / TIR " + stats.TIR + " / PAS " + stats.PAS + " / DRI " + stats.DRI + " / DEF " + stats.DEF + " / PHY " + stats.PHY,
+    "",
+    "Prix : 25 €",
+    "(photo jointe en pièce jointe)"
+  ].join("\n");
+  const link = "mailto:votre-email@exemple.com?subject=" + encodeURIComponent("Commande carte personnalisée") + "&body=" + encodeURIComponent(body);
+  document.getElementById('orderBtn').href = link;
+}
+
+['input','change'].forEach(evt=>{
+  Object.values(els).forEach(el=> el.addEventListener(evt, ()=>{
+    document.getElementById('vitVal').textContent = els.vit.value;
+    document.getElementById('tirVal').textContent = els.tir.value;
+    document.getElementById('pasVal').textContent = els.pas.value;
+    document.getElementById('driVal').textContent = els.dri.value;
+    document.getElementById('defVal').textContent = els.def.value;
+    document.getElementById('phyVal').textContent = els.phy.value;
+    drawCard();
+  }));
+});
+
+document.getElementById('photoInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const img = new Image();
+    img.onload = function(){ photoImg = img; drawCard(); };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', function(){
+  const link = document.createElement('a');
+  link.download = 'carte-' + (els.name.value || 'creafut').replace(/\s+/g,'-').toLowerCase() + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+});
+
+drawCard();
+</script>
+</body>
+</html>

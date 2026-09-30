@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
 <style>
   :root{
     --gold:#caa147;
@@ -67,6 +68,31 @@
   }
   .file-btn:hover{ background:var(--gold); color:#111; }
   .file-btn input{ display:none; }
+  .photo-status{
+    font-family:'Work Sans',sans-serif;
+    font-size:.78rem;
+    color:#999;
+    min-height:1.1em;
+  }
+  .photo-status.ok{ color:#8fd18f; }
+  .photo-status.warn{ color:#d1b28f; }
+  .color-row{ display:flex; align-items:center; gap:10px; }
+  .color-row input[type="color"]{
+    width:44px; height:36px;
+    border:1px solid var(--panel-border);
+    border-radius:6px;
+    background:var(--panel);
+    padding:2px;
+    cursor:pointer;
+  }
+  .swatch{
+    width:26px; height:26px;
+    border-radius:50%;
+    border:2px solid var(--panel-border);
+    cursor:pointer;
+    padding:0;
+  }
+  .swatch:hover{ border-color:var(--gold); }
   .stats-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -202,6 +228,7 @@
       <label class="file-btn">DÉPOSE TA PHOTO ICI
         <input type="file" id="photoInput" accept="image/*">
       </label>
+      <p class="photo-status" id="photoStatus"></p>
     </div>
 
     <div class="field">
@@ -212,7 +239,7 @@
     <div class="field">
       <label for="clubSelect">Club</label>
       <select id="clubSelect">
-        <option value="">Aucun (fond neutre)</option>
+        <option value="">Aucun (pas d'écusson)</option>
         <option value="https://res.cloudinary.com/qwlhmio0/image/upload/v1790050152/US_1er_Canton_00.png">US 1er Canton</option>
         <option value="https://res.cloudinary.com/qwlhmio0/image/upload/v1789843703/5_Avenues_Longchamp_00.png">5 Avenues Longchamp</option>
         <option value="https://res.cloudinary.com/qwlhmio0/image/upload/Allauch_00.jpg">Allauch</option>
@@ -302,6 +329,16 @@
     </div>
 
     <div class="field">
+      <label>Couleur de fond</label>
+      <div class="color-row">
+        <input type="color" id="bgColorInput" value="#b3121c">
+        <button type="button" class="swatch" data-color="#b3121c" style="background:#b3121c" title="Rouge"></button>
+        <button type="button" class="swatch" data-color="#0f2a66" style="background:#0f2a66" title="Bleu"></button>
+        <button type="button" class="swatch" data-color="#e8590c" style="background:#e8590c" title="Orange"></button>
+      </div>
+    </div>
+
+    <div class="field">
       <label for="posSelect">Poste</label>
       <select id="posSelect">
         <option value="GB">Gardien (GB)</option>
@@ -328,56 +365,7 @@
       </select>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-row">
-        <div class="stat-label">Vitesse</div>
-        <div class="joystick">
-          <button type="button" class="joy-btn" data-stat="vit" data-dir="-1">▼</button>
-          <div class="joy-val" id="vitVal">80</div>
-          <button type="button" class="joy-btn" data-stat="vit" data-dir="1">▲</button>
-        </div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">Tir</div>
-        <div class="joystick">
-          <button type="button" class="joy-btn" data-stat="tir" data-dir="-1">▼</button>
-          <div class="joy-val" id="tirVal">75</div>
-          <button type="button" class="joy-btn" data-stat="tir" data-dir="1">▲</button>
-        </div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">Passe</div>
-        <div class="joystick">
-          <button type="button" class="joy-btn" data-stat="pas" data-dir="-1">▼</button>
-          <div class="joy-val" id="pasVal">78</div>
-          <button type="button" class="joy-btn" data-stat="pas" data-dir="1">▲</button>
-        </div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">Dribble</div>
-        <div class="joystick">
-          <button type="button" class="joy-btn" data-stat="dri" data-dir="-1">▼</button>
-          <div class="joy-val" id="driVal">82</div>
-          <button type="button" class="joy-btn" data-stat="dri" data-dir="1">▲</button>
-        </div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">Défense</div>
-        <div class="joystick">
-          <button type="button" class="joy-btn" data-stat="def" data-dir="-1">▼</button>
-          <div class="joy-val" id="defVal">70</div>
-          <button type="button" class="joy-btn" data-stat="def" data-dir="1">▲</button>
-        </div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">Physique</div>
-        <div class="joystick">
-          <button type="button" class="joy-btn" data-stat="phy" data-dir="-1">▼</button>
-          <div class="joy-val" id="phyVal">76</div>
-          <button type="button" class="joy-btn" data-stat="phy" data-dir="1">▲</button>
-        </div>
-      </div>
-    </div>
+    <div class="stats-grid" id="statsGrid"></div>
 
   </div>
 
@@ -511,6 +499,7 @@ const ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
 
 let photoImg = null;
+let rawPhotoImg = null;
 let clubImg = null;
 let clubImgLoadingSrc = null;
 const contourImg = new Image();
@@ -518,17 +507,157 @@ let contourReady = false;
 contourImg.onload = () => { contourReady = true; drawCard(); };
 contourImg.src = CONTOUR_SRC;
 
-const stats = { vit:80, tir:75, pas:78, dri:82, def:70, phy:76 };
+/* ---------- Jeux de statistiques selon le poste ---------- */
+const OUTFIELD_STATS = [
+  {key:'vit', abbr:'VIT', label:'Vitesse', def:80},
+  {key:'tir', abbr:'TIR', label:'Tir', def:75},
+  {key:'pas', abbr:'PAS', label:'Passe', def:78},
+  {key:'dri', abbr:'DRI', label:'Dribble', def:82},
+  {key:'def', abbr:'DEF', label:'Défense', def:70},
+  {key:'phy', abbr:'PHY', label:'Physique', def:76},
+];
+const GK_STATS = [
+  {key:'plo', abbr:'PLO', label:'Plongeon', def:86},
+  {key:'par', abbr:'PAR', label:'Parade', def:89},
+  {key:'deg', abbr:'DEG', label:'Dégagement', def:91},
+  {key:'ref', abbr:'REF', label:'Réflexes', def:86},
+  {key:'gkv', abbr:'VIT', label:'Vitesse', def:88},
+  {key:'pos', abbr:'POS', label:'Positionnement', def:88},
+];
+/* Paires affichees sur la carte : [colonne gauche, colonne droite] par ligne */
+const OUTFIELD_ROWS = [[0,3],[1,4],[2,5]];
+const GK_ROWS = [[0,3],[1,4],[2,5]];
+
+let statValues = {};
+function initStatValues(defs){
+  defs.forEach(s => { if(!(s.key in statValues)) statValues[s.key] = s.def; });
+}
+initStatValues(OUTFIELD_STATS);
+initStatValues(GK_STATS);
+
+function currentStatDefs(){
+  return els.pos.value === 'GB' ? GK_STATS : OUTFIELD_STATS;
+}
+function currentRows(){
+  return els.pos.value === 'GB' ? GK_ROWS : OUTFIELD_ROWS;
+}
+
+function renderStatControls(){
+  const grid = document.getElementById('statsGrid');
+  grid.innerHTML = '';
+  currentStatDefs().forEach(s => {
+    const row = document.createElement('div');
+    row.className = 'stat-row';
+    row.innerHTML =
+      '<div class="stat-label">' + s.label + '</div>' +
+      '<div class="joystick">' +
+        '<button type="button" class="joy-btn" data-stat="' + s.key + '" data-dir="-1">▼</button>' +
+        '<div class="joy-val" id="val-' + s.key + '">' + statValues[s.key] + '</div>' +
+        '<button type="button" class="joy-btn" data-stat="' + s.key + '" data-dir="1">▲</button>' +
+      '</div>';
+    grid.appendChild(row);
+  });
+  grid.querySelectorAll('.joy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.stat;
+      const dir = parseInt(btn.dataset.dir, 10);
+      statValues[k] = Math.min(99, Math.max(40, statValues[k] + dir));
+      document.getElementById('val-' + k).textContent = statValues[k];
+      drawCard();
+    });
+  });
+}
 
 const els = {
   name: document.getElementById('nameInput'),
   club: clubSelectEl,
   pos: document.getElementById('posSelect'),
   size: document.getElementById('sizeSelect'),
+  bgColor: document.getElementById('bgColorInput'),
 };
 
+renderStatControls();
+
+const photoStatusEl = document.getElementById('photoStatus');
+function setPhotoStatus(text, cls){
+  photoStatusEl.textContent = text || '';
+  photoStatusEl.className = 'photo-status' + (cls ? ' ' + cls : '');
+}
+
+/* ---------- Detourage automatique de la photo (MediaPipe, cote navigateur) ---------- */
+let segmenter = null;
+let segmenterReady = false;
+try{
+  if (typeof SelfieSegmentation !== 'undefined'){
+    segmenter = new SelfieSegmentation({
+      locateFile: (file) => 'https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/' + file
+    });
+    segmenter.setOptions({ modelSelection: 1 });
+    segmenter.onResults((results) => {
+      try{
+        const off = document.createElement('canvas');
+        off.width = results.image.width;
+        off.height = results.image.height;
+        const octx = off.getContext('2d');
+        octx.drawImage(results.image, 0, 0);
+        octx.globalCompositeOperation = 'destination-in';
+        octx.drawImage(results.segmentationMask, 0, 0);
+        octx.globalCompositeOperation = 'source-over';
+        photoImg = off;
+        setPhotoStatus('Fond supprimé ✓', 'ok');
+      } catch(err){
+        photoImg = rawPhotoImg;
+        setPhotoStatus("Le fond n'a pas pu être supprimé, photo utilisée telle quelle.", 'warn');
+      }
+      drawCard();
+    });
+    segmenterReady = true;
+  }
+} catch(e){ segmenterReady = false; }
+
+function processPhoto(imgEl){
+  rawPhotoImg = imgEl;
+  photoImg = imgEl;
+  drawCard();
+  if(!segmenterReady){
+    setPhotoStatus("Détourage automatique indisponible, photo utilisée telle quelle.", 'warn');
+    return;
+  }
+  setPhotoStatus('Suppression du fond en cours…');
+  const fallbackTimer = setTimeout(() => {
+    if(photoImg === rawPhotoImg){
+      setPhotoStatus("Le détourage prend plus de temps que prévu…");
+    }
+  }, 4000);
+  segmenter.send({ image: imgEl }).catch(() => {
+    photoImg = rawPhotoImg;
+    setPhotoStatus("Le fond n'a pas pu être supprimé, photo utilisée telle quelle.", 'warn');
+    drawCard();
+  }).finally(() => clearTimeout(fallbackTimer));
+}
+
+document.getElementById('photoInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const img = new Image();
+    img.onload = function(){ processPhoto(img); };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+document.querySelectorAll('.swatch').forEach(sw => {
+  sw.addEventListener('click', () => {
+    els.bgColor.value = sw.dataset.color;
+    drawCard();
+  });
+});
+els.bgColor.addEventListener('input', drawCard);
+
+/* ---------- Rendu de la carte ---------- */
 function shieldPath(c, x, y, w, h){
-  // Approximation d un ecusson (haut plat avec petites encoches, epaules arrondies, pointe en bas)
   c.beginPath();
   const notch = w*0.09;
   c.moveTo(x + w*0.5 - notch, y);
@@ -544,107 +673,69 @@ function shieldPath(c, x, y, w, h){
   c.closePath();
 }
 
+function drawContainImg(img, cx0, cy0, cx1, cy1, anchor){
+  const bw = cx1-cx0, bh = cy1-cy0;
+  const scale = Math.min(bw/img.width, bh/img.height);
+  const iw = img.width*scale, ih = img.height*scale;
+  const ix = cx0 + (bw-iw)/2;
+  let iy;
+  if(anchor === 'bottom') iy = cy1 - ih;
+  else if(anchor === 'top') iy = cy0;
+  else iy = cy0 + (bh-ih)/2;
+  ctx.drawImage(img, ix, iy, iw, ih);
+}
+
 function drawCard(){
   ctx.clearRect(0,0,W,H);
 
-  const pad = W*0.03;
+  const pad = W*0.035;
   const sx = pad, sy = pad, sw = W - pad*2, sh = H - pad*2;
 
   ctx.save();
   shieldPath(ctx, sx, sy, sw, sh);
   ctx.clip();
 
-  const grad = ctx.createLinearGradient(0,0,0,H);
-  grad.addColorStop(0, '#2a2a2a');
-  grad.addColorStop(1, '#0a0a0a');
-  ctx.fillStyle = grad;
+  ctx.fillStyle = els.bgColor.value;
   ctx.fillRect(sx, sy, sw, sh);
 
   if(clubImg && clubImg.complete){
-    const ratio = Math.max(sw/clubImg.width, sh/clubImg.height);
-    const iw = clubImg.width*ratio, ih = clubImg.height*ratio;
-    const ix = sx + (sw-iw)/2, iy = sy + (sh-ih)/2;
-    ctx.drawImage(clubImg, ix, iy, iw, ih);
-    ctx.fillStyle = 'rgba(0,0,0,.35)';
-    ctx.fillRect(sx, sy, sw, sh);
+    /* grand ecusson en haut a droite */
+    drawContainImg(clubImg, sx+sw*0.50, sy+sh*0.04, sx+sw*0.98, sh*0.40+sy, 'top');
+    /* petit ecusson a gauche */
+    drawContainImg(clubImg, sx+sw*0.06, sy+sh*0.42, sx+sw*0.24, sy+sh*0.56, 'center');
   }
-  ctx.restore();
 
-  const overall = Math.round((stats.vit+stats.tir+stats.pas+stats.dri+stats.def+stats.phy)/6);
-  const gold = '#f0d98a';
+  if(photoImg){
+    drawContainImg(photoImg, sx+sw*0.30, sy+sh*0.10, sx+sw*0.72, sy+sh*0.60, 'bottom');
+  }
+
+  ctx.restore();
 
   ctx.textAlign = 'left';
-  ctx.fillStyle = gold;
-  ctx.font = '700 ' + Math.round(W*0.085) + 'px Marcellus, serif';
-  ctx.fillText(String(overall), W*0.10, H*0.115);
-  ctx.font = '600 ' + Math.round(W*0.032) + 'px "Work Sans", sans-serif';
-  ctx.fillText(els.pos.value, W*0.105, H*0.15);
-
-  const cx = W*0.5, cy = H*0.32, r = W*0.20;
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, Math.PI*2);
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(0,0,0,.2)';
-  ctx.fill();
-  ctx.clip();
-  if(photoImg){
-    const ratio = Math.max((2*r)/photoImg.width, (2*r)/photoImg.height);
-    const iw = photoImg.width*ratio, ih = photoImg.height*ratio;
-    ctx.drawImage(photoImg, cx-iw/2, cy-ih/2, iw, ih);
-  } else {
-    ctx.fillStyle = 'rgba(0,0,0,.3)';
-    ctx.fillRect(cx-r, cy-r, 2*r, 2*r);
-    ctx.beginPath();
-    ctx.arc(cx, cy-r*0.2, r*0.35, 0, Math.PI*2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(cx, cy+r*0.85, r*0.7, Math.PI, 2*Math.PI);
-    ctx.fill();
-  }
-  ctx.restore();
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, Math.PI*2);
-  ctx.lineWidth = W*0.006;
-  ctx.strokeStyle = gold;
-  ctx.stroke();
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '700 ' + Math.round(W*0.068) + 'px Marcellus, serif';
+  ctx.fillText(els.pos.value, W*0.135, H*0.205);
+  ctx.font = '700 ' + Math.round(W*0.095) + 'px Marcellus, serif';
+  ctx.fillText(String(Math.round(
+    currentStatDefs().reduce((s,d)=>s+statValues[d.key],0) / currentStatDefs().length
+  )), W*0.14, H*0.278);
 
   ctx.textAlign = 'center';
-  ctx.fillStyle = gold;
-  ctx.font = '700 ' + Math.round(W*0.05) + 'px Marcellus, serif';
-  ctx.fillText((els.name.value || 'VOTRE NOM').toUpperCase(), cx, H*0.535);
+  ctx.font = '700 ' + Math.round(W*0.062) + 'px Marcellus, serif';
+  ctx.fillText((els.name.value || 'VOTRE NOM').toUpperCase(), W*0.5, H*0.648);
 
-  const clubOpt = els.club.options[els.club.selectedIndex];
-  const clubName = clubOpt && clubOpt.dataset.name ? clubOpt.dataset.name : 'Mon Club';
-  ctx.font = 'italic 500 ' + Math.round(W*0.032) + 'px "Cormorant Garamond", serif';
-  ctx.fillText(clubName, cx, H*0.575);
-
-  ctx.strokeStyle = gold;
-  ctx.globalAlpha = .35;
-  ctx.lineWidth = W*0.003;
-  ctx.beginPath();
-  ctx.moveTo(W*0.12, H*0.61);
-  ctx.lineTo(W*0.88, H*0.61);
-  ctx.stroke();
-  ctx.globalAlpha = 1;
-
-  const rows = [['VIT','TIR','PAS'],['DRI','DEF','PHY']];
-  const colX = [W*0.30, W*0.70];
-  const startY = H*0.68, lineGap = H*0.075;
-  ctx.textAlign = 'center';
-  rows[0].forEach((k,i)=>{
+  const defs = currentStatDefs();
+  const rows = currentRows();
+  const colX = [W*0.155, W*0.515];
+  const startY = H*0.703, lineGap = H*0.0455;
+  ctx.textAlign = 'left';
+  rows.forEach((pair, i) => {
     const y = startY + i*lineGap;
-    ctx.font = '700 ' + Math.round(W*0.042) + 'px "Work Sans", sans-serif';
-    ctx.fillText(String(stats[k.toLowerCase()]), colX[0], y);
-    ctx.font = '500 ' + Math.round(W*0.022) + 'px "Work Sans", sans-serif';
-    ctx.fillText(k, colX[0], y+H*0.028);
-  });
-  rows[1].forEach((k,i)=>{
-    const y = startY + i*lineGap;
-    ctx.font = '700 ' + Math.round(W*0.042) + 'px "Work Sans", sans-serif';
-    ctx.fillText(String(stats[k.toLowerCase()]), colX[1], y);
-    ctx.font = '500 ' + Math.round(W*0.022) + 'px "Work Sans", sans-serif';
-    ctx.fillText(k, colX[1], y+H*0.028);
+    pair.forEach((idx, col) => {
+      const s = defs[idx];
+      ctx.font = '700 ' + Math.round(W*0.045) + 'px Marcellus, serif';
+      ctx.fillText(s.abbr + '  ' + statValues[s.key], colX[col], y);
+    });
   });
 
   if(contourReady){
@@ -652,7 +743,7 @@ function drawCard(){
   }
 
   updatePrice();
-  updateOrderLink(overall);
+  updateOrderLink();
 }
 
 function updatePrice(){
@@ -661,20 +752,24 @@ function updatePrice(){
   document.getElementById('priceBox').textContent = 'Carte personnalisée — ' + price + ' €';
 }
 
-function updateOrderLink(overall){
+function updateOrderLink(){
   const clubOpt = els.club.options[els.club.selectedIndex];
-  const clubName = clubOpt && clubOpt.dataset.name ? clubOpt.dataset.name : 'Aucun (fond neutre)';
+  const clubName = clubOpt && clubOpt.dataset.name ? clubOpt.dataset.name : "Aucun (pas d'écusson)";
   const sizeOpt = els.size.options[els.size.selectedIndex];
+  const defs = currentStatDefs();
+  const overall = Math.round(defs.reduce((s,d)=>s+statValues[d.key],0) / defs.length);
+  const statsLine = defs.map(s => s.abbr + ' ' + statValues[s.key]).join(' / ');
   const body = [
     "Bonjour,",
     "",
     "Je souhaite commander la carte personnalisée suivante :",
     "Nom : " + els.name.value,
     "Club : " + clubName,
+    "Couleur de fond : " + els.bgColor.value,
     "Poste : " + els.pos.value,
     "Taille : " + sizeOpt.textContent,
     "Note globale : " + overall,
-    "VIT " + stats.vit + " / TIR " + stats.tir + " / PAS " + stats.pas + " / DRI " + stats.dri + " / DEF " + stats.def + " / PHY " + stats.phy,
+    statsLine,
     "",
     "Prix : " + sizeOpt.dataset.price + " €",
     "(photo jointe en pièce jointe)"
@@ -683,17 +778,7 @@ function updateOrderLink(overall){
   document.getElementById('orderBtn').href = link;
 }
 
-document.querySelectorAll('.joy-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const stat = btn.dataset.stat;
-    const dir = parseInt(btn.dataset.dir, 10);
-    stats[stat] = Math.min(99, Math.max(40, stats[stat] + dir));
-    document.getElementById(stat + 'Val').textContent = stats[stat];
-    drawCard();
-  });
-});
-
-[els.name, els.club, els.pos, els.size].forEach(el => {
+[els.name, els.club, els.size].forEach(el => {
   el.addEventListener('input', drawCard);
   el.addEventListener('change', () => {
     if(el === els.club){
@@ -711,16 +796,14 @@ document.querySelectorAll('.joy-btn').forEach(btn => {
   });
 });
 
-document.getElementById('photoInput').addEventListener('change', function(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    const img = new Image();
-    img.onload = function(){ photoImg = img; drawCard(); };
-    img.src = ev.target.result;
-  };
-  reader.readAsDataURL(file);
+let lastCategory = 'outfield';
+els.pos.addEventListener('change', () => {
+  const cat = els.pos.value === 'GB' ? 'gk' : 'outfield';
+  if(cat !== lastCategory){
+    lastCategory = cat;
+    renderStatControls();
+  }
+  drawCard();
 });
 
 document.getElementById('downloadBtn').addEventListener('click', function(){

@@ -229,6 +229,11 @@
       </select>
     </div>
 
+    <div class="field" id="variantField" style="display:none">
+      <label for="variantSelect">Version / couleur</label>
+      <select id="variantSelect"></select>
+    </div>
+
     <div class="field">
       <label for="posSelect">Poste</label>
       <select id="posSelect">
@@ -292,21 +297,21 @@ const EMAIL = "votre-email@exemple.com"; // adresse qui reçoit les commandes
 
 const CLUBS = [
   {name:"US 1er Canton", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050152/US_1er_Canton_00.png"},
-  {name:"5 Avenues Longchamp", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843703/5_Avenues_Longchamp_00.png"},
+  {name:"5 Avenues Longchamp", cards:[{label:"Bleue", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843577/5_Avenues_Longchamp_01.png"}, {label:"Orange", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790682736/5_Avenues_Longchamp_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843703/5_Avenues_Longchamp_00.png"},
   {name:"Allauch", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Allauch_00.jpg"},
-  {name:"AS Busserine", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844438/AS_Busserine_00.png"},
-  {name:"AS Flamants Merlan", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000882/AS_Flamants_Merlan_00.png"},
-  {name:"AS Griffeuile", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789682281/AS_Griffeuile_00.png"},
-  {name:"AS Mazargues", img:"https://res.cloudinary.com/qwlhmio0/image/upload/AS_Mazargues_00.png"},
-  {name:"AS Meyrargues", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403494/AS_Meyragues_00.png"},
-  {name:"AS Peyrollaise", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327143/AS_Peyrollaise_-_00.png"},
-  {name:"AS Rognac", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681663/AS_Rognac_00.png"},
+  {name:"AS Busserine", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844630/AS_Busserine_06.png"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844439/AS_Busserine_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844438/AS_Busserine_00.png"},
+  {name:"AS Flamants Merlan", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000883/AS_Flamants_Merlan_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000882/AS_Flamants_Merlan_00.png"},
+  {name:"AS Grifeuille", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789682283/AS_Griffeuile_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789682281/AS_Griffeuile_00.png"},
+  {name:"AS Mazargues", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657614/AS_Mazargues_01.png"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657636/AS_Mazargues_06.png"}, {label:"Bleu clair", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657593/AS_Mazargues_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/AS_Mazargues_00.png"},
+  {name:"AS Meyrargues", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327171/AS_Meyrargues_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403494/AS_Meyragues_00.png"},
+  {name:"AS Peyrollaise", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327156/AS_Peyrollaise_-_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327143/AS_Peyrollaise_-_00.png"},
+  {name:"AS Rognac", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681664/AS_Rognac_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681663/AS_Rognac_00.png"},
   {name:"ASBBA", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790401492/ASBBA_00.png"},
-  {name:"ASPTT Marseille", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995278/ASPTT.png"},
+  {name:"ASPTT Marseille", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995222/ASPTT_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995278/ASPTT.png"},
   {name:"ASPTT la Ciotat", img:"https://res.cloudinary.com/qwlhmio0/image/upload/ASPTT_la_Ciotat_00.png"},
   {name:"Batarelle", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Batarelle_00.png"},
-  {name:"AS Belle de Mai Joliette", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790416674/AS_Belle_de_Mai_Joliette_00.png"},
-  {name:"Berthe", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Berthe_00.jpg"},
+  {name:"AS Belle de Mai Joliette", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790417672/AS_Belle_de_Mai_Joliette_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790416674/AS_Belle_de_Mai_Joliette_00.png"},
+  {name:"AC Berthe", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754441/AC_Berthe_06.png"}, {label:"Noire à liserets", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657379/AC_Berthe_11.png"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790524672/AC_Berthe_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Berthe_00.jpg"},
   {name:"AS Bombardière", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843978/AS_Bombardi%C3%A8re_00.png"},
   {name:"AS Bombardière (ancien logo)", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995751/Bombardi%C3%A8re.png"},
   {name:"Burel FC", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929152/Burel_FC_00.png"},
@@ -379,10 +384,30 @@ const CLUBS = [
 ];
 CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', numeric:true}));
 
+// Chaque club peut avoir :
+//   cards:[{label:"Bleue", url:"URL"}, …] -> plusieurs versions de la carte vierge (le client choisit la couleur)
+//   card:"URL"  -> carte vierge (image 2365 x 3366 se terminant par 01)  [prioritaire]
+//   ink:"#000"  -> impose la couleur des écritures et de l'icône (sinon : noir ou blanc choisi automatiquement selon le fond)
+//                   (ink peut aussi être mis dans une version : {label:"Jaune", url:"…", ink:"#000"})
+//   img:"URL"   -> ancienne image (logo), utilisée seulement si aucune carte vierge n'est trouvée
+// Sans "card", le site essaie automatiquement la même URL en remplaçant "_00" par "_01".
+function cardCandidates(c){
+  const list = [];
+  if(c.card) list.push(c.card);
+  (c.cards || []).forEach(v => list.push(v.url));
+  const m = c.img.match(/^(.*\/upload\/)(?:v\d+\/)?(.*)_00\.(png|jpg|jpeg|PNG|JPG)$/);
+  if(m){
+    const exts = [m[3], 'png', 'jpg', 'PNG'].filter((e,i,a) => a.indexOf(e) === i);
+    exts.forEach(e => list.push(m[1] + m[2] + '_01.' + e));
+  }
+  return list.filter((u,i,a) => a.indexOf(u) === i);
+}
+CLUBS.forEach(c => { c.candidates = cardCandidates(c); });
+
 const clubSelectEl = document.getElementById('clubSelect');
-CLUBS.forEach(c => {
+CLUBS.forEach((c, i) => {
   const opt = document.createElement('option');
-  opt.value = c.img;
+  opt.value = String(i);
   opt.textContent = c.name;
   opt.dataset.name = c.name;
   clubSelectEl.appendChild(opt);
@@ -404,6 +429,7 @@ function detectOpaque(img){
 }
 let clubImg = null;
 let clubImgLoadingSrc = null;
+let clubInkAuto = '#fff';   // couleur d'écriture choisie d'après le fond
 const contourImg = new Image();
 let contourReady = false;
 contourImg.onload = () => { contourReady = true; drawCard(); };
@@ -532,12 +558,48 @@ function shieldShape(k){
   ctx.bezierCurveTo(-50*k, 110*k, -115*k, 80*k, -115*k, 10*k);
   ctx.closePath();
 }
-function drawPosIcon(pos, cx, cy){
+function clubInk(){
+  const c = currentClub();
+  if(!c) return '#fff';
+  const v = currentVariant();
+  return (v && v.ink) || c.ink || clubInkAuto;
+}
+
+// Icônes fournies : images/icones/<nom>.svg (ou .png) — une seule couleur, fond transparent.
+// Elles sont recolorées avec la couleur d'écriture du club. Si le fichier n'existe pas, l'icône dessinée par défaut est utilisée.
+const ICON_FILES = {wall:'gardien', shield:'defenseur', gear:'milieu', bolt:'ailier', target:'buteur'};
+const ICON_IMG = {};
+Object.keys(ICON_FILES).forEach(type => {
+  const exts = ['svg', 'png'];
+  const tryExt = i => {
+    if(i >= exts.length){ ICON_IMG[type] = false; return; }
+    const im = new Image();
+    im.onload = () => { ICON_IMG[type] = im; drawCard(); };
+    im.onerror = () => tryExt(i + 1);
+    im.src = 'images/icones/' + ICON_FILES[type] + '.' + exts[i];
+  };
+  tryExt(0);
+});
+
+function drawPosIcon(pos, cx, cy, ink){
   const type = ICON_BY_POS[pos] || 'gear';
+  const file = ICON_IMG[type];
+  if(file){
+    const iw = file.naturalWidth || file.width || 236, ih = file.naturalHeight || file.height || 236;
+    const k = Math.min(371/iw, 236/ih);
+    const off = document.createElement('canvas');
+    off.width = Math.max(1, Math.round(iw*k)); off.height = Math.max(1, Math.round(ih*k));
+    const o = off.getContext('2d');
+    o.drawImage(file, 0, 0, off.width, off.height);
+    o.globalCompositeOperation = 'source-in';
+    o.fillStyle = ink; o.fillRect(0, 0, off.width, off.height);
+    ctx.drawImage(off, cx - off.width/2, cy - off.height/2);
+    return;
+  }
   ctx.save();
   ctx.translate(cx, cy);
-  ctx.fillStyle = '#fff';
-  ctx.strokeStyle = '#fff';
+  ctx.fillStyle = ink;
+  ctx.strokeStyle = ink;
   if(type === 'wall'){                         // mur de briques (gardien)
     const x0 = -185.5, top = -119, bh = 50, gap = 12.7;
     const rowA = [[0,108],[122,247],[262,371]];
@@ -643,10 +705,11 @@ function drawCard(){
   // 2. textes et icône (blanc, Times gras comme sur le modèle)
   const overall = overallRating();
   const pos = els.pos.value;
-  ctx.fillStyle = '#fff';
+  const ink = clubInk();
+  ctx.fillStyle = ink;
   drawText(posLabel(), L.colX, L.posBase, L.posSize, 'center', L.posMaxW);
   drawText(String(overall), L.colX, L.ovrBase, L.ovrSize, 'center');
-  drawPosIcon(pos, L.iconCx, L.iconCy);
+  drawPosIcon(pos, L.iconCx, L.iconCy, ink);
 
   const first = els.name.value.trim() || 'PRÉNOM';
   const last = els.last.value.trim();
@@ -679,6 +742,8 @@ function fullName(){
 function updateOrderLink(overall){
   const clubOpt = els.club.options[els.club.selectedIndex];
   const clubName = clubOpt && clubOpt.dataset.name ? clubOpt.dataset.name : 'Aucun (fond neutre)';
+  const vr = currentVariant();
+  const clubLabel = clubName + (vr ? ' — ' + vr.label : '');
   const sizeOpt = els.size.options[els.size.selectedIndex];
   const body = [
     "Bonjour,",
@@ -686,7 +751,7 @@ function updateOrderLink(overall){
     "Je souhaite commander la carte personnalisée suivante :",
     "Prénom : " + els.name.value.trim(),
     "Nom : " + els.last.value.trim(),
-    "Club : " + clubName,
+    "Club : " + clubLabel,
     "Poste : " + posLabel(),
     "Taille : " + sizeOpt.textContent,
     "Note globale : " + overall,
@@ -704,17 +769,108 @@ els.size.addEventListener('change', drawCard);
 
 els.pos.addEventListener('change', () => { renderStatControls(); drawCard(); });
 
+let clubToken = 0;
+
+function lin(v){ v /= 255; return v <= 0.04045 ? v/12.92 : Math.pow((v + 0.055)/1.055, 2.4); }
+// Noir ou blanc, selon le meilleur contraste avec le fond derrière le poste/la note et derrière le nom/les notes
+function detectInk(img){
+  try{
+    const w = 148, h = 210;
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d');
+    const k = Math.max(w/img.width, h/img.height);
+    x.drawImage(img, (w - img.width*k)/2, (h - img.height*k)/2, img.width*k, img.height*k);
+    const sc = w/W;
+    let sum = 0, n = 0;
+    [[300,600,760,1310],[430,2040,1930,2740]].forEach(z => {
+      const d = x.getImageData(Math.round(z[0]*sc), Math.round(z[1]*sc), Math.round((z[2]-z[0])*sc), Math.round((z[3]-z[1])*sc)).data;
+      for(let i = 0; i < d.length; i += 4){
+        if(d[i+3] < 128) continue;
+        sum += lin(d[i])*0.2126 + lin(d[i+1])*0.7152 + lin(d[i+2])*0.0722; n++;
+      }
+    });
+    if(!n) return '#fff';
+    const L = sum/n;
+    return (L + 0.05)/0.05 > 1.05/(L + 0.05) ? '#111' : '#fff';
+  }catch(err){ return '#fff'; }
+}
+
+function loadClub(club, cardUrl){
+  const token = ++clubToken;
+  const list = (cardUrl ? [cardUrl] : club.candidates).concat([club.img]);
+  const tryNext = () => {
+    if(token !== clubToken) return;
+    const src = list.shift();
+    if(!src){ clubImg = null; clubInkAuto = '#fff'; drawCard(); return; }
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      if(token !== clubToken) return;
+      if(src === club.img) console.warn('[CreaFut] Carte vierge (01) introuvable pour "' + club.name + '" : logo affiché.');
+      clubImg = img;
+      clubInkAuto = detectInk(img);
+      drawCard();
+    };
+    img.onerror = tryNext;
+    img.src = src;
+  };
+  tryNext();
+}
+
+const variantField = document.getElementById('variantField');
+const variantSel = document.getElementById('variantSelect');
+function currentClub(){ return els.club.value === '' ? null : CLUBS[parseInt(els.club.value, 10)]; }
+function currentVariant(){
+  const c = currentClub();
+  return c && c.cards ? (c.cards[parseInt(variantSel.value, 10)] || null) : null;
+}
+
 els.club.addEventListener('change', () => {
-  const src = els.club.value;
-  if(!src){ clubImg = null; clubImgLoadingSrc = null; drawCard(); return; }
-  if(src === clubImgLoadingSrc && clubImg){ drawCard(); return; }
-  clubImgLoadingSrc = src;
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.onload = () => { if(clubImgLoadingSrc !== src) return; clubImg = img; drawCard(); };
-  img.onerror = () => { if(clubImgLoadingSrc !== src) return; clubImg = null; drawCard(); };
-  img.src = src;
+  const c = currentClub();
+  if(!c){ clubToken++; clubImg = null; clubInkAuto = '#fff'; variantField.style.display = 'none'; drawCard(); return; }
+  if(c.cards && c.cards.length){
+    variantSel.innerHTML = '';
+    c.cards.forEach((v, i) => {
+      const o = document.createElement('option');
+      o.value = String(i); o.textContent = v.label;
+      variantSel.appendChild(o);
+    });
+    variantField.style.display = c.cards.length > 1 ? '' : 'none';
+    loadClub(c, c.cards[0].url);
+  } else {
+    variantField.style.display = 'none';
+    loadClub(c);
+  }
 });
+variantSel.addEventListener('change', () => {
+  const c = currentClub(), v = currentVariant();
+  if(c && v) loadClub(c, v.url);
+});
+
+// Outil de contrôle : ouvrir la page avec  ?verif  pour lister les clubs dont la carte vierge est introuvable
+if(/[?&]verif/.test(location.search)){
+  const box = document.createElement('div');
+  box.style.cssText = 'position:fixed;right:10px;bottom:10px;max-width:380px;max-height:60vh;overflow:auto;background:#111;color:#fff;border:1px solid #caa147;padding:12px;font:13px/1.4 sans-serif;z-index:9999';
+  box.textContent = 'Vérification des cartes vierges…';
+  document.body.appendChild(box);
+  const missing = []; let done = 0;
+  CLUBS.forEach(c => {
+    const list = c.candidates.slice();
+    const test = () => {
+      const src = list.shift();
+      if(!src){ missing.push(c.name); finish(); return; }
+      const im = new Image();
+      im.onload = finish; im.onerror = test; im.src = src;
+    };
+    test();
+  });
+  function finish(){
+    done++;
+    if(done < CLUBS.length) return;
+    box.innerHTML = '<b>' + (CLUBS.length - missing.length) + ' / ' + CLUBS.length + ' cartes vierges trouvées</b>' +
+      (missing.length ? '<br><br>À renseigner (champ card) :<br>• ' + missing.join('<br>• ') : '');
+  }
+}
 
 const dropZone = document.getElementById('dropZone');
 const dzSub = document.getElementById('dzSub');

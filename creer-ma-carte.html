@@ -394,6 +394,8 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 //                   (ink peut aussi être mis dans une version : {label:"Jaune", url:"…", ink:"#000"})
 //   edge:"#008028" -> contour des écritures et de l'icône (ex. jaune entouré de vert : ink:"#f8d200", edge:"#008028")
 //   img:"URL"   -> ancienne image (logo), utilisée seulement si aucune carte vierge n'est trouvée
+//   icons:{GB:"Gants", MC:"Casque"} -> choix de l'icône de poste pour ce club (ou cette version). Noms possibles : voir ICON_CHOICES. Sans cela : première icône de la liste.
+//   logo:"URL" -> image du petit logo sous l'icône (sinon : "img" si elle est carrée) ; logo:false -> pas de petit logo
 // Sans "card", le site essaie automatiquement la même URL en remplaçant "_00" par "_01".
 function cardCandidates(c){
   const list = [];
@@ -525,6 +527,7 @@ const L = {
   posBase: 795,  posSize: 283, posMaxW: 480,
   ovrBase: 1027, ovrSize: 249,
   iconCx: 535,   iconCy: 1180,
+  logoCx: 538,   logoCy: 1527, logoSize: 336,   // petit logo du club (position estimée, à ajuster si besoin)
   photoCx: 1176, photoBottom: 2005, photoMaxW: 980, photoMaxH: 1660,
   nameCx: 1176,  nameBase: 2205, nameSize: 244, nameMaxW: 1750,
   statRows: [2388, 2563, 2735], statSize: 182,
@@ -584,21 +587,55 @@ function clubInk(){
   return (v && v.ink) || c.ink || clubInkAuto;
 }
 
-// Icônes fournies : images/icones/<nom>.svg (ou .png) — une seule couleur, fond transparent.
-// Elles sont recolorées avec la couleur d'écriture du club. Si le fichier n'existe pas, l'icône dessinée par défaut est utilisée.
-const ICON_FILES = {wall:'gardien', shield:'defenseur', gear:'milieu', bolt:'ailier', target:'buteur'};
-const ICON_IMG = {};
-Object.keys(ICON_FILES).forEach(type => {
-  const exts = ['svg', 'png'];
-  const tryExt = i => {
-    if(i >= exts.length){ ICON_IMG[type] = false; return; }
-    const im = new Image();
-    im.onload = () => { ICON_IMG[type] = im; drawCard(); };
-    im.onerror = () => tryExt(i + 1);
-    im.src = 'images/icones/' + ICON_FILES[type] + '.' + exts[i];
-  };
-  tryExt(0);
-});
+// Icônes de poste hébergées sur Cloudinary : <Nom>_-_<POSTE>.png (une seule couleur, fond transparent).
+// Elles sont recolorées avec la couleur d'écriture du club. Si une image est introuvable, l'icône dessinée par défaut est utilisée.
+const ICON_BASE = 'https://res.cloudinary.com/qwlhmio0/image/upload/';
+const ICON_CHOICES = {   // la 1re icône de la liste est utilisée par défaut
+  GB:['Mur','Gants'], DC:['Casque','Guerrier'], DG:['Colonne'], DD:['Colonne'], MDC:['Tour'],
+  MC:['Artiste','Casque','Guerrier'], MOC:['Artiste','Cerveau'],
+  MG:['Eclair'], MD:['Eclair'], AG:['Eclair'], AD:['Eclair'], BU:['Cage','Cible']
+};
+const IMG_CACHE = {};
+function loadCached(url){
+  let e = IMG_CACHE[url];
+  if(e) return e;
+  e = IMG_CACHE[url] = {state:'loading', img:null};
+  const im = new Image();
+  im.crossOrigin = 'anonymous';
+  im.onload = () => { e.state = 'ok'; e.img = im; drawCard(); };
+  im.onerror = () => { e.state = 'error'; drawCard(); };
+  im.src = url;
+  return e;
+}
+function iconChoice(pos){
+  const c = currentClub(), v = currentVariant();
+  const o = (v && v.icons && v.icons[pos]) || (c && c.icons && c.icons[pos]);
+  return o || (ICON_CHOICES[pos] || ['Artiste'])[0];
+}
+function getPosIcon(pos){   // 'loading' | Image | null (introuvable)
+  const e = loadCached(ICON_BASE + iconChoice(pos) + '_-_' + (pos === 'GB' ? 'GK' : pos) + '.png');
+  if(e.state === 'loading') return 'loading';
+  return e.state === 'ok' ? e.img : null;
+}
+
+// Petit logo du club sous l'icône de poste (comme sur les visuels)
+function drawClubLogo(){
+  const c = currentClub();
+  if(!c) return;
+  const v = currentVariant();
+  const own = (v && v.logo !== undefined) ? v.logo : c.logo;
+  if(own === false) return;
+  const url = own || c.img;
+  if(!url) return;
+  if(!own && /\.jpe?g$/i.test(url)) return;          // un .jpg a un fond blanc : à éviter sauf choix explicite
+  const e = loadCached(url);
+  if(e.state !== 'ok') return;
+  const im = e.img, r = im.naturalWidth / im.naturalHeight;
+  if(!(r > 0.8 && r < 1.25)) return;                 // ignore les images qui ne sont pas un logo
+  const k = Math.min(L.logoSize/im.naturalWidth, L.logoSize/im.naturalHeight);
+  const dw = im.naturalWidth*k, dh = im.naturalHeight*k;
+  ctx.drawImage(im, L.logoCx - dw/2, L.logoCy - dh/2, dw, dh);
+}
 
 function drawPosIcon(pos, cx, cy, ink, edge){
   const main = ctx;
@@ -623,7 +660,8 @@ function drawPosIcon(pos, cx, cy, ink, edge){
 
 function drawPosIconRaw(pos, cx, cy, ink){
   const type = ICON_BY_POS[pos] || 'gear';
-  const file = ICON_IMG[type];
+  const file = getPosIcon(pos);
+  if(file === 'loading') return;
   if(file){
     const iw = file.naturalWidth || file.width || 236, ih = file.naturalHeight || file.height || 236;
     const k = Math.min(371/iw, 236/ih);
@@ -752,6 +790,7 @@ function drawCard(){
   drawText(posLabel(), L.colX, L.posBase, L.posSize, 'center', L.posMaxW);
   drawText(String(overall), L.colX, L.ovrBase, L.ovrSize, 'center');
   drawPosIcon(pos, L.iconCx, L.iconCy, ink, edge);
+  drawClubLogo();
 
   const first = els.name.value.trim() || 'PRÉNOM';
   const last = els.last.value.trim();
@@ -833,7 +872,7 @@ function detectInk(img){
     });
     if(!n) return '#fff';
     const L = sum/n;
-    return (L + 0.05)/0.05 > 1.05/(L + 0.05) ? '#111' : '#fff';
+    return L > 0.55 ? '#111' : '#fff';   // blanc par défaut ; noir seulement si le fond est très clair
   }catch(err){ return '#fff'; }
 }
 

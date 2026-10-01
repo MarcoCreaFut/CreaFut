@@ -316,7 +316,7 @@ const CLUBS = [
   {name:"AS Bombardière (ancien logo)", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995751/Bombardi%C3%A8re.png"},
   {name:"Burel FC", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929162/Burel_FC_01.png"}, {label:"Boca Juniors", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790002030/Burel_FC_06.png"}, {label:"Jaune et bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113302/Burel_FC_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929152/Burel_FC_00.png"},
   {name:"Château Gombert", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623249/Chateau_Gombert_-_Logo.png"},
-  {name:"US Endoume", cards:[{label:"Classique", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790247508/US_Endoume_01.png"}, {label:"Centenaire rouge et noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754769/US_Endoume_06.png"}, {label:"Centenaire blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754790/US_Endoume_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050227/US_Endoume_00.png"},
+  {name:"US Endoume", cards:[{label:"Classique", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790830712/US_Endoume_01.png"}, {label:"Centenaire rouge et noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754769/US_Endoume_06.png"}, {label:"Centenaire blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754790/US_Endoume_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050227/US_Endoume_00.png"},
   {name:"FC Ensues la Redonne", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000926/FC_Ensues_la_Redonne_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000933/Ensues.png"},
   {name:"Eoures Camoins Treille Sport", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790104854/Eoures_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108707/Eoures_Camoins.png"},
   {name:"ES Cuges", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790662865/ES_Cuges_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/ES_Cuges_00.jpg"},
@@ -849,6 +849,7 @@ function loadClub(club, cardUrl){
     img.onload = () => {
       if(token !== clubToken) return;
       if(src === club.img) console.warn('[CreaFut] Carte vierge (01) introuvable pour "' + club.name + '" : logo affiché.');
+      if(img.naturalWidth !== W || img.naturalHeight !== H) console.warn('[CreaFut] "' + club.name + '" : la carte fait ' + img.naturalWidth + ' x ' + img.naturalHeight + ' px au lieu de ' + W + ' x ' + H + ' px : elle ne sera pas alignée sur le contour.');
       clubImg = img;
       clubInkAuto = detectInk(img);
       drawCard();
@@ -889,28 +890,40 @@ variantSel.addEventListener('change', () => {
   if(c && v) loadClub(c, v.url);
 });
 
-// Outil de contrôle : ouvrir la page avec  ?verif  pour lister les clubs dont la carte vierge est introuvable
+// Outil de contrôle : ouvrir la page avec  ?verif
+//  - liste les clubs dont la carte vierge est introuvable
+//  - liste les cartes dont la taille n'est pas 2365 x 3366 px (elles ne s'ajustent pas au contour)
 if(/[?&]verif/.test(location.search)){
   const box = document.createElement('div');
-  box.style.cssText = 'position:fixed;right:10px;bottom:10px;max-width:380px;max-height:60vh;overflow:auto;background:#111;color:#fff;border:1px solid #caa147;padding:12px;font:13px/1.4 sans-serif;z-index:9999';
+  box.style.cssText = 'position:fixed;right:10px;bottom:10px;max-width:420px;max-height:70vh;overflow:auto;background:#111;color:#fff;border:1px solid #caa147;padding:12px;font:13px/1.4 sans-serif;z-index:9999';
   box.textContent = 'Vérification des cartes vierges…';
   document.body.appendChild(box);
-  const missing = []; let done = 0;
+  const items = [];
   CLUBS.forEach(c => {
-    const list = c.candidates.slice();
+    if(c.cards) c.cards.forEach(v => items.push({label: c.name + ' (' + v.label + ')', urls: [v.url]}));
+    else items.push({label: c.name, urls: c.candidates.slice()});
+  });
+  const missing = [], badSize = []; let done = 0;
+  items.forEach(it => {
+    const list = it.urls.slice();
     const test = () => {
       const src = list.shift();
-      if(!src){ missing.push(c.name); finish(); return; }
+      if(!src){ missing.push(it.label); finish(); return; }
       const im = new Image();
-      im.onload = finish; im.onerror = test; im.src = src;
+      im.onload = () => {
+        if(im.naturalWidth !== W || im.naturalHeight !== H) badSize.push(it.label + ' : ' + im.naturalWidth + ' × ' + im.naturalHeight);
+        finish();
+      };
+      im.onerror = test; im.src = src;
     };
     test();
   });
   function finish(){
     done++;
-    if(done < CLUBS.length) return;
-    box.innerHTML = '<b>' + (CLUBS.length - missing.length) + ' / ' + CLUBS.length + ' cartes vierges trouvées</b>' +
-      (missing.length ? '<br><br>À renseigner (champ card) :<br>• ' + missing.join('<br>• ') : '');
+    if(done < items.length) return;
+    box.innerHTML = '<b>' + (items.length - missing.length) + ' / ' + items.length + ' cartes vierges trouvées</b>' +
+      (missing.length ? '<br><br><b>Introuvables (champ card) :</b><br>• ' + missing.join('<br>• ') : '') +
+      (badSize.length ? '<br><br><b>Taille différente de ' + W + ' × ' + H + ' px :</b><br>• ' + badSize.join('<br>• ') : '<br><br>Toutes les cartes trouvées font ' + W + ' × ' + H + ' px.');
   }
 }
 

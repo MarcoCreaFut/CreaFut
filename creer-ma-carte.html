@@ -350,7 +350,7 @@ const CLUBS = [
   {name:"le Parc FC", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112339/le_Parc_FC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790136364/le_Parc_FC_00.png"},
   {name:"Luynes Sports", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790569024/Luynes_Sports_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Luynes.png"},
   {name:"Marseille Sud Olympique", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Marseille_Sud_Olympique.png"},
-  {name:"US Michelis", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790480279/Michelis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Michelis.png"},
+  {name:"US Michelis", ink:"#f8d200", edge:"#008028", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790480279/Michelis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Michelis.png"},
   {name:"CS Montolivet", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"}, {label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439223/CS_Montolivet_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"},
   {name:"Montolivet Bois Luzy", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Montolivet_Bois_Luzy.png"},
   {name:"Marseille Nord Olympique", cards:[{label:"Bleu ciel", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525823/Nord_Olympique_01.png"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525816/Nord_Olympique_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Nord_Olympique_00.png"},
@@ -392,6 +392,7 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 //   card:"URL"  -> carte vierge (image 2365 x 3366 se terminant par 01)  [prioritaire]
 //   ink:"#000"  -> impose la couleur des écritures et de l'icône (sinon : noir ou blanc choisi automatiquement selon le fond)
 //                   (ink peut aussi être mis dans une version : {label:"Jaune", url:"…", ink:"#000"})
+//   edge:"#008028" -> contour des écritures et de l'icône (ex. jaune entouré de vert : ink:"#f8d200", edge:"#008028")
 //   img:"URL"   -> ancienne image (logo), utilisée seulement si aucune carte vierge n'est trouvée
 // Sans "card", le site essaie automatiquement la même URL en remplaçant "_00" par "_01".
 function cardCandidates(c){
@@ -417,7 +418,7 @@ CLUBS.forEach((c, i) => {
 });
 
 const canvas = document.getElementById('cardCanvas');
-const ctx = canvas.getContext('2d');
+let ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
 
 let photoImg = null;
@@ -536,11 +537,20 @@ function fitSize(text, size, maxW){
   const w = ctx.measureText(text).width;
   return w > maxW ? Math.floor(size * maxW / w) : size;
 }
+let textEdge = null;   // couleur du contour des écritures (null = pas de contour)
 function drawText(text, x, base, size, align, maxW){
   const sz = maxW ? fitSize(text, size, maxW) : size;
   ctx.font = 'bold ' + sz + 'px ' + SERIF;
   ctx.textAlign = align;
   ctx.textBaseline = 'alphabetic';
+  if(textEdge){
+    ctx.save();
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = sz*0.085;
+    ctx.strokeStyle = textEdge;
+    ctx.strokeText(text, x, base);
+    ctx.restore();
+  }
   ctx.fillText(text, x, base);
 }
 
@@ -560,6 +570,12 @@ function shieldShape(k){
   ctx.bezierCurveTo(115*k, 80*k, 50*k, 110*k, 0, 125*k);
   ctx.bezierCurveTo(-50*k, 110*k, -115*k, 80*k, -115*k, 10*k);
   ctx.closePath();
+}
+function clubEdge(){
+  const c = currentClub();
+  if(!c) return null;
+  const v = currentVariant();
+  return (v && v.edge) || c.edge || null;
 }
 function clubInk(){
   const c = currentClub();
@@ -584,7 +600,28 @@ Object.keys(ICON_FILES).forEach(type => {
   tryExt(0);
 });
 
-function drawPosIcon(pos, cx, cy, ink){
+function drawPosIcon(pos, cx, cy, ink, edge){
+  const main = ctx;
+  const bw = 451, bh = 330;
+  const off = document.createElement('canvas'); off.width = bw; off.height = bh;
+  ctx = off.getContext('2d');
+  try{ drawPosIconRaw(pos, bw/2, bh/2, ink); } finally { ctx = main; }
+  if(edge){
+    const tint = document.createElement('canvas'); tint.width = bw; tint.height = bh;
+    const t = tint.getContext('2d');
+    t.drawImage(off, 0, 0);
+    t.globalCompositeOperation = 'source-in';
+    t.fillStyle = edge; t.fillRect(0, 0, bw, bh);
+    const r = 7;
+    for(let i = 0; i < 24; i++){
+      const a = i*Math.PI/12;
+      ctx.drawImage(tint, cx - bw/2 + Math.cos(a)*r, cy - bh/2 + Math.sin(a)*r);
+    }
+  }
+  ctx.drawImage(off, cx - bw/2, cy - bh/2);
+}
+
+function drawPosIconRaw(pos, cx, cy, ink){
   const type = ICON_BY_POS[pos] || 'gear';
   const file = ICON_IMG[type];
   if(file){
@@ -709,10 +746,12 @@ function drawCard(){
   const overall = overallRating();
   const pos = els.pos.value;
   const ink = clubInk();
+  const edge = clubEdge();
+  textEdge = edge;
   ctx.fillStyle = ink;
   drawText(posLabel(), L.colX, L.posBase, L.posSize, 'center', L.posMaxW);
   drawText(String(overall), L.colX, L.ovrBase, L.ovrSize, 'center');
-  drawPosIcon(pos, L.iconCx, L.iconCy, ink);
+  drawPosIcon(pos, L.iconCx, L.iconCy, ink, edge);
 
   const first = els.name.value.trim() || 'PRÉNOM';
   const last = els.last.value.trim();

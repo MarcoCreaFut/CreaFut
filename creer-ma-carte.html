@@ -351,7 +351,7 @@ const CLUBS = [
   {name:"Luynes Sports", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790847988/Luynes_Sports_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Luynes.png"},
   {name:"Marseille Sud Olympique", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Marseille_Sud_Olympique.png"},
   {name:"US Michelis", ink:"#f8d200", edge:"#008028", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848017/Michelis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Michelis.png"},
-  {name:"Montolivet Bois Luzy", ink:"#000", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"}, {label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439223/CS_Montolivet_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439290/Montolivet_Bois_Luzy.png"},
+  {name:"Montolivet Bois Luzy", ink:"#000", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"}, {label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439223/CS_Montolivet_06.png", layout:{colX:475, posBase:702, posSize:202, ovrBase:980, ovrSize:200, iconCx:475, iconCy:1156, iconW:311, iconH:232, logoCx:474, logoCy:1784, logoSize:385, nameCx:1176, nameBase:2032, nameSize:158, nameMaxW:1460, statRows:[2290,2511,2737], statSize:153, statX:[{label:321,value:830},{label:1292,value:1774}]}}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439290/Montolivet_Bois_Luzy.png"},
   {name:"Marseille Nord Olympique", ink:"#fff", cards:[{label:"Bleu ciel", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525823/Nord_Olympique_01.png"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525816/Nord_Olympique_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Nord_Olympique_00.png"},
   {name:"Olympique Mallemortais", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327133/Olympique_Mallemortais_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327125/Olympique_Mallemortais_00.png"},
   {name:"Olympique Rovenain", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848046/Olympique_Rovenain_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108343/Olympique_Rovenain_-_00.png"},
@@ -394,6 +394,9 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 //   edge:"#008028" -> contour des écritures et de l'icône (ex. jaune entouré de vert : ink:"#f8d200", edge:"#008028")
 //   img:"URL"   -> ancienne image (logo), utilisée seulement si aucune carte vierge n'est trouvée
 //   icons:{GB:"Gants", MC:"Casque"} -> choix de l'icône de poste pour ce club (ou cette version). Noms possibles : voir ICON_CHOICES. Sans cela : première icône de la liste.
+//   layout:{...} -> positions propres à ce club (ou à cette version, à mettre dans la version) quand les traits de la carte sont placés autrement.
+//                    Clés possibles : colX, posBase, posSize, ovrBase, ovrSize, iconCx, iconCy, iconW, iconH, logoCx, logoCy, logoSize,
+//                    nameCx, nameBase, nameSize, nameMaxW, statRows:[3 hauteurs], statSize, statX:[{label,value},{label,value}] (px sur 2365 x 3366)
 //   logo:"URL" -> image du petit logo sous l'icône (sinon : "img" si elle est carrée) ; logo:false -> pas de petit logo
 // Sans "card", le site essaie automatiquement la même URL en remplaçant "_00" par "_01".
 function cardCandidates(c){
@@ -521,17 +524,18 @@ statsGridEl.addEventListener('click', e => {
 
 // ---------- Mise en page (px sur la carte 2365 x 3366) ----------
 const SERIF = '"Times New Roman", Times, "Liberation Serif", serif';
-const L = {
+const L0 = {
   colX: 530,                                   // colonne haut-gauche (poste, note, icône)
   posBase: 795,  posSize: 283, posMaxW: 480,
   ovrBase: 1027, ovrSize: 249,
-  iconCx: 535,   iconCy: 1180,
+  iconCx: 535,   iconCy: 1180,   iconW: 371, iconH: 236,   // iconW/iconH : cadre dans lequel l'icône de poste est ajustée
   logoCx: 538,   logoCy: 1527, logoSize: 336,   // petit logo du club (position estimée, à ajuster si besoin)
   photoCx: 1176, photoBottom: 2005, photoMaxW: 980, photoMaxH: 1660,
   nameCx: 1176,  nameBase: 2205, nameSize: 244, nameMaxW: 1750,
   statRows: [2388, 2563, 2735], statSize: 182,
   statX: [ {label:434, value:884}, {label:1280, value:1735} ]
 };
+let L = Object.assign({}, L0);   // mise en page utilisée : L0 + « layout » du club + « layout » de la version (voir drawCard)
 const NEUTRAL_BG = '#00186a';
 
 function fitSize(text, size, maxW){
@@ -663,7 +667,7 @@ function drawPosIconRaw(pos, cx, cy, ink){
   if(file === 'loading') return;
   if(file){
     const iw = file.naturalWidth || file.width || 236, ih = file.naturalHeight || file.height || 236;
-    const k = Math.min(371/iw, 236/ih);
+    const k = Math.min(L.iconW/iw, L.iconH/ih);
     const off = document.createElement('canvas');
     off.width = Math.max(1, Math.round(iw*k)); off.height = Math.max(1, Math.round(ih*k));
     const o = off.getContext('2d');
@@ -770,6 +774,8 @@ function drawPhoto(){
 }
 
 function drawCard(){
+  { const c_ = currentClub(), v_ = currentVariant();
+    L = Object.assign({}, L0, (c_ && c_.layout) || {}, (v_ && v_.layout) || {}); }
   ctx.clearRect(0, 0, W, H);
 
   // 1. fond du club + photo, découpés selon le bouclier

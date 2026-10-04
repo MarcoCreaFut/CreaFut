@@ -252,6 +252,11 @@
       </select>
     </div>
 
+    <div class="field" id="iconField" style="display:none">
+      <label for="iconSelect">Icône du poste</label>
+      <select id="iconSelect"></select>
+    </div>
+
     <div class="field">
       <label for="sizeSelect">Taille de la carte</label>
       <select id="sizeSelect">
@@ -584,21 +589,48 @@ function clubInk(){
   return (v && v.ink) || c.ink || clubInkAuto;
 }
 
-// Icônes fournies : images/icones/<nom>.svg (ou .png) — une seule couleur, fond transparent.
-// Elles sont recolorées avec la couleur d'écriture du club. Si le fichier n'existe pas, l'icône dessinée par défaut est utilisée.
-const ICON_FILES = {wall:'gardien', shield:'defenseur', gear:'milieu', bolt:'ailier', target:'buteur'};
+// Icônes fournies : images/icones/<nom>.png (silhouette blanche, fond transparent).
+// Elles sont recolorées avec la couleur d'écriture du club (et entourées si le club a un contour).
+// Si un fichier manque, l'icône dessinée par défaut est utilisée.
+const ICON_LABELS = {mur:'Mur', gants:'Gants', casque:'Casque', guerrier:'Guerrier', colonne:'Colonne', tour:'Tour',
+                     artiste:'Artiste', cerveau:'Cerveau', eclair:'Éclair', cible:'Cible', cage:'Cage'};
+// Icônes proposées pour chaque poste (la première est choisie par défaut)
+const POS_ICONS = {
+  GB:['mur','gants'],
+  DC:['casque','guerrier'], DG:['colonne','casque','guerrier'], DD:['colonne','casque','guerrier'],
+  MDC:['tour'], MC:['casque','guerrier','artiste'], MOC:['cerveau','artiste'], MG:['eclair'], MD:['eclair'],
+  AG:['eclair'], AD:['eclair'],
+  BU:['cible','cage']
+};
 const ICON_IMG = {};
-Object.keys(ICON_FILES).forEach(type => {
-  const exts = ['svg', 'png'];
-  const tryExt = i => {
-    if(i >= exts.length){ ICON_IMG[type] = false; return; }
-    const im = new Image();
-    im.onload = () => { ICON_IMG[type] = im; drawCard(); };
-    im.onerror = () => tryExt(i + 1);
-    im.src = 'images/icones/' + ICON_FILES[type] + '.' + exts[i];
-  };
-  tryExt(0);
+Object.keys(ICON_LABELS).forEach(key => {
+  const im = new Image();
+  im.onload = () => { ICON_IMG[key] = im; drawCard(); };
+  im.onerror = () => { ICON_IMG[key] = false; };
+  im.src = 'images/icones/' + key + '.png';
 });
+
+const iconField = document.getElementById('iconField');
+const iconSel = document.getElementById('iconSelect');
+let iconPos = null;
+function ensureIconSelect(){
+  const pos = els.pos.value;
+  if(pos === iconPos) return;
+  iconPos = pos;
+  const list = POS_ICONS[pos] || [];
+  iconSel.innerHTML = '';
+  list.forEach(k => {
+    const o = document.createElement('option');
+    o.value = k; o.textContent = ICON_LABELS[k];
+    iconSel.appendChild(o);
+  });
+  iconField.style.display = list.length > 1 ? '' : 'none';
+}
+function currentIconKey(){
+  const list = POS_ICONS[els.pos.value] || [];
+  return list.indexOf(iconSel.value) >= 0 ? iconSel.value : list[0];
+}
+iconSel.addEventListener('change', () => drawCard());
 
 function drawPosIcon(pos, cx, cy, ink, edge){
   const main = ctx;
@@ -623,7 +655,7 @@ function drawPosIcon(pos, cx, cy, ink, edge){
 
 function drawPosIconRaw(pos, cx, cy, ink){
   const type = ICON_BY_POS[pos] || 'gear';
-  const file = ICON_IMG[type];
+  const file = ICON_IMG[currentIconKey()];
   if(file){
     const iw = file.naturalWidth || file.width || 236, ih = file.naturalHeight || file.height || 236;
     const k = Math.min(371/iw, 236/ih);
@@ -733,6 +765,7 @@ function drawPhoto(){
 }
 
 function drawCard(){
+  ensureIconSelect();
   ctx.clearRect(0, 0, W, H);
 
   // 1. fond du club + photo, découpés selon le bouclier
@@ -809,7 +842,7 @@ function updateOrderLink(overall){
 [els.name, els.last, els.size].forEach(el => el.addEventListener('input', drawCard));
 els.size.addEventListener('change', drawCard);
 
-els.pos.addEventListener('change', () => { renderStatControls(); drawCard(); });
+els.pos.addEventListener('change', () => { ensureIconSelect(); renderStatControls(); drawCard(); });
 
 let clubToken = 0;
 
@@ -984,5 +1017,6 @@ renderStatControls();
 drawCard();
 if(document.fonts && document.fonts.ready){ document.fonts.ready.then(drawCard); }
 </script>
+<script src="lightbox.js"></script>
 </body>
 </html>

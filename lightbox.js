@@ -117,3 +117,34 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', lancer);
   else lancer();
 })();
+
+
+/* CreaFut — range le bandeau de navigation du haut dans l'ordre voulu, sur toutes les pages.
+   Ordre : Foot, Personnalisation, puis les autres par ordre alphabétique.
+   Les liens ne sont que déplacés (l'onglet actif reste souligné). */
+(function () {
+  var ordre = ['foot', 'personnalisation', 'animes', 'basket', 'foot-us', 'gaming', 'graffitis',
+               'hand', 'hockey', 'rugby', 'supporters', 'volley', 'water-polo'];
+
+  function nom(li) {
+    var a = li.querySelector('a');
+    if (!a) return '';
+    return (a.getAttribute('href') || '').split('#')[0].split('?')[0]
+      .split('/').pop().replace(/\.html$/, '').toLowerCase();
+  }
+
+  function lancer() {
+    Array.prototype.forEach.call(document.querySelectorAll('.nav-links'), function (ul) {
+      var items = Array.prototype.filter.call(ul.children, function (el) { return el.tagName === 'LI'; });
+      if (items.length < 2) return;
+      items.map(function (li, i) {
+        var r = ordre.indexOf(nom(li));
+        return { li: li, r: r < 0 ? 999 : r, i: i };
+      }).sort(function (a, b) { return a.r - b.r || a.i - b.i; })
+        .forEach(function (o) { ul.appendChild(o.li); });
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', lancer);
+  else lancer();
+})();

@@ -1,0 +1,88 @@
+/* ===== À COLLER TOUT EN BAS DE style.css ===== */
+
+/* Bandeau : 13 liens visibles */
+.nav-links {
+  gap: 0.6rem clamp(0.9rem, 1.5vw, 1.7rem);
+  justify-content: center;
+}
+
+/* Accueil : 2 grandes cartes de même taille */
+.featured {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+.featured .shield-tile {
+  width: 240px;
+}
+.featured .shield-tile .shield-icon {
+  width: 240px;
+  height: 304px;
+}
+.featured .shield-tile .label-box {
+  font-size: 1.3rem;
+  padding: 0.5rem 1.6rem;
+}
+
+/* Séparateur « Autres collections » */
+.collections-sep {
+  max-width: 1000px;
+  margin: 3.5rem auto 2.5rem;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.collections-sep::before,
+.collections-sep::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--gold-soft);
+}
+.collections-sep span {
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  font-size: 1.15rem;
+}
+
+/* Accueil : les 11 autres cartes, plus petites, dernière ligne centrée */
+.others {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.2rem 1.5rem;
+}
+.others .shield-tile {
+  width: 130px;
+}
+.others .shield-tile .shield-icon {
+  width: 110px;
+  height: 140px;
+  margin-bottom: 0.6rem;
+}
+.others .shield-tile .label-box {
+  font-size: 0.95rem;
+  padding: 0.3rem 0.8rem;
+}
+
+/* Téléphone */
+@media (max-width: 700px) {
+  .nav-links { font-size: 0.9rem; gap: 0.5rem 1rem; }
+  .featured { gap: 1.2rem; }
+  .featured .shield-tile { width: 45%; }
+  .featured .shield-tile .shield-icon { width: 100%; height: auto; aspect-ratio: 150 / 190; }
+  .featured .shield-tile .label-box { font-size: 1rem; padding: 0.4rem 0.8rem; }
+  .others { gap: 1.8rem 4%; }
+  .others .shield-tile { width: 30%; }
+  .others .shield-tile .shield-icon { width: 100%; height: auto; aspect-ratio: 150 / 190; }
+  .others .shield-tile .label-box { font-size: 0.85rem; padding: 0.25rem 0.5rem; }
+}

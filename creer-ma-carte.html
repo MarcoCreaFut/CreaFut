@@ -296,91 +296,92 @@ const CONTOUR_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACT0AAA0mCAYAA
 const EMAIL = "votre-email@exemple.com"; // adresse qui reçoit les commandes
 
 const CLUBS = [
-  {name:"US 1er Canton", ink:"#fff", cards:[{label:"Version 1", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050134/US_1er_Canton_01.png"}, {label:"Version 2", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050106/US_1er_Canton_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050152/US_1er_Canton_00.png"},
-  {name:"5 Avenues Longchamp", ink:"#fff", cards:[{label:"Bleue", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843577/5_Avenues_Longchamp_01.png"}, {label:"Orange", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862885/5_Avenues_Longchamp_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843703/5_Avenues_Longchamp_00.png"},
-  {name:"SC Allauch", ink:"#fff", edge:"#051650", edgeW:22, glow:"#051650", glowBlur:12, icon:{edgeW:14}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838240/SC_Allauch_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Allauch_00.jpg"},
-  {name:"AS Busserine", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844630/AS_Busserine_06.png", ink:"#fff", edge:"#1c569e", edgeW:6}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844439/AS_Busserine_01.png", ink:"#fff"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844438/AS_Busserine_00.png"},
-  {name:"AS Flamants Merlan", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838246/AS_Flamants_Merlan_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000882/AS_Flamants_Merlan_00.png"},
-  {name:"AS Grifeuille", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838235/AS_Griffeuile_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789682281/AS_Griffeuile_00.png"},
-  {name:"AS Mazargues", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657614/AS_Mazargues_01.png", ink:"#182bb8"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657636/AS_Mazargues_06.png", ink:"#f9df18"}, {label:"Bleu clair", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838233/AS_Mazargues_11.png", ink:"#f9df18"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/AS_Mazargues_00.png"},
-  {name:"AS Meyrargues", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327171/AS_Meyrargues_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403494/AS_Meyragues_00.png"},
-  {name:"AS Peyrollaise", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327156/AS_Peyrollaise_-_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327143/AS_Peyrollaise_-_00.png"},
-  {name:"AS Rognac", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681664/AS_Rognac_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681663/AS_Rognac_00.png"},
-  {name:"ASBBA", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848977/ASBBA_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790401492/ASBBA_00.png"},
-  {name:"ASPTT Marseille", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995222/ASPTT_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995278/ASPTT.png"},
+  {name:"US 1er Canton", cards:[{label:"Version 1", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050134/US_1er_Canton_01.png"}, {label:"Version 2", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050106/US_1er_Canton_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050152/US_1er_Canton_00.png"},
+  {name:"5 Avenues Longchamp", cards:[{label:"Bleue", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843577/5_Avenues_Longchamp_01.png"}, {label:"Orange", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862885/5_Avenues_Longchamp_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843703/5_Avenues_Longchamp_00.png"},
+  {name:"SC Allauch", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838240/SC_Allauch_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Allauch_00.jpg"},
+  {name:"AS Busserine", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844630/AS_Busserine_06.png"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844439/AS_Busserine_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844438/AS_Busserine_00.png"},
+  {name:"AS Flamants Merlan", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838246/AS_Flamants_Merlan_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000882/AS_Flamants_Merlan_00.png"},
+  {name:"AS Grifeuille", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838235/AS_Griffeuile_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789682281/AS_Griffeuile_00.png"},
+  {name:"AS Mazargues", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657614/AS_Mazargues_01.png"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657636/AS_Mazargues_06.png"}, {label:"Bleu clair", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838233/AS_Mazargues_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/AS_Mazargues_00.png"},
+  {name:"AS Meyrargues", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327171/AS_Meyrargues_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403494/AS_Meyragues_00.png"},
+  {name:"AS Peyrollaise", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327156/AS_Peyrollaise_-_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327143/AS_Peyrollaise_-_00.png"},
+  {name:"AS Rognac", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681664/AS_Rognac_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681663/AS_Rognac_00.png"},
+  {name:"ASBBA", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848977/ASBBA_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790401492/ASBBA_00.png"},
+  {name:"ASPTT Marseille", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995222/ASPTT_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995278/ASPTT.png"},
   {name:"ASPTT la Ciotat", img:"https://res.cloudinary.com/qwlhmio0/image/upload/ASPTT_la_Ciotat_00.png"},
   {name:"Batarelle", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Batarelle_00.png"},
-  {name:"AS Belle de Mai Joliette", ink:"#7bb0fe", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790417672/AS_Belle_de_Mai_Joliette_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790416674/AS_Belle_de_Mai_Joliette_00.png"},
-  {name:"AC Berthe", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754441/AC_Berthe_06.png"}, {label:"Noire à liserets", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657379/AC_Berthe_11.png", ink:"#fff"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790524672/AC_Berthe_01.png", ink:"#fff"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Berthe_00.jpg"},
-  {name:"AS Bombardière", ink:"#fff", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843978/AS_Bombardi%C3%A8re_00.png"},
-  {name:"AS Bombardière (ancien logo)", ink:"#000", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995751/Bombardi%C3%A8re.png"},
-  {name:"Burel FC", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929162/Burel_FC_01.png", ink:"#29306c"}, {label:"Boca Juniors", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790002030/Burel_FC_06.png", ink:"#d1a310"}, {label:"Jaune et bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113302/Burel_FC_11.png", ink:"#29306c"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929152/Burel_FC_00.png"},
-  {name:"CA Gombertois", ink:"#fff", cards:[{label:"Bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790913359/Ch%C3%A2teau_Gombert_06.png"}, {label:"Rouge", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790913359/Ch%C3%A2teau_Gombert_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623249/Chateau_Gombert_-_Logo.png"},
-  {name:"US Endoume", cards:[{label:"Classique", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790830712/US_Endoume_01.png", ink:"#fff"}, {label:"Centenaire rouge et noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754769/US_Endoume_06.png", ink:"#d1a310"}, {label:"Centenaire blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754790/US_Endoume_11.png", ink:"#d1a310"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050227/US_Endoume_00.png"},
-  {name:"FC Ensues la Redonne", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862831/FC_Ensues_la_Redonne_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000933/Ensues.png"},
-  {name:"Eoures Camoins Treille Sport", ink:"#2f630b", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862678/Eoures_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108707/Eoures_Camoins.png"},
+  {name:"AS Belle de Mai Joliette", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790417672/AS_Belle_de_Mai_Joliette_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790416674/AS_Belle_de_Mai_Joliette_00.png"},
+  {name:"AC Berthe", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754441/AC_Berthe_06.png"}, {label:"Noire à liserets", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657379/AC_Berthe_11.png"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790524672/AC_Berthe_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Berthe_00.jpg"},
+  {name:"AS Bombardière", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843978/AS_Bombardi%C3%A8re_00.png"},
+  {name:"AS Bombardière (ancien logo)", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995751/Bombardi%C3%A8re.png"},
+  {name:"Burel FC", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929162/Burel_FC_01.png"}, {label:"Boca Juniors", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790002030/Burel_FC_06.png"}, {label:"Jaune et bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113302/Burel_FC_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929152/Burel_FC_00.png"},
+  {name:"CA Gombertois", cards:[{label:"Bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623249/Ch%C3%A2teau_Gombert_01.png"}, {label:"Rouge", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623252/Ch%C3%A2teau_Gombert_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623249/Chateau_Gombert_-_Logo.png"},
+  {name:"US Endoume", cards:[{label:"Classique", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790830712/US_Endoume_01.png"}, {label:"Centenaire rouge et noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754769/US_Endoume_06.png"}, {label:"Centenaire blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754790/US_Endoume_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050227/US_Endoume_00.png"},
+  {name:"FC Ensues la Redonne", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862831/FC_Ensues_la_Redonne_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000933/Ensues.png"},
+  {name:"Eoures Camoins Treille Sport", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862678/Eoures_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108707/Eoures_Camoins.png"},
   {name:"ES Cuges", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790662865/ES_Cuges_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/ES_Cuges_00.jpg"},
-  {name:"ES Milloise", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964362/%C3%89toile_Sportive_Miloise_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964379/ES_Milloise_00.png"},
-  {name:"ES Vitrolles", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964307/%C3%89toile_Sportive_Vitrolles_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964213/Vitrolles_00.png"},
-  {name:"FC de l'Etoile et de l'Huveaune", ink:"#000", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862802/FC_de_l_Etolie_et_de_l_Huveaune_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790081101/Etoile_de_l_Huveaune.png"},
+  {name:"ES Milloise", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964362/%C3%89toile_Sportive_Miloise_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964379/ES_Milloise_00.png"},
+  {name:"ES Vitrolles", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964307/%C3%89toile_Sportive_Vitrolles_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964213/Vitrolles_00.png"},
+  {name:"FC de l'Etoile et de l'Huveaune", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862802/FC_de_l_Etolie_et_de_l_Huveaune_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790081101/Etoile_de_l_Huveaune.png"},
   {name:"Etoile Sportive la Ciotat", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Etoile_Sportive_la_Ciotat.png"},
-  {name:"FA Academy", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657445/FA_Academy_06.png", ink:"#e8458f"}, {label:"Rose", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862733/FA_Academy_01.png", ink:"#000"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/FA_00.png"},
+  {name:"FA Academy", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657445/FA_Academy_06.png"}, {label:"Rose", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862733/FA_Academy_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/FA_00.png"},
   {name:"FC Blancarde Chartreux", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Blancarde_Chartreux_00.png"},
   {name:"FC Carnoux", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Carnoux_00.png"},
   {name:"FC Istres", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Istres_00.png"},
-  {name:"FC la Castellane", ink:"#fff", cards:[{label:"Bandes larges", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964841/FC_la_Castelanne_06.png"}, {label:"Bandes fines", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964743/FC_la_Castelanne_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789965678/Castellane.png"},
+  {name:"FC la Castellane", cards:[{label:"Bandes larges", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964841/FC_la_Castelanne_06.png"}, {label:"Bandes fines", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964743/FC_la_Castelanne_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789965678/Castellane.png"},
   {name:"FC Martigues", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Martigues.png"},
-  {name:"FC Nueve", ink:"#fff", edge:"#121212", edgeW:5, glow:"#000000", glowBlur:26, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790745834/FC_Nueve_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Nueve_01.png"},
-  {name:"FC Rouguière", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789930147/FC_Rougui%C3%A8re_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789930175/FC_Rougui%C3%A8re_00.png"},
+  {name:"FC Nueve", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790745834/FC_Nueve_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Nueve_01.png"},
+  {name:"FC Rouguière", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789930147/FC_Rougui%C3%A8re_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789930175/FC_Rougui%C3%A8re_00.png"},
   {name:"FC Rousset", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Rousset.png"},
-  {name:"FCLM", ink:"#000", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790001207/FCLM_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000944/FCLM.png"},
+  {name:"FCLM", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790001207/FCLM_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000944/FCLM.png"},
   {name:"Fos", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Fos.png"},
   {name:"SC Frais Vallon", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790417670/Frais_Vallon.png"},
-  {name:"Fuveau Gréasque", ink:"#000", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790107968/Fuveau_Gr%C3%A9asque_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108081/Fuveau_Gr%C3%A9asque_00.png"},
+  {name:"Fuveau Gréasque", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790107968/Fuveau_Gr%C3%A9asque_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108081/Fuveau_Gr%C3%A9asque_00.png"},
   {name:"Gardanne Biver FC", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Gardanne_Biver_FC_00.jpg"},
   {name:"Gemenos", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Gemenos_00.png"},
-  {name:"GSBO", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848884/Grand_Saint-Barth%C3%A9l%C3%A9my_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790107532/Grand_Saint-Barth%C3%A9l%C3%A9my_00.png"},
-  {name:"JO Saint Gabriel", ink:"#d0161f", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790847957/JO_Saint_Gabriel_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790139413/JO_Saint_Gabriel_00.png"},
-  {name:"JS Pennes Mirabeau", cards:[{label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790750140/JS_Pennes_Mirabeau_01.png", ink:"#fff", edge:"#000000", edgeW:17}, {label:"Bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525642/JS_Pennes_Mirabeau_06.png", ink:"#fff"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790757413/JS_Pennes_Mirabeau_11.png", ink:"#fff"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/JS_Pennes_Mirabeau.png"},
-  {name:"JSA Saint Antoine", ink:"#fff", edge:"#0a0a05", edgeW:4, glow:"#000000", glowBlur:18, icon:{ink:"#fdd114", edge:"none", glow:"none"}, icons:{GB:"Gants"}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141135/JSA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141133/JSA_Saint_Antoine_00.png"},
-  {name:"SC Kartala", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862930/SC_Kartala_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790008063/SC_Kartala_00.png"},
+  {name:"GSBO", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848884/Grand_Saint-Barth%C3%A9l%C3%A9my_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790107532/Grand_Saint-Barth%C3%A9l%C3%A9my_00.png"},
+  {name:"JO Saint Gabriel", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790847957/JO_Saint_Gabriel_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790139413/JO_Saint_Gabriel_00.png"},
+  {name:"JS Pennes Mirabeau", cards:[{label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790750140/JS_Pennes_Mirabeau_01.png"}, {label:"Bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525642/JS_Pennes_Mirabeau_06.png"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790757413/JS_Pennes_Mirabeau_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/JS_Pennes_Mirabeau.png"},
+  {name:"JSA Saint Antoine", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141135/JSA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141133/JSA_Saint_Antoine_00.png"},
+  {name:"SC Kartala", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862930/SC_Kartala_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790008063/SC_Kartala_00.png"},
   {name:"SC Montredon Bonneveine", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790137287/SC_Montredon_Bonneveine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790137271/SC_Montredon_Bonneveine_00.png"},
   {name:"la Beaucaire", img:"https://res.cloudinary.com/qwlhmio0/image/upload/la_Beaucaire_00.png"},
-  {name:"ASC la Rose", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789962812/la_Rose_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789962809/la_Rose_00.png"},
-  {name:"le Parc FC", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112339/le_Parc_FC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790136364/le_Parc_FC_00.png"},
-  {name:"Luynes Sports", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790847988/Luynes_Sports_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Luynes.png"},
+  {name:"ASC la Rose", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789962812/la_Rose_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789962809/la_Rose_00.png"},
+  {name:"le Parc FC", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112339/le_Parc_FC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790136364/le_Parc_FC_00.png"},
+  {name:"Luynes Sports", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790847988/Luynes_Sports_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Luynes.png"},
   {name:"Marseille Sud Olympique", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Marseille_Sud_Olympique.png"},
-  {name:"US Michelis", icons:{GB:"Gants"}, ink:"#f8d200", edge:"#008028", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848017/Michelis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Michelis.png"},
-  {name:"Montolivet Bois Luzy", ink:"#000", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"}, {label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439223/CS_Montolivet_06.png", layout:{colX:475, posBase:702, posSize:202, ovrBase:980, ovrSize:200, iconCx:475, iconCy:1156, iconW:311, iconH:232, logoCx:474, logoCy:1784, logoSize:385, nameCx:1176, nameBase:2032, nameSize:158, nameMaxW:1460, statRows:[2290,2511,2737], statSize:153, statX:[{label:321,value:830},{label:1292,value:1774}]}}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439290/Montolivet_Bois_Luzy.png"},
-  {name:"Marseille Nord Olympique", ink:"#fff", cards:[{label:"Bleu ciel", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525823/Nord_Olympique_01.png"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525816/Nord_Olympique_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Nord_Olympique_00.png"},
-  {name:"Olympique Mallemortais", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327133/Olympique_Mallemortais_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327125/Olympique_Mallemortais_00.png"},
-  {name:"Olympique Rovenain", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848046/Olympique_Rovenain_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108343/Olympique_Rovenain_-_00.png"},
-  {name:"Olympique Saint Maximin", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848104/Saint_Maximin_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790006898/Saint_Maximin_00.png"},
-  {name:"Phocea Club", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848074/Phocea_Club_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790233330/Phocea_Club_-_1.png"},
-  {name:"CAM Phénix", ink:"#fff", edge:"#c20706", edgeW:13, glow:"#d62a25", glowBlur:14, icon:{ink:"#d10301", edge:"none", glow:"none"}, icons:{GB:"Gants"}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111943/CAM_Ph%C3%A9nix_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112007/CAM_Ph%C3%A9nix_00.png"},
-  {name:"CA Plan de Cuques", ink:"#fde711", top:{ink:"#02590b"}, icon:{ink:"#02590b"}, bottom:{shadow:"#000000", shadowBlur:10, shadowDx:3, shadowDy:5}, icons:{GB:"Gants"}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790226708/CA_Plan_de_Cuques_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790227006/Plan_de_Cuques_-_1.png"},
-  {name:"SA Saint Antoine", ink:"#fff", edge:"#d90405", edgeW:5, icon:{edgeW:8}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235983/SA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235530/SA_Saint_Antoine_-_1.png"},
-  {name:"US Saint Barthélémy", ink:"#000", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838216/US_Saint_Barth%C3%A9l%C3%A9my_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790142870/US_Saint_Barth%C3%A9l%C3%A9my_00.png"},
-  {name:"Saint Henri FC", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862908/Saint_Henri_FC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790404215/Saint_Henri_01.png"},
-  {name:"JS Saint Julien", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414355/JS_Saint_Julien_06.png", ink:"#d0161f"}, {label:"Rouge", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414346/JS_Saint_Julien_01.png", ink:"#fff"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414327/Saint_Julien_-_1.png"},
-  {name:"ASM Saint Loup", ink:"#fff", cards:[{label:"Camouflage", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848917/ASM_Saint_Loup_06.png"}, {label:"Rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790252244/ASM_Saint_Loup_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790252300/Saint-Loup_-_1.png"},
-  {name:"SC Sarians", img:"https://res.cloudinary.com/qwlhmio0/image/upload/SC_Sarians_00.jpg"},
-  {name:"SC Vitrolles", ink:"#000", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790656741/SC_Vitrolles_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/SC_Vitrolles_00.png"},
-  {name:"SCAAB", ink:"#fff", cards:[{label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113167/SCAAB_01.png"}, {label:"Rose", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838242/SCAAB_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113163/SCAAB_-_01.png"},
-  {name:"Septèmes Consolat", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862861/Sept%C3%A8mes_Consolat_01.png", ink:"#000"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790519835/Sept%C3%A8mes_Consolat_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681637/Sept%C3%A8mes_Consolat_00.png"},
-  {name:"Simiane Collongue Olympique", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789670923/Simiane_Collongue_Olympique_01.png", ink:"#fff"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789670979/Simiane_Collongue_Olympique_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789670908/Simiane_Collongue_Olympique_00.png"},
-  {name:"SMUC", ink:"#fff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112928/SMUC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112904/SMUC.png"},
-  {name:"SMUC Centenaire", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112778/SMUC_06.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112779/SMUC_2.png"},
-  {name:"SO Cassis", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789672863/SO_Cassis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789672859/SO_Cassis_00.png"},
-  {name:"SO Septèmes", ink:"#f5d000", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403722/SO_Sept%C3%A8mes_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403700/SO_Sept%C3%A8mes_00.png"},
-  {name:"SOC Caillols", ink:"#033f6f", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862961/SOC_Caillols_-_8.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327087/SOC_Caillols_01.png"},
+  {name:"US Michelis", ink:"#f8d200", edge:"#008028", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848017/Michelis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Michelis.png"},
+  {name:"CS Montolivet", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"}, {label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439223/CS_Montolivet_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"},
+  {name:"Montolivet Bois Luzy", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Montolivet_Bois_Luzy.png"},
+  {name:"Marseille Nord Olympique", cards:[{label:"Bleu ciel", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525823/Nord_Olympique_01.png"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525816/Nord_Olympique_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Nord_Olympique_00.png"},
+  {name:"Olympique Mallemortais", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327133/Olympique_Mallemortais_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327125/Olympique_Mallemortais_00.png"},
+  {name:"Olympique Rovenain", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848046/Olympique_Rovenain_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108343/Olympique_Rovenain_-_00.png"},
+  {name:"Olympique Saint Maximin", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848104/Saint_Maximin_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790006898/Saint_Maximin_00.png"},
+  {name:"Phocea Club", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848074/Phocea_Club_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790233330/Phocea_Club_-_1.png"},
+  {name:"CAM Phénix", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111943/CAM_Ph%C3%A9nix_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112007/CAM_Ph%C3%A9nix_00.png"},
+  {name:"CA Plan de Cuques", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790226708/CA_Plan_de_Cuques_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790227006/Plan_de_Cuques_-_1.png"},
+  {name:"SA Saint Antoine", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235983/SA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235530/SA_Saint_Antoine_-_1.png"},
+  {name:"US Saint Barthélémy", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838216/US_Saint_Barth%C3%A9l%C3%A9my_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790142870/US_Saint_Barth%C3%A9l%C3%A9my_00.png"},
+  {name:"Saint Henri FC", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862908/Saint_Henri_FC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790404215/Saint_Henri_01.png"},
+  {name:"JS Saint Julien", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414355/JS_Saint_Julien_06.png"}, {label:"Rouge", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414346/JS_Saint_Julien_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414327/Saint_Julien_-_1.png"},
+  {name:"ASM Saint Loup", cards:[{label:"Camouflage", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848917/ASM_Saint_Loup_06.png"}, {label:"Rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790252244/ASM_Saint_Loup_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790252300/Saint-Loup_-_1.png"},
+  {name:"Comète Sportive Sarriannaise", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1791119476/SC_Sarians_00.png"},
+  {name:"SC Vitrolles", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790656741/SC_Vitrolles_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/SC_Vitrolles_00.png"},
+  {name:"SCAAB", cards:[{label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113167/SCAAB_01.png"}, {label:"Rose", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838242/SCAAB_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113163/SCAAB_-_01.png"},
+  {name:"Septèmes Consolat", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862861/Sept%C3%A8mes_Consolat_01.png"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790519835/Sept%C3%A8mes_Consolat_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789681637/Sept%C3%A8mes_Consolat_00.png"},
+  {name:"Simiane Collongue Olympique", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789670923/Simiane_Collongue_Olympique_01.png"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789670979/Simiane_Collongue_Olympique_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789670908/Simiane_Collongue_Olympique_00.png"},
+  {name:"SMUC", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112928/SMUC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112904/SMUC.png"},
+  {name:"SMUC Centenaire", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112778/SMUC_06.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112779/SMUC_2.png"},
+  {name:"SO Cassis", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789672863/SO_Cassis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789672859/SO_Cassis_00.png"},
+  {name:"SO Septèmes", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403722/SO_Sept%C3%A8mes_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790403700/SO_Sept%C3%A8mes_00.png"},
+  {name:"SOC Caillols", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862961/SOC_Caillols_-_8.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327087/SOC_Caillols_01.png"},
   {name:"Team Meteke Academy", img:"https://res.cloudinary.com/qwlhmio0/image/upload/TEam_Meteke_Academy.png"},
-  {name:"EUGA", ink:"#d1a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111550/EUGA_Ardziv_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111547/EUGA_Ardziv_00.png"},
+  {name:"EUGA", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111550/EUGA_Ardziv_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111547/EUGA_Ardziv_00.png"},
   {name:"USC Rouvière", img:"https://res.cloudinary.com/qwlhmio0/image/upload/USC_Rouvi%C3%A8re_00.PNG"},
-  {name:"USPEG", ink:"#fff", cards:[{label:"Version 1", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863254/USPEG_01.png"}, {label:"Version 2", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863261/USPEG_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790342603/USPEG_00.png"},
+  {name:"USPEG", cards:[{label:"Version 1", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863254/USPEG_01.png"}, {label:"Version 2", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863261/USPEG_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790342603/USPEG_00.png"},
   {name:"USTM", img:"https://res.cloudinary.com/qwlhmio0/image/upload/USTM_00.png"},
-  {name:"ASC Vivaux Sauvagère", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790568696/Vivaux_Sauvag%C3%A8re_01.png", ink:"#000"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525846/Vivaux_Sauvag%C3%A8re_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Vivaux.png"},
-  {name:"Marignane Gignac FC", ink:"#fde803", icon:{ink:"#fdc401"}, icons:{GB:"Gants"}, shadow:"#8a4a10", shadowBlur:6, shadowDx:5, shadowDy:6, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790106484/Marignane_Gignac_FC_01.png"},
+  {name:"ASC Vivaux Sauvagère", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790568696/Vivaux_Sauvag%C3%A8re_01.png"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525846/Vivaux_Sauvag%C3%A8re_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Vivaux.png"},
+  {name:"Marignane Gignac FC", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790106484/Marignane_Gignac_FC_01.png"},
   {name:"SC Cayolle", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657231/SC_Cayolle_01.png"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657278/SC_Cayolle_06.png"}]},
   {name:"USC Grande Bastide", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790107168/USC_Grand_Bastide_01.png"}
 ];
@@ -393,15 +394,6 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 //                   (ink peut aussi être mis dans une version : {label:"Jaune", url:"…", ink:"#000"})
 //   edge:"#008028" -> contour des écritures et de l'icône (ex. jaune entouré de vert : ink:"#f8d200", edge:"#008028")
 //   img:"URL"   -> ancienne image (logo), utilisée seulement si aucune carte vierge n'est trouvée
-//   icons:{GB:"Gants", MC:"Casque"} -> choix de l'icône de poste pour ce club (ou cette version). Noms possibles : voir ICON_CHOICES. Sans cela : première icône de la liste.
-//   layout:{...} -> positions propres à ce club (ou à cette version, à mettre dans la version) quand les traits de la carte sont placés autrement.
-//                    Clés possibles : colX, posBase, posSize, ovrBase, ovrSize, iconCx, iconCy, iconW, iconH, logoCx, logoCy, logoSize,
-//                    nameCx, nameBase, nameSize, nameMaxW, statRows:[3 hauteurs], statSize, statX:[{label,value},{label,value}] (px sur 2365 x 3366)
-//   Effets sur les écritures (club, version, ou dans les sous-objets top:{} / icon:{} / bottom:{} = poste+note / icône / nom+stats) :
-//     edge:"#hex" contour, edgeW:px épaisseur extérieure (px sur 2365 de large) ; glow:"#hex" + glowBlur:px halo doux ;
-//     shadow:"#hex" + shadowBlur, shadowDx, shadowDy ombre portée ; "none" supprime un effet pour une partie (ex. icon:{edge:"none"})
-//   icons:{GB:"Gants"} -> icône choisie pour un poste (club ou version)
-//   logo:"URL" -> image du petit logo sous l'icône (sinon : "img" si elle est carrée) ; logo:false -> pas de petit logo
 // Sans "card", le site essaie automatiquement la même URL en remplaçant "_00" par "_01".
 function cardCandidates(c){
   const list = [];
@@ -528,18 +520,16 @@ statsGridEl.addEventListener('click', e => {
 
 // ---------- Mise en page (px sur la carte 2365 x 3366) ----------
 const SERIF = '"Times New Roman", Times, "Liberation Serif", serif';
-const L0 = {
+const L = {
   colX: 530,                                   // colonne haut-gauche (poste, note, icône)
   posBase: 795,  posSize: 283, posMaxW: 480,
   ovrBase: 1027, ovrSize: 249,
-  iconCx: 535,   iconCy: 1180,   iconW: 371, iconH: 236,   // iconW/iconH : cadre dans lequel l'icône de poste est ajustée
-  logoCx: 538,   logoCy: 1527, logoSize: 336,   // petit logo du club (position estimée, à ajuster si besoin)
+  iconCx: 535,   iconCy: 1180,
   photoCx: 1176, photoBottom: 2005, photoMaxW: 980, photoMaxH: 1660,
   nameCx: 1176,  nameBase: 2205, nameSize: 244, nameMaxW: 1750,
   statRows: [2388, 2563, 2735], statSize: 182,
   statX: [ {label:434, value:884}, {label:1280, value:1735} ]
 };
-let L = Object.assign({}, L0);   // mise en page utilisée : L0 + « layout » du club + « layout » de la version (voir drawCard)
 const NEUTRAL_BG = '#00186a';
 
 function fitSize(text, size, maxW){
@@ -547,40 +537,20 @@ function fitSize(text, size, maxW){
   const w = ctx.measureText(text).width;
   return w > maxW ? Math.floor(size * maxW / w) : size;
 }
-let textFx = null;   // style de la partie en cours de dessin (voir partStyle)
+let textEdge = null;   // couleur du contour des écritures (null = pas de contour)
 function drawText(text, x, base, size, align, maxW){
   const sz = maxW ? fitSize(text, size, maxW) : size;
-  const fx = textFx || {};
   ctx.font = 'bold ' + sz + 'px ' + SERIF;
   ctx.textAlign = align;
   ctx.textBaseline = 'alphabetic';
-  const lw = fx.edge ? 2*(fx.edgeW != null ? fx.edgeW : sz*0.0425) : 0;
-  const glowCol = fx.glow || null;
-  if(glowCol){                                   // halo doux (3 passes pour qu'il soit bien visible)
-    ctx.save();
-    ctx.shadowColor = glowCol; ctx.shadowBlur = fx.glowBlur || 20;
-    ctx.fillStyle = glowCol; ctx.strokeStyle = glowCol; ctx.lineJoin = 'round';
-    ctx.lineWidth = Math.max(lw, 2);
-    for(let i = 0; i < 3; i++){ ctx.strokeText(text, x, base); ctx.fillText(text, x, base); }
-    ctx.restore();
-  }
-  if(fx.shadow){                                 // ombre portée
-    ctx.save();
-    ctx.shadowColor = fx.shadow; ctx.shadowBlur = fx.shadowBlur != null ? fx.shadowBlur : 8;
-    ctx.shadowOffsetX = fx.shadowDx || 0; ctx.shadowOffsetY = fx.shadowDy || 0;
-    ctx.fillStyle = fx.shadow;
-    ctx.fillText(text, x, base);
-    ctx.restore();
-  }
-  if(fx.edge){
+  if(textEdge){
     ctx.save();
     ctx.lineJoin = 'round';
-    ctx.lineWidth = lw;
-    ctx.strokeStyle = fx.edge;
+    ctx.lineWidth = sz*0.085;
+    ctx.strokeStyle = textEdge;
     ctx.strokeText(text, x, base);
     ctx.restore();
   }
-  ctx.fillStyle = fx.ink || ctx.fillStyle;
   ctx.fillText(text, x, base);
 }
 
@@ -607,21 +577,6 @@ function clubEdge(){
   const v = currentVariant();
   return (v && v.edge) || c.edge || null;
 }
-// Style d'une partie de la carte : « top » (poste + note), « icon » (icône), « bottom » (nom + stats).
-// Les clés (ink, edge, edgeW, glow, glowBlur, shadow, shadowBlur, shadowDx, shadowDy) peuvent être mises sur le club, sur la version,
-// ou dans un sous-objet top / icon / bottom du club ou de la version. Valeur "none" = désactive l'effet.
-const FX_KEYS = ['ink','edge','edgeW','glow','glowBlur','shadow','shadowBlur','shadowDx','shadowDy'];
-function partStyle(part){
-  const c = currentClub(), v = currentVariant();
-  const st = {};
-  [c, c && c[part], v, v && v[part]].forEach(o => {
-    if(!o) return;
-    FX_KEYS.forEach(k => { if(o[k] !== undefined) st[k] = o[k]; });
-  });
-  if(!st.ink) st.ink = c ? clubInkAuto : '#fff';
-  ['edge','glow','shadow'].forEach(k => { if(st[k] === 'none') st[k] = null; });
-  return st;
-}
 function clubInk(){
   const c = currentClub();
   if(!c) return '#fff';
@@ -629,89 +584,35 @@ function clubInk(){
   return (v && v.ink) || c.ink || clubInkAuto;
 }
 
-// Icônes de poste hébergées sur Cloudinary : <Nom>_-_<POSTE>.png (une seule couleur, fond transparent).
-// Elles sont recolorées avec la couleur d'écriture du club. Si une image est introuvable, l'icône dessinée par défaut est utilisée.
-const ICON_BASE = 'https://res.cloudinary.com/qwlhmio0/image/upload/';
-const ICON_CHOICES = {   // la 1re icône de la liste est utilisée par défaut
-  GB:['Mur','Gants'], DC:['Casque','Guerrier'], DG:['Colonne'], DD:['Colonne'], MDC:['Tour'],
-  MC:['Artiste','Casque','Guerrier'], MOC:['Cerveau','Artiste'],
-  MG:['Eclair'], MD:['Eclair'], AG:['Eclair'], AD:['Eclair'], BU:['Cible','Cage']
-};
-const IMG_CACHE = {};
-function loadCached(url){
-  let e = IMG_CACHE[url];
-  if(e) return e;
-  e = IMG_CACHE[url] = {state:'loading', img:null};
-  const im = new Image();
-  im.crossOrigin = 'anonymous';
-  im.onload = () => { e.state = 'ok'; e.img = im; drawCard(); };
-  im.onerror = () => { e.state = 'error'; drawCard(); };
-  im.src = url;
-  return e;
-}
-function iconChoice(pos){
-  const c = currentClub(), v = currentVariant();
-  const o = (v && v.icons && v.icons[pos]) || (c && c.icons && c.icons[pos]);
-  return o || (ICON_CHOICES[pos] || ['Artiste'])[0];
-}
-function getPosIcon(pos){   // 'loading' | Image | null (introuvable)
-  const e = loadCached(ICON_BASE + iconChoice(pos) + '_-_' + (pos === 'GB' ? 'GK' : pos) + '.png');
-  if(e.state === 'loading') return 'loading';
-  return e.state === 'ok' ? e.img : null;
-}
+// Icônes fournies : images/icones/<nom>.svg (ou .png) — une seule couleur, fond transparent.
+// Elles sont recolorées avec la couleur d'écriture du club. Si le fichier n'existe pas, l'icône dessinée par défaut est utilisée.
+const ICON_FILES = {wall:'gardien', shield:'defenseur', gear:'milieu', bolt:'ailier', target:'buteur'};
+const ICON_IMG = {};
+Object.keys(ICON_FILES).forEach(type => {
+  const exts = ['svg', 'png'];
+  const tryExt = i => {
+    if(i >= exts.length){ ICON_IMG[type] = false; return; }
+    const im = new Image();
+    im.onload = () => { ICON_IMG[type] = im; drawCard(); };
+    im.onerror = () => tryExt(i + 1);
+    im.src = 'images/icones/' + ICON_FILES[type] + '.' + exts[i];
+  };
+  tryExt(0);
+});
 
-// Petit logo du club sous l'icône de poste (comme sur les visuels)
-function drawClubLogo(){
-  const c = currentClub();
-  if(!c) return;
-  const v = currentVariant();
-  const own = (v && v.logo !== undefined) ? v.logo : c.logo;
-  if(own === false) return;
-  const url = own || c.img;
-  if(!url) return;
-  if(!own && /\.jpe?g$/i.test(url)) return;          // un .jpg a un fond blanc : à éviter sauf choix explicite
-  const e = loadCached(url);
-  if(e.state !== 'ok') return;
-  const im = e.img, r = im.naturalWidth / im.naturalHeight;
-  if(!(r > 0.8 && r < 1.25)) return;                 // ignore les images qui ne sont pas un logo
-  const k = Math.min(L.logoSize/im.naturalWidth, L.logoSize/im.naturalHeight);
-  const dw = im.naturalWidth*k, dh = im.naturalHeight*k;
-  ctx.drawImage(im, L.logoCx - dw/2, L.logoCy - dh/2, dw, dh);
-}
-
-function drawPosIcon(pos, cx, cy, fx){
+function drawPosIcon(pos, cx, cy, ink, edge){
   const main = ctx;
   const bw = 451, bh = 330;
-  const ink = fx.ink;
   const off = document.createElement('canvas'); off.width = bw; off.height = bh;
   ctx = off.getContext('2d');
   try{ drawPosIconRaw(pos, bw/2, bh/2, ink); } finally { ctx = main; }
-  const tinted = col => {
-    const t = document.createElement('canvas'); t.width = bw; t.height = bh;
-    const g = t.getContext('2d');
-    g.drawImage(off, 0, 0);
-    g.globalCompositeOperation = 'source-in';
-    g.fillStyle = col; g.fillRect(0, 0, bw, bh);
-    return t;
-  };
-  if(fx.glow){                                   // halo
-    const gl = tinted(fx.glow);
-    ctx.save();
-    ctx.shadowColor = fx.glow; ctx.shadowBlur = fx.glowBlur || 20;
-    for(let i = 0; i < 3; i++) ctx.drawImage(gl, cx - bw/2, cy - bh/2);
-    ctx.restore();
-  }
-  if(fx.shadow){                                 // ombre portée
-    const sh = tinted(fx.shadow);
-    ctx.save();
-    ctx.shadowColor = fx.shadow; ctx.shadowBlur = fx.shadowBlur != null ? fx.shadowBlur : 8;
-    ctx.shadowOffsetX = fx.shadowDx || 0; ctx.shadowOffsetY = fx.shadowDy || 0;
-    ctx.drawImage(sh, cx - bw/2, cy - bh/2);
-    ctx.restore();
-  }
-  if(fx.edge){                                   // contour : l'icône est dessinée décalée dans toutes les directions
-    const tint = tinted(fx.edge);
-    const r = fx.edgeW != null ? fx.edgeW : 7;
+  if(edge){
+    const tint = document.createElement('canvas'); tint.width = bw; tint.height = bh;
+    const t = tint.getContext('2d');
+    t.drawImage(off, 0, 0);
+    t.globalCompositeOperation = 'source-in';
+    t.fillStyle = edge; t.fillRect(0, 0, bw, bh);
+    const r = 7;
     for(let i = 0; i < 24; i++){
       const a = i*Math.PI/12;
       ctx.drawImage(tint, cx - bw/2 + Math.cos(a)*r, cy - bh/2 + Math.sin(a)*r);
@@ -722,11 +623,10 @@ function drawPosIcon(pos, cx, cy, fx){
 
 function drawPosIconRaw(pos, cx, cy, ink){
   const type = ICON_BY_POS[pos] || 'gear';
-  const file = getPosIcon(pos);
-  if(file === 'loading') return;
+  const file = ICON_IMG[type];
   if(file){
     const iw = file.naturalWidth || file.width || 236, ih = file.naturalHeight || file.height || 236;
-    const k = Math.min(L.iconW/iw, L.iconH/ih);
+    const k = Math.min(371/iw, 236/ih);
     const off = document.createElement('canvas');
     off.width = Math.max(1, Math.round(iw*k)); off.height = Math.max(1, Math.round(ih*k));
     const o = off.getContext('2d');
@@ -833,8 +733,6 @@ function drawPhoto(){
 }
 
 function drawCard(){
-  { const c_ = currentClub(), v_ = currentVariant();
-    L = Object.assign({}, L0, (c_ && c_.layout) || {}, (v_ && v_.layout) || {}); }
   ctx.clearRect(0, 0, W, H);
 
   // 1. fond du club + photo, découpés selon le bouclier
@@ -847,20 +745,14 @@ function drawCard(){
   // 2. textes et icône (blanc, Times gras comme sur le modèle)
   const overall = overallRating();
   const pos = els.pos.value;
-  const fxTop = partStyle('top'), fxBottom = partStyle('bottom'), fxIcon = partStyle('icon');
-  // l'icône reprend la couleur du haut si rien n'est précisé pour elle ; son contour est un peu plus fin que celui du texte
-  { const c_ = currentClub(), v_ = currentVariant();
-    const has = k => (v_ && v_.icon && v_.icon[k] !== undefined) || (c_ && c_.icon && c_.icon[k] !== undefined);
-    if(!has('ink')) fxIcon.ink = fxTop.ink;
-    if(!has('edgeW') && fxIcon.edgeW != null) fxIcon.edgeW = Math.max(5, Math.min(14, fxIcon.edgeW*0.65));
-  }
-  textFx = fxTop;
+  const ink = clubInk();
+  const edge = clubEdge();
+  textEdge = edge;
+  ctx.fillStyle = ink;
   drawText(posLabel(), L.colX, L.posBase, L.posSize, 'center', L.posMaxW);
   drawText(String(overall), L.colX, L.ovrBase, L.ovrSize, 'center');
-  drawPosIcon(pos, L.iconCx, L.iconCy, fxIcon);
-  drawClubLogo();
+  drawPosIcon(pos, L.iconCx, L.iconCy, ink, edge);
 
-  textFx = fxBottom;
   const first = els.name.value.trim() || 'PRÉNOM';
   const last = els.last.value.trim();
   drawText((first + (last ? ' ' + last : '')).toUpperCase(), L.nameCx, L.nameBase, L.nameSize, 'center', L.nameMaxW);
@@ -870,7 +762,6 @@ function drawCard(){
     drawText(st.abbr, L.statX[col].label, L.statRows[row], L.statSize, 'left');
     drawText(String(st.value), L.statX[col].value, L.statRows[row], L.statSize, 'left');
   });
-  textFx = null;
 
   // 3. contour doré par-dessus
   if(contourReady){
@@ -942,7 +833,7 @@ function detectInk(img){
     });
     if(!n) return '#fff';
     const L = sum/n;
-    return L > 0.55 ? '#111' : '#fff';   // blanc par défaut ; noir seulement si le fond est très clair
+    return (L + 0.05)/0.05 > 1.05/(L + 0.05) ? '#111' : '#fff';
   }catch(err){ return '#fff'; }
 }
 

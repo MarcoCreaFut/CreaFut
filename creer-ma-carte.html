@@ -356,7 +356,7 @@ const CLUBS = [
   {name:"Luynes Sports", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790847988/Luynes_Sports_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Luynes.png"},
   {name:"Marseille Sud Olympique", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Marseille_Sud_Olympique.png"},
   {name:"US Michelis", ink:"#f8d200", edge:"#008028", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848017/Michelis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Michelis.png"},
-  {name:"CS Montolivet", ink:"#111111", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"}, {label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439223/CS_Montolivet_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"},
+  {name:"CS Montolivet", layout:"lignes", ink:"#111111", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"}, {label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439223/CS_Montolivet_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790439236/CS_Montolivet_01.png"},
   {name:"Marseille Nord Olympique", ink:"#ffffff", cards:[{label:"Bleu ciel", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525823/Nord_Olympique_01.png"}, {label:"Bleu marine", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525816/Nord_Olympique_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Nord_Olympique_00.png"},
   {name:"Olympique Mallemortais", ink:"#d0a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327133/Olympique_Mallemortais_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790327125/Olympique_Mallemortais_00.png"},
   {name:"Olympique Rovenain", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848046/Olympique_Rovenain_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108343/Olympique_Rovenain_-_00.png"},
@@ -394,6 +394,7 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 // Chaque club peut avoir :
 //   cards:[{label:"Bleue", url:"URL"}, …] -> plusieurs versions de la carte vierge (le client choisit la couleur)
 //   card:"URL"  -> carte vierge (image 2365 x 3366 se terminant par 01)  [prioritaire]
+//   layout:"lignes" -> mise en page pour les cartes dont le gabarit a des traits horizontaux (voir L_LIGNES)
 //   ink:"#000"  -> impose la couleur des écritures et de l'icône (sinon : noir ou blanc choisi automatiquement selon le fond)
 //                   (ink peut aussi être mis dans une version : {label:"Jaune", url:"…", ink:"#000"})
 //   edge:"#008028" -> contour des écritures et de l'icône (ex. jaune entouré de vert : ink:"#f8d200", edge:"#008028")
@@ -534,6 +535,23 @@ const L = {
   statRows: [2388, 2563, 2735], statSize: 182,
   statX: [ {label:434, value:884}, {label:1280, value:1735} ]
 };
+// Mise en page des cartes qui ont des traits horizontaux dans leur gabarit (mesurée sur la carte vierge CS Montolivet) :
+// poste + note au-dessus du 1er trait, icône entre les 2 traits, prénom au-dessus du trait du bas, notes de part et d'autre du trait vertical.
+const L_LIGNES = Object.assign({}, L, {
+  posCx: 477,  posBase: 703,  posSize: 208, posMaxW: 335,
+  ovrCx: 471,  ovrBase: 976,  ovrSize: 205,
+  iconCx: 472, iconCy: 1142,  iconW: 320, iconH: 250,
+  nameCx: 1162, nameBase: 2028, nameSize: 161, nameMaxW: 1470,
+  statRows: [2286, 2504, 2723], statSize: 156,
+  statX: [ {label:322, value:828}, {label:1287, value:1775} ]
+});
+function clubLayout(){
+  const c = currentClub();
+  if(!c) return L;
+  const v = currentVariant();
+  return ((v && v.layout) || c.layout) === 'lignes' ? L_LIGNES : L;
+}
+let iconBoxW = 371, iconBoxH = 236;
 const NEUTRAL_BG = '#00186a';
 
 function fitSize(text, size, maxW){
@@ -670,7 +688,7 @@ function drawPosIconRaw(pos, cx, cy, ink){
   const file = ICON_IMG[currentIconKey()];
   if(file){
     const iw = file.naturalWidth || file.width || 236, ih = file.naturalHeight || file.height || 236;
-    const k = Math.min(371/iw, 236/ih);
+    const k = Math.min(iconBoxW/iw, iconBoxH/ih);
     const off = document.createElement('canvas');
     off.width = Math.max(1, Math.round(iw*k)); off.height = Math.max(1, Math.round(ih*k));
     const o = off.getContext('2d');
@@ -794,18 +812,20 @@ function drawCard(){
   const edge = clubEdge();
   textEdge = edge;
   ctx.fillStyle = ink;
-  drawText(posLabel(), L.colX, L.posBase, L.posSize, 'center', L.posMaxW);
-  drawText(String(overall), L.colX, L.ovrBase, L.ovrSize, 'center');
-  drawPosIcon(pos, L.iconCx, L.iconCy, ink, edge);
+  const LY = clubLayout();
+  iconBoxW = LY.iconW || 371; iconBoxH = LY.iconH || 236;
+  drawText(posLabel(), LY.posCx || LY.colX, LY.posBase, LY.posSize, 'center', LY.posMaxW);
+  drawText(String(overall), LY.ovrCx || LY.colX, LY.ovrBase, LY.ovrSize, 'center');
+  drawPosIcon(pos, LY.iconCx, LY.iconCy, ink, edge);
 
   const first = els.name.value.trim() || 'PRÉNOM';
   const last = els.last.value.trim();
-  drawText((first + (last ? ' ' + last : '')).toUpperCase(), L.nameCx, L.nameBase, L.nameSize, 'center', L.nameMaxW);
+  drawText((first + (last ? ' ' + last : '')).toUpperCase(), LY.nameCx, LY.nameBase, LY.nameSize, 'center', LY.nameMaxW);
 
   currentStats().forEach((st, i) => {
     const col = i % 2, row = Math.floor(i/2);
-    drawText(st.abbr, L.statX[col].label, L.statRows[row], L.statSize, 'left');
-    drawText(String(st.value), L.statX[col].value, L.statRows[row], L.statSize, 'left');
+    drawText(st.abbr, LY.statX[col].label, LY.statRows[row], LY.statSize, 'left');
+    drawText(String(st.value), LY.statX[col].value, LY.statRows[row], LY.statSize, 'left');
   });
 
   // 3. contour doré par-dessus

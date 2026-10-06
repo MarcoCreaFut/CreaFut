@@ -303,8 +303,8 @@ const EMAIL = "votre-email@exemple.com"; // adresse qui reçoit les commandes
 const CLUBS = [
   {name:"US 1er Canton", ink:"#ffffff", cards:[{label:"Version 1", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050134/US_1er_Canton_01.png"}, {label:"Version 2", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050106/US_1er_Canton_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050152/US_1er_Canton_00.png"},
   {name:"5 Avenues Longchamp", ink:"#ffffff", cards:[{label:"Bleue", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843577/5_Avenues_Longchamp_01.png"}, {label:"Orange", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862885/5_Avenues_Longchamp_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843703/5_Avenues_Longchamp_00.png"},
-  {name:"SC Allauch", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838240/SC_Allauch_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Allauch_00.jpg"},
-  {name:"AS Busserine", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844630/AS_Busserine_06.png"}, {label:"Noire", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844439/AS_Busserine_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844438/AS_Busserine_00.png"},
+  {name:"SC Allauch", ink:"#ffffff", edge:"#02144a", edgeW:0.12, shadow:{color:"#02144a", blur:0.08, passes:2}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838240/SC_Allauch_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Allauch_00.jpg"},
+  {name:"AS Busserine", cards:[{label:"Blanc", ink:"#ffffff", edge:"#01539b", edgeW:0.05, url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844630/AS_Busserine_06.png"}, {label:"Noire", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844439/AS_Busserine_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789844438/AS_Busserine_00.png"},
   {name:"AS Flamants Merlan", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838246/AS_Flamants_Merlan_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000882/AS_Flamants_Merlan_00.png"},
   {name:"AS Grifeuille", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838235/AS_Griffeuile_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789682281/AS_Griffeuile_00.png"},
   {name:"AS Mazargues", cards:[{label:"Jaune", ink:"#1429bd", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657614/AS_Mazargues_01.png"}, {label:"Bleu marine", ink:"#fce10f", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657636/AS_Mazargues_06.png"}, {label:"Bleu clair", ink:"#fce10f", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838233/AS_Mazargues_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/AS_Mazargues_00.png"},
@@ -335,7 +335,7 @@ const CLUBS = [
   {name:"FC Istres", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Istres_00.png"},
   {name:"FC la Castellane", ink:"#ffffff", cards:[{label:"Bandes larges", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964841/FC_la_Castelanne_06.png"}, {label:"Bandes fines", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964743/FC_la_Castelanne_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789965678/Castellane.png"},
   {name:"FC Martigues", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Martigues.png"},
-  {name:"FC Nueve", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790745834/FC_Nueve_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Nueve_01.png"},
+  {name:"FC Nueve", ink:"#ffffff", shadow:{color:"#000000", blur:0.16, passes:3}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790745834/FC_Nueve_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Nueve_01.png"},
   {name:"FC Rouguière", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789930147/FC_Rougui%C3%A8re_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789930175/FC_Rougui%C3%A8re_00.png"},
   {name:"FC Rousset", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Rousset.png"},
   {name:"FCLM", ink:"#111111", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790001207/FCLM_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790000944/FCLM.png"},
@@ -346,8 +346,8 @@ const CLUBS = [
   {name:"Gemenos", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Gemenos_00.png"},
   {name:"GSBO", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848884/Grand_Saint-Barth%C3%A9l%C3%A9my_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790107532/Grand_Saint-Barth%C3%A9l%C3%A9my_00.png"},
   {name:"JO Saint Gabriel", ink:"#d0111b", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790847957/JO_Saint_Gabriel_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790139413/JO_Saint_Gabriel_00.png"},
-  {name:"JS Pennes Mirabeau", cards:[{label:"À rayures", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790750140/JS_Pennes_Mirabeau_01.png"}, {label:"Bleu", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525642/JS_Pennes_Mirabeau_06.png"}, {label:"Noir", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790757413/JS_Pennes_Mirabeau_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/JS_Pennes_Mirabeau.png"},
-  {name:"JSA Saint Antoine", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141135/JSA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141133/JSA_Saint_Antoine_00.png"},
+  {name:"JS Pennes Mirabeau", cards:[{label:"À rayures", ink:"#ffffff", edge:"#030407", edgeW:0.11, url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790750140/JS_Pennes_Mirabeau_01.png"}, {label:"Bleu", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525642/JS_Pennes_Mirabeau_06.png"}, {label:"Noir", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790757413/JS_Pennes_Mirabeau_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/JS_Pennes_Mirabeau.png"},
+  {name:"JSA Saint Antoine", ink:"#fafafa", shadow:{color:"#0b0a07", blur:0.07, dy:0.035, passes:2}, icon:{ink:"#fcd116"}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141135/JSA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790141133/JSA_Saint_Antoine_00.png"},
   {name:"SC Kartala", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862930/SC_Kartala_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790008063/SC_Kartala_00.png"},
   {name:"SC Montredon Bonneveine", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790137287/SC_Montredon_Bonneveine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790137271/SC_Montredon_Bonneveine_00.png"},
   {name:"la Beaucaire", img:"https://res.cloudinary.com/qwlhmio0/image/upload/la_Beaucaire_00.png"},
@@ -362,9 +362,9 @@ const CLUBS = [
   {name:"Olympique Rovenain", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848046/Olympique_Rovenain_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790108343/Olympique_Rovenain_-_00.png"},
   {name:"Olympique Saint Maximin", ink:"#d0a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848104/Saint_Maximin_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790006898/Saint_Maximin_00.png"},
   {name:"Phocea Club", ink:"#d0a310", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790848074/Phocea_Club_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790233330/Phocea_Club_-_1.png"},
-  {name:"CAM Phénix", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111943/CAM_Ph%C3%A9nix_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112007/CAM_Ph%C3%A9nix_00.png"},
-  {name:"CA Plan de Cuques", ink:"#ffd500", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790226708/CA_Plan_de_Cuques_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790227006/Plan_de_Cuques_-_1.png"},
-  {name:"SA Saint Antoine", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235983/SA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235530/SA_Saint_Antoine_-_1.png"},
+  {name:"CAM Phénix", ink:"#ffffff", edge:"#bd0a08", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790111943/CAM_Ph%C3%A9nix_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790112007/CAM_Ph%C3%A9nix_00.png"},
+  {name:"CA Plan de Cuques", ink:"#fae504", shadow:{color:"#082e0a", blur:0.05, dx:0.015, dy:0.03}, top:{ink:"#06560e", shadow:null}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790226708/CA_Plan_de_Cuques_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790227006/Plan_de_Cuques_-_1.png"},
+  {name:"SA Saint Antoine", ink:"#ffffff", edge:"#d2120f", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235983/SA_Saint_Antoine_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790235530/SA_Saint_Antoine_-_1.png"},
   {name:"US Saint Barthélémy", ink:"#111111", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790838216/US_Saint_Barth%C3%A9l%C3%A9my_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790142870/US_Saint_Barth%C3%A9l%C3%A9my_00.png"},
   {name:"Saint Henri FC", ink:"#ffffff", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862908/Saint_Henri_FC_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790404215/Saint_Henri_01.png"},
   {name:"JS Saint Julien", cards:[{label:"Blanc", ink:"#d0111b", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414355/JS_Saint_Julien_06.png"}, {label:"Rouge", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414346/JS_Saint_Julien_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790414327/Saint_Julien_-_1.png"},
@@ -385,7 +385,7 @@ const CLUBS = [
   {name:"USPEG", ink:"#ffffff", cards:[{label:"Version 1", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863254/USPEG_01.png"}, {label:"Version 2", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863261/USPEG_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790342603/USPEG_00.png"},
   {name:"USTM", img:"https://res.cloudinary.com/qwlhmio0/image/upload/USTM_00.png"},
   {name:"ASC Vivaux Sauvagère", cards:[{label:"Jaune", ink:"#111111", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790568696/Vivaux_Sauvag%C3%A8re_01.png"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525846/Vivaux_Sauvag%C3%A8re_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Vivaux.png"},
-  {name:"Marignane Gignac FC", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790106484/Marignane_Gignac_FC_01.png"},
+  {name:"Marignane Gignac FC", ink:"#fbe406", shadow:{color:"#8a0f18", blur:0.05, dy:0.03}, icon:{ink:"#fdc603"}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790106484/Marignane_Gignac_FC_01.png"},
   {name:"SC Cayolle", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657231/SC_Cayolle_01.png"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657278/SC_Cayolle_06.png"}]},
   {name:"USC Grande Bastide", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790107168/USC_Grand_Bastide_01.png"}
 ];
@@ -395,6 +395,7 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 //   cards:[{label:"Bleue", url:"URL"}, …] -> plusieurs versions de la carte vierge (le client choisit la couleur)
 //   card:"URL"  -> carte vierge (image 2365 x 3366 se terminant par 01)  [prioritaire]
 //   layout:"lignes" -> mise en page pour les cartes dont le gabarit a des traits horizontaux (voir L_LIGNES)
+//   edgeW, shadow, top, icon -> contour plus fin/épais, ombre, style du poste/de l'icône (voir clubStyles)
 //   ink:"#000"  -> impose la couleur des écritures et de l'icône (sinon : noir ou blanc choisi automatiquement selon le fond)
 //                   (ink peut aussi être mis dans une version : {label:"Jaune", url:"…", ink:"#000"})
 //   edge:"#008028" -> contour des écritures et de l'icône (ex. jaune entouré de vert : ink:"#f8d200", edge:"#008028")
@@ -559,18 +560,30 @@ function fitSize(text, size, maxW){
   const w = ctx.measureText(text).width;
   return w > maxW ? Math.floor(size * maxW / w) : size;
 }
-let textEdge = null;   // couleur du contour des écritures (null = pas de contour)
-function drawText(text, x, base, size, align, maxW){
+let textEdge = null;   // (ancien réglage, conservé)
+function drawText(text, x, base, size, align, maxW, st){
+  st = st || {ink: ctx.fillStyle, edge: textEdge, edgeW: 0.085, shadow: null};
   const sz = maxW ? fitSize(text, size, maxW) : size;
   ctx.font = 'bold ' + sz + 'px ' + SERIF;
   ctx.textAlign = align;
   ctx.textBaseline = 'alphabetic';
-  if(textEdge){
+  ctx.fillStyle = st.ink;
+  if(st.edge){
     ctx.save();
     ctx.lineJoin = 'round';
-    ctx.lineWidth = sz*0.085;
-    ctx.strokeStyle = textEdge;
+    ctx.lineWidth = sz*(st.edgeW || 0.085);
+    ctx.strokeStyle = st.edge;
     ctx.strokeText(text, x, base);
+    ctx.restore();
+  }
+  if(st.shadow){
+    const sh = st.shadow;
+    ctx.save();
+    ctx.shadowColor = sh.color || '#000';
+    ctx.shadowBlur = (sh.blur === undefined ? 0.1 : sh.blur)*sz;
+    ctx.shadowOffsetX = (sh.dx || 0)*sz;
+    ctx.shadowOffsetY = (sh.dy || 0)*sz;
+    for(let i = 0; i < (sh.passes || 1); i++) ctx.fillText(text, x, base);
     ctx.restore();
   }
   ctx.fillText(text, x, base);
@@ -617,6 +630,23 @@ function clubInk(){
   const v = currentVariant();
   return (v && v.ink) || c.ink || clubInkAuto;
 }
+// Options de style facultatives d'un club (ou d'une version) :
+//   edgeW:0.05            épaisseur du contour (0.085 par défaut ; plus petit = plus fin)
+//   shadow:{color, blur, dx, dy, passes}   ombre / halo derrière les écritures (valeurs relatives à la taille du texte)
+//   top:{ink, edge, edgeW, shadow}         style du poste + note (sinon identique au reste)
+//   icon:{ink, edge, edgeW, shadow}        style de l'icône (sinon identique au poste)
+function clubStyles(){
+  const main = {ink: clubInk(), edge: clubEdge(), edgeW: 0.085, shadow: null};
+  const c = currentClub();
+  if(!c) return {main, top: main, icon: main};
+  const v = currentVariant() || {};
+  const pick = k => (v[k] !== undefined ? v[k] : c[k]);
+  if(pick('edgeW')) main.edgeW = pick('edgeW');
+  if(pick('shadow')) main.shadow = pick('shadow');
+  const top = Object.assign({}, main, c.top || {}, v.top || {});
+  const icon = Object.assign({}, top, c.icon || {}, v.icon || {});
+  return {main, top, icon};
+}
 let refreshReglage = null;   // défini seulement en mode ?couleurs
 
 // Icônes fournies : images/icones/<nom>.png (silhouette blanche, fond transparent).
@@ -662,7 +692,8 @@ function currentIconKey(){
 }
 iconSel.addEventListener('change', () => drawCard());
 
-function drawPosIcon(pos, cx, cy, ink, edge){
+function drawPosIcon(pos, cx, cy, st){
+  const ink = st.ink, edge = st.edge;
   const main = ctx;
   const bw = 451, bh = 330;
   const off = document.createElement('canvas'); off.width = bw; off.height = bh;
@@ -674,11 +705,20 @@ function drawPosIcon(pos, cx, cy, ink, edge){
     t.drawImage(off, 0, 0);
     t.globalCompositeOperation = 'source-in';
     t.fillStyle = edge; t.fillRect(0, 0, bw, bh);
-    const r = 7;
+    const r = (st.edgeW && st.edgeW !== 0.085) ? Math.max(2, st.edgeW*82.35) : 7;
     for(let i = 0; i < 24; i++){
       const a = i*Math.PI/12;
       ctx.drawImage(tint, cx - bw/2 + Math.cos(a)*r, cy - bh/2 + Math.sin(a)*r);
     }
+  }
+  if(st.shadow){
+    const sh = st.shadow;
+    ctx.save();
+    ctx.shadowColor = sh.color || '#000';
+    ctx.shadowBlur = (sh.blur === undefined ? 0.1 : sh.blur)*200;
+    ctx.shadowOffsetX = (sh.dx || 0)*200; ctx.shadowOffsetY = (sh.dy || 0)*200;
+    ctx.drawImage(off, cx - bw/2, cy - bh/2);
+    ctx.restore();
   }
   ctx.drawImage(off, cx - bw/2, cy - bh/2);
 }
@@ -808,24 +848,21 @@ function drawCard(){
   // 2. textes et icône (blanc, Times gras comme sur le modèle)
   const overall = overallRating();
   const pos = els.pos.value;
-  const ink = clubInk();
-  const edge = clubEdge();
-  textEdge = edge;
-  ctx.fillStyle = ink;
+  const ST = clubStyles();
   const LY = clubLayout();
   iconBoxW = LY.iconW || 371; iconBoxH = LY.iconH || 236;
-  drawText(posLabel(), LY.posCx || LY.colX, LY.posBase, LY.posSize, 'center', LY.posMaxW);
-  drawText(String(overall), LY.ovrCx || LY.colX, LY.ovrBase, LY.ovrSize, 'center');
-  drawPosIcon(pos, LY.iconCx, LY.iconCy, ink, edge);
+  drawText(posLabel(), LY.posCx || LY.colX, LY.posBase, LY.posSize, 'center', LY.posMaxW, ST.top);
+  drawText(String(overall), LY.ovrCx || LY.colX, LY.ovrBase, LY.ovrSize, 'center', undefined, ST.top);
+  drawPosIcon(pos, LY.iconCx, LY.iconCy, ST.icon);
 
   const first = els.name.value.trim() || 'PRÉNOM';
   const last = els.last.value.trim();
-  drawText((first + (last ? ' ' + last : '')).toUpperCase(), LY.nameCx, LY.nameBase, LY.nameSize, 'center', LY.nameMaxW);
+  drawText((first + (last ? ' ' + last : '')).toUpperCase(), LY.nameCx, LY.nameBase, LY.nameSize, 'center', LY.nameMaxW, ST.main);
 
   currentStats().forEach((st, i) => {
     const col = i % 2, row = Math.floor(i/2);
-    drawText(st.abbr, LY.statX[col].label, LY.statRows[row], LY.statSize, 'left');
-    drawText(String(st.value), LY.statX[col].value, LY.statRows[row], LY.statSize, 'left');
+    drawText(st.abbr, LY.statX[col].label, LY.statRows[row], LY.statSize, 'left', undefined, ST.main);
+    drawText(String(st.value), LY.statX[col].value, LY.statRows[row], LY.statSize, 'left', undefined, ST.main);
   });
 
   // 3. contour doré par-dessus

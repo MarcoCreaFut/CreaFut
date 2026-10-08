@@ -384,6 +384,9 @@ const CLUBS = [
   {name:"USC Rouvière", img:"https://res.cloudinary.com/qwlhmio0/image/upload/USC_Rouvi%C3%A8re_00.PNG"},
   {name:"USPEG", ink:"#ffffff", cards:[{label:"Version 1", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863254/USPEG_01.png"}, {label:"Version 2", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790863261/USPEG_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790342603/USPEG_00.png"},
   {name:"USTM", img:"https://res.cloudinary.com/qwlhmio0/image/upload/USTM_00.png"},
+  {name:"US Meyreuil", fit:"auto", card:"https://res.cloudinary.com/qwlhmio0/image/upload/US_Meyreuil_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1791353402/US_Meureuil_00.png"},
+  {name:"USR Pertuis", fit:"auto", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1791262043/USR_Pertuis_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1791261658/USR_Pertuis_00.png"},
+  {name:"SC Aix en Provence", fit:"auto", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/Sporting_Club_Aix_01.png"}, {label:"Bleue", url:"https://res.cloudinary.com/qwlhmio0/image/upload/Sporting_Club_Aix_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1791432420/Sporting_Club_Aix_00.png"},
   {name:"ASC Vivaux Sauvagère", cards:[{label:"Jaune", ink:"#111111", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790568696/Vivaux_Sauvag%C3%A8re_01.png"}, {label:"Noire", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790525846/Vivaux_Sauvag%C3%A8re_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Vivaux.png"},
   {name:"Marignane Gignac FC", ink:"#fbe406", shadow:{color:"#8a0f18", blur:0.05, dy:0.03}, icon:{ink:"#fdc603"}, card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790106484/Marignane_Gignac_FC_01.png"},
   {name:"SC Cayolle", cards:[{label:"Blanc", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657231/SC_Cayolle_01.png"}, {label:"Noir", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657278/SC_Cayolle_06.png"}]},
@@ -396,6 +399,7 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 //   card:"URL"  -> carte vierge (image 2365 x 3366 se terminant par 01)  [prioritaire]
 //   layout:"lignes" -> mise en page pour les cartes dont le gabarit a des traits horizontaux (voir L_LIGNES)
 //   layoutAjust:{posCx:…, iconCx:…, nameBase:…, statX:…} -> retouche quelques positions de la mise en page (club ou version)
+//   fit:'auto' -> mesure toute seule la boîte du bouclier de la carte et la recale sur le contour
 //   fit:[x0,y0,x1,y1] -> recale une carte dont le bouclier n'épouse pas le contour (boîte du bouclier, en fraction de l'image ; valable aussi dans une version)
 //   miniLogo:false -> n'affiche pas le petit logo du club sous l'icône du poste (le logo est pris dans le champ img)
 //   edgeW, shadow, top, icon -> contour plus fin/épais, ombre, style du poste/de l'icône (voir clubStyles)
@@ -441,6 +445,7 @@ function detectOpaque(img){
   return t < 3;
 }
 let clubImg = null;
+let clubFitAuto = null;      // boîte du bouclier mesurée sur la carte (pour fit:'auto')
 let clubImgIsLogo = false;   // true si seule l'image du logo a été trouvée (pas de carte vierge)
 let logoImg = null, logoClub = null, logoToken = 0;   // petit logo du club (champ img)
 let clubImgLoadingSrc = null;
@@ -815,7 +820,8 @@ function currentFit(){
   const c = currentClub();
   if(!c) return null;
   const v = currentVariant();
-  return (v && v.fit) || c.fit || null;
+  const fit = (v && v.fit) || c.fit || null;
+  return fit === 'auto' ? clubFitAuto : fit;
 }
 function drawBackground(){
   ctx.fillStyle = NEUTRAL_BG;
@@ -989,7 +995,29 @@ function loadLogo(club){
   };
   im.src = club.img;
 }
+// Mesure la boîte occupée par le bouclier (pixels non transparents) d'une carte vierge.
+// Renvoie null si la carte est déjà bien calée sur le contour, ou si elle n'a pas de transparence (fond opaque).
+function computeAutoFit(img){
+  try{
+    const w0 = 480, h0 = Math.round(w0*img.naturalHeight/img.naturalWidth);
+    const cv = document.createElement('canvas'); cv.width = w0; cv.height = h0;
+    const cx = cv.getContext('2d', {willReadFrequently:true});
+    cx.drawImage(img, 0, 0, w0, h0);
+    const d = cx.getImageData(0, 0, w0, h0).data;
+    const a = (x,y) => d[(y*w0+x)*4+3];
+    if(a(0,0)>40 && a(w0-1,0)>40 && a(0,h0-1)>40 && a(w0-1,h0-1)>40) return null;
+    let x0=w0, y0=h0, x1=-1, y1=-1;
+    for(let y=0; y<h0; y++) for(let x=0; x<w0; x++) if(a(x,y)>128){ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }
+    if(x1<0) return null;
+    const f = [x0/w0, y0/h0, (x1+1)/w0, (y1+1)/h0];
+    const ref = [SB.x/W, SB.y/H, (SB.x+SB.w)/W, (SB.y+SB.h)/H];
+    const sameFormat = Math.abs(img.naturalWidth/img.naturalHeight - W/H) < 0.02;
+    if(sameFormat && f.every((v,i) => Math.abs(v-ref[i]) < 0.008)) return null;
+    return f;
+  }catch(e){ return null; }
+}
 function loadClub(club, cardUrl){
+  clubFitAuto = null;
   if(logoClub !== club){ logoClub = club; loadLogo(club); }
   const token = ++clubToken;
   const list = (cardUrl ? [cardUrl] : club.candidates).concat([club.img]).filter(Boolean);
@@ -1006,6 +1034,7 @@ function loadClub(club, cardUrl){
       clubImg = img;
       clubImgIsLogo = (src === club.img);
       clubInkAuto = detectInk(img);
+      clubFitAuto = computeAutoFit(img);
       drawCard();
     };
     img.onerror = tryNext;

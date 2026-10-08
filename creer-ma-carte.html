@@ -1217,6 +1217,32 @@ if(/[?&]couleurs/.test(location.search)){
 renderStatControls();
 drawCard();
 if(document.fonts && document.fonts.ready){ document.fonts.ready.then(drawCard); }
+
+// --- Versions réservées à un poste (ex. carte blanche : gardien seulement) ---
+(function(){
+  function majVersions(){
+    const c = currentClub();
+    if(!c || !c.cards || !c.cards.length) return;
+    const avant = variantSel.value;
+    variantSel.innerHTML = '';
+    let nb = 0;
+    c.cards.forEach((v, i) => {
+      if(v.poste && v.poste !== els.pos.value) return;
+      const o = document.createElement('option');
+      o.value = String(i); o.textContent = v.label;
+      variantSel.appendChild(o);
+      nb++;
+    });
+    if(avant !== '' && variantSel.querySelector('option[value="' + avant + '"]')) variantSel.value = avant;
+    variantField.style.display = nb > 1 ? '' : 'none';
+    if(variantSel.value !== avant){
+      const v = currentVariant();
+      if(v) loadClub(c, v.url);
+    }
+  }
+  els.club.addEventListener('change', majVersions);
+  els.pos.addEventListener('change', majVersions);
+})();
 </script>
 <script src="lightbox.js"></script>
 </body>

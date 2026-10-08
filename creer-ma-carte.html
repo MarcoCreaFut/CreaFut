@@ -318,7 +318,7 @@ const CLUBS = [
   {name:"AS Belle de Mai Joliette", ink:"#77b1fd", card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790417672/AS_Belle_de_Mai_Joliette_01.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790416674/AS_Belle_de_Mai_Joliette_00.png"},
   {name:"AC Berthe", cards:[{label:"Jaune", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754441/AC_Berthe_06.png"}, {label:"Noire à liserets", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657379/AC_Berthe_11.png"}, {label:"Noire", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790524672/AC_Berthe_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/Berthe_00.jpg"},
   {name:"AS Bombardière", ink:"#ffffff", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789843978/AS_Bombardi%C3%A8re_00.png"},
-  {name:"AS Bombardière (ancien logo)", ink:"#ffffff", fit:[0.0484,0.0174,0.9535,0.994], card:"https://res.cloudinary.com/qwlhmio0/image/upload/v1791388234/AS_Bombardi%C3%A8re_06.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995751/Bombardi%C3%A8re.png"},
+  {name:"AS Bombardière (ancien logo)", ink:"#ffffff", fit:[0.0484,0.0174,0.9535,0.994], card:"https://res.cloudinary.com/qwlhmio0/image/upload/AS_Bombardi%C3%A8re_06.png", img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789995751/Bombardi%C3%A8re.png"},
   {name:"Burel FC", cards:[{label:"Jaune", ink:"#303567", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929162/Burel_FC_01.png"}, {label:"Boca Juniors", ink:"#d0a310", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790002030/Burel_FC_06.png"}, {label:"Jaune et bleu", ink:"#042c84", icon:{ink:"#fcd044"}, url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790113302/Burel_FC_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789929152/Burel_FC_00.png"},
   {name:"CA Gombertois", ink:"#ffffff", cards:[{label:"Bleu", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623249/Ch%C3%A2teau_Gombert_01.png"}, {label:"Rouge", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623252/Ch%C3%A2teau_Gombert_06.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789623249/Chateau_Gombert_-_Logo.png"},
   {name:"US Endoume", cards:[{label:"Classique", ink:"#ffffff", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790830712/US_Endoume_01.png"}, {label:"Centenaire rouge et noir", ink:"#d0a310", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754769/US_Endoume_06.png"}, {label:"Centenaire blanc", ink:"#d0a310", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790754790/US_Endoume_11.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790050227/US_Endoume_00.png"},
@@ -331,7 +331,7 @@ const CLUBS = [
   {name:"Etoile Sportive la Ciotat", img:"https://res.cloudinary.com/qwlhmio0/image/upload/Etoile_Sportive_la_Ciotat.png"},
   {name:"FA Academy", cards:[{label:"Blanc", ink:"#ec4899", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790657445/FA_Academy_06.png"}, {label:"Rose", ink:"#111111", url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1790862733/FA_Academy_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/FA_00.png"},
   {name:"FC Blancarde Chartreux", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Blancarde_Chartreux_00.png"},
-  {name:"FC Carnoux", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Carnoux_00.png"},
+  {name:"Carnoux FC", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Carnoux_00.png"},
   {name:"FC Istres", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Istres_00.png"},
   {name:"FC la Castellane", ink:"#ffffff", cards:[{label:"Bandes larges", fit:[0.0818,0.0446,0.9207,0.9403], url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964841/FC_la_Castelanne_06.png"}, {label:"Bandes fines", fit:[0.0913,0.0633,0.9116,0.9432], url:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789964743/FC_la_Castelanne_01.png"}], img:"https://res.cloudinary.com/qwlhmio0/image/upload/v1789965678/Castellane.png"},
   {name:"FC Martigues", img:"https://res.cloudinary.com/qwlhmio0/image/upload/FC_Martigues.png"},
@@ -402,13 +402,11 @@ CLUBS.sort((a,b) => a.name.localeCompare(b.name, 'fr', {sensitivity:'base', nume
 //   ink:"#000"  -> impose la couleur des écritures et de l'icône (sinon : noir ou blanc choisi automatiquement selon le fond)
 //                   (ink peut aussi être mis dans une version : {label:"Jaune", url:"…", ink:"#000"})
 //   edge:"#008028" -> contour des écritures et de l'icône (ex. jaune entouré de vert : ink:"#f8d200", edge:"#008028")
-//   cardAlt:["URL",…] -> URLs de secours essayées si "card" est introuvable
 //   img:"URL"   -> ancienne image (logo), utilisée seulement si aucune carte vierge n'est trouvée
 // Sans "card", le site essaie automatiquement la même URL en remplaçant "_00" par "_01".
 function cardCandidates(c){
   const list = [];
   if(c.card) list.push(c.card);
-  (c.cardAlt || []).forEach(u => list.push(u));   // URLs de secours (autres orthographes du nom de fichier)
   (c.cards || []).forEach(v => list.push(v.url));
   const m = (c.img || '').match(/^(.*\/upload\/)(?:v\d+\/)?(.*)_00\.(png|jpg|jpeg|PNG|JPG)$/);
   if(m){

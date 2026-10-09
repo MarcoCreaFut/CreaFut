@@ -6,7 +6,7 @@
 <title>Personnalisation — CreaFut</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
   /* Réglages repris à l'identique de l'aperçu validé */
@@ -25,7 +25,7 @@
     font-family:'Cormorant Garamond', Georgia, serif; text-transform:uppercase;
   }
   .hero h1{
-    font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-weight:700;
+    font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-weight:600;
     font-size:clamp(44px, 6vw, 84px); margin:12px 0 22px; color:#fff;
   }
   .hero h1 em{ color:#f3d37a; font-style:italic; }
@@ -47,10 +47,10 @@
     transition:transform .25s, box-shadow .25s;
   }
   .perso-hub-card:hover{ transform:translateY(-6px); box-shadow:0 0 44px rgba(243,211,122,.65); }
-  .perso-hub-card img{ width:100%; display:block; }
+  .perso-hub-card img{ width:100%; display:block; aspect-ratio:7 / 2; object-fit:cover; }
   .perso-hub-body{ padding:14px 28px 32px; text-align:center; }
   .perso-hub-card h3{
-    font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-weight:700;
+    font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-weight:600;
     text-transform:uppercase; letter-spacing:.04em; font-size:clamp(34px, 4vw, 56px);
     color:#f3d37a; text-shadow:0 0 18px rgba(212,164,58,.55);
   }
@@ -63,7 +63,7 @@
     display:flex; justify-content:space-between; width:min(420px, 90%); margin:0 auto;
     padding:13px 28px; border:1.5px solid #d4a43a; border-radius:12px; background:#000;
     color:#f3d37a; font-family:'Cormorant Garamond', Georgia, serif; font-style:italic;
-    font-weight:700; font-size:20px; letter-spacing:.12em; text-transform:uppercase;
+    font-weight:600; font-size:20px; letter-spacing:.12em; text-transform:uppercase;
   }
   @media (max-width:820px){ .perso-hub-grid{ grid-template-columns:1fr; } }
 </style>

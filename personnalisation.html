@@ -6,51 +6,66 @@
 <title>Personnalisation — CreaFut</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
+  /* Réglages repris à l'identique de l'aperçu validé */
+  body{
+    background-color:#0a0a0a;
+    color:#f5efe0;
+    font-family:'Work Sans', Arial, sans-serif;
+    background-image:
+      radial-gradient(ellipse at 0 22%, rgba(212,164,58,.22), transparent 38%),
+      radial-gradient(ellipse at 100% 22%, rgba(212,164,58,.22), transparent 38%);
+    background-repeat:no-repeat;
+  }
+  .hero{ max-width:1240px; margin:0 auto; padding:70px 5% 0; text-align:center; }
+  .hero .eyebrow{
+    color:#d4a43a; letter-spacing:.4em; font-size:14px; font-weight:600;
+    font-family:'Cormorant Garamond', Georgia, serif; text-transform:uppercase;
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-weight:700;
+    font-size:clamp(44px, 6vw, 84px); margin:12px 0 22px; color:#fff;
+  }
+  .hero h1 em{ color:#f3d37a; font-style:italic; }
+  .hero .divider{ width:114px; height:3px; background:#d4a43a; margin:0 auto 22px; }
+  .hero p.subtitle{
+    max-width:none; margin:0 0 50px; color:#f5efe0;
+    font-family:'Work Sans', Arial, sans-serif; font-size:14px;
+    letter-spacing:.32em; text-transform:uppercase;
+  }
+
   .perso-hub-grid{
-    max-width:900px;
-    margin:0 auto;
-    padding:20px 24px 90px;
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:35px;
+    max-width:1240px; margin:0 auto; padding:0 5% 90px;
+    display:grid; grid-template-columns:1fr 1fr; gap:36px;
   }
   .perso-hub-card{
-    display:block;
-    padding:50px 30px;
-    text-align:center;
-    border:1px solid rgba(202,161,71,.35);
-    background:rgba(255,255,255,.015);
-    text-decoration:none;
-    color:inherit;
-    transition:transform .3s ease, border-color .3s ease;
+    display:block; text-decoration:none; color:inherit; background:#050505;
+    border:2px solid #d4a43a; border-radius:14px; overflow:hidden;
+    box-shadow:0 0 30px rgba(212,164,58,.45);
+    transition:transform .25s, box-shadow .25s;
   }
-  .perso-hub-card:hover{
-    transform:translateY(-6px);
-    border-color:#caa147;
-  }
-  .perso-hub-icon{
-    font-size:34px;
-    color:#caa147;
-    margin-bottom:22px;
-  }
+  .perso-hub-card:hover{ transform:translateY(-6px); box-shadow:0 0 44px rgba(243,211,122,.65); }
+  .perso-hub-card img{ width:100%; display:block; }
+  .perso-hub-body{ padding:14px 28px 32px; text-align:center; }
   .perso-hub-card h3{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:28px;
-    margin-bottom:14px;
-    color:#f3eee4;
+    font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-weight:700;
+    text-transform:uppercase; letter-spacing:.04em; font-size:clamp(34px, 4vw, 56px);
+    color:#f3d37a; text-shadow:0 0 18px rgba(212,164,58,.55);
   }
+  .perso-hub-line{ width:90px; height:2px; background:#d4a43a; margin:8px auto 16px; }
   .perso-hub-card p{
-    font-family:'Work Sans', sans-serif;
-    font-size:14px;
-    color:#a49e95;
+    font-family:'Work Sans', Arial, sans-serif; font-size:13.5px; line-height:1.8;
+    letter-spacing:.13em; text-transform:uppercase; color:#f5efe0; margin:0 0 24px;
   }
-  @media (max-width:640px){
-    .perso-hub-grid{ grid-template-columns:1fr; }
+  .perso-hub-btn{
+    display:flex; justify-content:space-between; width:min(420px, 90%); margin:0 auto;
+    padding:13px 28px; border:1.5px solid #d4a43a; border-radius:12px; background:#000;
+    color:#f3d37a; font-family:'Cormorant Garamond', Georgia, serif; font-style:italic;
+    font-weight:700; font-size:20px; letter-spacing:.12em; text-transform:uppercase;
   }
+  @media (max-width:820px){ .perso-hub-grid{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -78,20 +93,29 @@
 
 <div class="hero">
   <p class="eyebrow">Personnalisation</p>
-  <h1>Votre carte, votre choix</h1>
+  <h1>Votre carte, <em>votre histoire</em></h1>
   <div class="divider"></div>
+  <p class="subtitle">Créez une carte unique à votre image</p>
 </div>
 
 <div class="perso-hub-grid">
   <a href="personnalisation-clubs.html" class="perso-hub-card">
-    <div class="perso-hub-icon">◈</div>
-    <h3>Clubs</h3>
-    <p>Retrouvez le logo de votre club local et commandez sa carte.</p>
+    <img src="perso-clubs.jpg" alt="Cartes clubs : drapeaux et écussons de clubs de foot">
+    <div class="perso-hub-body">
+      <h3>Cartes Clubs</h3>
+      <div class="perso-hub-line"></div>
+      <p>Retrouvez le logo de votre club local et commandez vos cartes officielles.</p>
+      <span class="perso-hub-btn">Voir les clubs <span>›</span></span>
+    </div>
   </a>
   <a href="personnalisation-creation.html" class="perso-hub-card">
-    <div class="perso-hub-icon">✦</div>
-    <h3>Créer ma carte</h3>
-    <p>Imaginez une carte unique : votre photo, votre style, vos statistiques.</p>
+    <img src="perso-creation.jpg" alt="Créer ma carte : cartes dorées personnalisées">
+    <div class="perso-hub-body">
+      <h3>Créer ma carte</h3>
+      <div class="perso-hub-line"></div>
+      <p>Personnalisez votre carte avec votre photo, votre style, vos statistiques et bien plus encore.</p>
+      <span class="perso-hub-btn">Créer ma carte <span>›</span></span>
+    </div>
   </a>
 </div>
 

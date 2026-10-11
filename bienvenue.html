@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CreaFut — Entrez dans la légende</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a24b;--gold-light:#f0d27a;--cream:#f3ede1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050505;color:var(--cream);font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden;
+background-image:radial-gradient(ellipse at 50% 30%,rgba(201,162,75,.16),transparent 60%),radial-gradient(ellipse at 50% 100%,rgba(201,162,75,.2),transparent 50%)}
+.stage{max-width:940px;margin:0 auto;position:relative}
+.art-wrap{position:relative;container-type:inline-size;padding-top:0}
+.art-wrap img{width:100%;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.kicker{position:absolute;top:.6%;left:0;right:0;text-align:center;font-style:italic;font-weight:600;text-transform:uppercase;letter-spacing:.38em;font-size:3.4cqw;color:var(--gold-light);text-shadow:0 0 14px rgba(0,0,0,.9)}
+.hs{position:absolute;border-radius:12px;transition:.25s}.hs:hover{box-shadow:0 0 28px rgba(240,210,122,.7),inset 0 0 0 2px var(--gold-light)}
+h1{position:absolute;left:0;right:0;top:83%;text-align:center;font-style:italic;font-weight:600;text-transform:uppercase;line-height:1.02;color:var(--gold-light);text-shadow:0 0 22px rgba(201,162,75,.7),0 2px 6px #000;pointer-events:none}
+h1 span{display:block;font-size:8.6cqw}h1 span+span{font-size:6.6cqw}
+.orn{display:flex;align-items:center;gap:14px;max-width:62%;margin:-1.5% auto 0;color:var(--gold-light);font-size:26px}
+.orn i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:3%;max-width:760px;margin:34px auto 0;padding:0 20px;align-items:start;text-align:center}
+.cols .sep{background:linear-gradient(transparent,var(--gold),transparent);align-self:stretch}
+.cols img{width:84px;mix-blend-mode:screen;margin:0 auto 6px;display:block}
+.cols h2{font-style:italic;font-weight:600;text-transform:uppercase;color:var(--gold-light);font-size:clamp(22px,3.4vw,32px);line-height:1.1;margin-bottom:8px}
+.cols p{font-size:clamp(18px,2.6vw,24px);line-height:1.25}
+.go{text-align:center;padding:46px 20px 90px}
+.btn{display:inline-flex;align-items:center;gap:18px;padding:18px 44px;border:2px solid var(--gold-light);border-radius:16px;background:#000;color:var(--gold-light);text-decoration:none;font-style:italic;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(18px,3vw,28px);box-shadow:0 0 30px rgba(201,162,75,.45);transition:.3s}
+.btn:hover{background:var(--gold-light);color:#000;transform:translateY(-3px)}
+@media(max-width:560px){.cols{grid-template-columns:1fr;gap:26px}.cols .sep{display:none}.btn{padding:16px 26px;gap:12px}}
+</style>
+</head>
+<body>
+<main class="stage">
+  <div class="art-wrap">
+    <img src="bienvenue-art.jpg" alt="Les collections CreaFut : Basket, Football, Animés, Supporters, Personnalisation, Handball, Gaming, Graffitis">
+    <div class="kicker">Cartes collector</div>
+    <a class="hs" style="left:2.13%;top:2.06%;width:27.84%;height:22.22%" href="basket.html" aria-label="Basket"></a><a class="hs" style="left:70.14%;top:2.06%;width:28.16%;height:27.57%" href="foot.html" aria-label="Football"></a><a class="hs" style="left:0.53%;top:22.22%;width:24.65%;height:26.75%" href="animes.html" aria-label="Animés"></a><a class="hs" style="left:74.39%;top:26.34%;width:25.61%;height:26.34%" href="supporters.html" aria-label="Supporters"></a><a class="hs" style="left:0.53%;top:48.56%;width:25.50%;height:24.28%" href="personnalisation.html" aria-label="Personnalisation"></a><a class="hs" style="left:73.33%;top:52.67%;width:26.04%;height:25.10%" href="hand.html" aria-label="Handball"></a><a class="hs" style="left:0.00%;top:72.02%;width:24.97%;height:27.57%" href="gaming.html" aria-label="Gaming"></a><a class="hs" style="left:74.92%;top:74.07%;width:23.38%;height:25.93%" href="graffitis.html" aria-label="Graffitis"></a>
+    <h1><span>Entrez</span><span>dans la légende...</span></h1>
+  </div>
+  <div class="orn"><i></i>♛<i></i></div>
+  <div class="cols">
+    <div><img src="bienvenue-icone1.jpg" alt=""><h2>Personnalisez<br>votre carte</h2><p>aux couleurs<br>de votre équipe.</p></div>
+    <div class="sep"></div>
+    <div><img src="bienvenue-icone2.jpg" alt=""><h2>Créez ta propre<br>carte</h2><p>comme un véritable<br>joueur professionnel.</p></div>
+  </div>
+  <div class="go"><a class="btn" href="index.html">Découvrir l'univers CreaFut <span>→</span></a></div>
+</main>
+</body>
+</html>

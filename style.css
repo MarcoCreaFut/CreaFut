@@ -487,4 +487,6 @@ footer {
   .others .shield-tile .shield-icon { width: 100%; height: auto; aspect-ratio: 150 / 190; }
   .others .shield-tile .label-box { font-size: 0.85rem; padding: 0.25rem 0.5rem; }
 }
-
+/* Masque le bouton PayPal sur toutes les pages */
+.contact li:has(a[href*="paypal"]) { display: none; }
+.contact a[href*="paypal"] { display: none; }

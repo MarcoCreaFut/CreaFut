@@ -27,7 +27,7 @@
     '<div class="nav">' +
       '<a href="index.html" class="logo"><img src="' + logo + '" alt="CreaFut" class="logo-img"></a>' +
       '<ul class="nav-links">' + items + "</ul>" +
-      '<a href="index.html#contact" class="contact-badge" title="Contact">&#9993;</a>' +
+      '<a href="accueil.html#contact" class="contact-badge" title="Contact">&#9993;</a>' +
     "</div>";
 
   var header = document.getElementById("site-header");

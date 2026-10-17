@@ -1,0 +1,15 @@
+/* Grille de tuiles centrée (NBA) */
+.shield-grid.centered {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem 2rem;
+  max-width: 1200px;
+}
+.shield-grid.centered .shield-tile { width: 200px; }
+.shield-grid.centered .shield-tile .label-box { max-width: 100%; }
+@media (max-width: 700px) {
+  .shield-grid.centered { gap: 1.8rem 4%; }
+  .shield-grid.centered .shield-tile { width: 45%; }
+  .shield-grid.centered .shield-tile .shield-icon { width: 100%; height: auto; aspect-ratio: 150 / 190; }
+}

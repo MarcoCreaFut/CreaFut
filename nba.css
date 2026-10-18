@@ -13,3 +13,14 @@
   .shield-grid.centered .shield-tile { width: 45%; }
   .shield-grid.centered .shield-tile .shield-icon { width: 100%; height: auto; aspect-ratio: 150 / 190; }
 }
+
+/* Logos d'équipes : tous dans le même carré (référence : logo des Pistons) */
+.shield-grid.centered .shield-tile .shield-icon.logo-equipe {
+  width: 190px;
+  height: 190px;
+  object-fit: contain;
+  margin-bottom: 1.4rem;
+}
+@media (max-width: 700px) {
+  .shield-grid.centered .shield-tile .shield-icon.logo-equipe { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+}

@@ -64,12 +64,18 @@
 <script>
 (function () {
   var box = document.getElementById("tuiles");
+  /* Logo recadré (marges transparentes retirées) et ajusté dans un carré : tous les logos ont la même taille */
+  var T = "e_trim/c_fit,w_380,h_380/";
+  function urlLogo(l) {
+    if (/^https?:/.test(l)) return l.replace("/upload/", "/upload/" + T);
+    return NBA_BASE + T + encodeURI(l) + NBA_EXT;
+  }
   NBA_EQUIPES.filter(function (t) { return t.conf === "est"; }).forEach(function (t) {
-    var fichier = t.logo || t.cartes[0][0];
+    var src = t.logo ? urlLogo(t.logo) : NBA_BASE + encodeURI(t.cartes[0][0]) + NBA_EXT;
     var a = document.createElement("a");
     a.className = "shield-tile";
     a.href = "basket-nba-equipe.html?e=" + t.id;
-    a.innerHTML = '<img class="shield-icon" alt="' + t.nom + '" src="' + NBA_BASE + encodeURI(fichier) + NBA_EXT + '">' +
+    a.innerHTML = '<img class="shield-icon' + (t.logo ? ' logo-equipe' : '') + '" alt="' + t.nom + '" src="' + src + '">' +
                   '<div class="label-box">' + t.nom + '</div>';
     box.appendChild(a);
   });

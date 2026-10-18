@@ -78,7 +78,7 @@
   t.cartes.forEach(function (c) {
     var d = document.createElement("div");
     d.className = "card";
-    d.innerHTML = '<div class="frame"><img src="' + NBA_BASE + encodeURI(c[0]) + NBA_EXT + '" alt="' + c[0] + '">' +
+    d.innerHTML = '<div class="frame"><img src="' + NBA_BASE + "w_600,q_auto/" + encodeURI(c[0]) + NBA_EXT + '" alt="' + c[0] + '">' +
                   '<h3>' + c[1] + '</h3><p class="price">20 €</p></div>';
     box.appendChild(d);
   });

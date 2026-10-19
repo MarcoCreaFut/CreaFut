@@ -8,6 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.label-box small{font-size:.75em;opacity:.8}
+.team-section{max-width:1200px;margin:0 auto;padding:48px 20px 0;text-align:center}
+.team-section h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:#f3ede1;margin-bottom:24px}
+.card-row{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
+.card-row img{width:200px;max-width:42vw;height:auto;cursor:pointer}
+</style>
 </head>
 <body>
 <header>
@@ -25,7 +32,7 @@
       <li><a href="hockey.html">Hockey</a></li>
       <li><a href="water-polo.html">Water Polo</a></li>
       <li><a href="rugby.html">Rugby</a></li>
-      <li><a href="foot-us.html">Foot US</a></li>
+      <li><a href="foot-us.html" class="active">Foot US</a></li>
       <li><a href="volley.html">Volley</a></li>
     </ul>
     <a href="index.html#contact" class="contact-badge" title="Contact">✉</a>
@@ -39,16 +46,152 @@
 <nav class="subnav">
   <a href="foot-us.html">← Retour</a>
 </nav>
-<div class="coming-soon">
-  <p>Cette collection arrive bientôt. Reviens vite !</p>
+<div class="shield-grid">
+  <a href="#t0" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Argonautes_-_Aix_Rouge_00.png" alt="Argonautes" class="shield-icon">
+    <div class="label-box">Argonautes<br><small>Aix</small></div>
+  </a>
+  <a href="#t1" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Black_Panthers_-_Thonon_00.png" alt="Black Panthers" class="shield-icon">
+    <div class="label-box">Black Panthers<br><small>Thonon</small></div>
+  </a>
+  <a href="#t2" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Blue_Stars_-_Marseille_00.png" alt="Blue Stars" class="shield-icon">
+    <div class="label-box">Blue Stars<br><small>Marseille</small></div>
+  </a>
+  <a href="#t3" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Centaures_-_Grenoble_00.png" alt="Centaures" class="shield-icon">
+    <div class="label-box">Centaures<br><small>Grenoble</small></div>
+  </a>
+  <a href="#t4" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Diables_Rouges_-_Villepinte_00.png" alt="Diables Rouges" class="shield-icon">
+    <div class="label-box">Diables Rouges<br><small>Villepinte</small></div>
+  </a>
+  <a href="#t5" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Flash_-_la_Courneuve_00.png" alt="Flash" class="shield-icon">
+    <div class="label-box">Flash<br><small>La Courneuve</small></div>
+  </a>
+  <a href="#t6" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Grizzlys_-_Catalans_00.png" alt="Grizzlys" class="shield-icon">
+    <div class="label-box">Grizzlys<br><small>Catalans</small></div>
+  </a>
+  <a href="#t7" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Iron_Mask_-_Cannes_00.png" alt="Iron Mask" class="shield-icon">
+    <div class="label-box">Iron Mask<br><small>Cannes</small></div>
+  </a>
+  <a href="#t8" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Leopards_-_Rouen_00.png" alt="Léopards" class="shield-icon">
+    <div class="label-box">Léopards<br><small>Rouen</small></div>
+  </a>
+  <a href="#t9" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Meteores_-_Fontenay_00.png" alt="Météores" class="shield-icon">
+    <div class="label-box">Météores<br><small>Fontenay</small></div>
+  </a>
+  <a href="#t10" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Molosses_-_d_Asnieres_00.png" alt="Molosses" class="shield-icon">
+    <div class="label-box">Molosses<br><small>d'Asnières</small></div>
+  </a>
+  <a href="#t11" class="shield-tile">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Ours_-_Toulouse_00.png" alt="Ours" class="shield-icon">
+    <div class="label-box">Ours<br><small>Toulouse</small></div>
+  </a>
 </div>
+
+<section class="team-section" id="t0">
+  <h2>Argonautes — Aix</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Argonautes_-_Aix_Rouge_01.png" alt="Argonautes Aix 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Argonautes_-_Aix_Rouge_02.png" alt="Argonautes Aix 02" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Argonautes_-_Aix_Rouge_03.png" alt="Argonautes Aix 03" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t1">
+  <h2>Black Panthers — Thonon</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Black_Panthers_-_Thonon_01.png" alt="Black Panthers Thonon 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Black_Panthers_-_Thonon_02.png" alt="Black Panthers Thonon 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t2">
+  <h2>Blue Stars — Marseille</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Blue_Stars_-_Marseille_01.png" alt="Blue Stars Marseille 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Blue_Stars_-_Marseille_02.png" alt="Blue Stars Marseille 02" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Blue_Stars_-_Marseille_03.png" alt="Blue Stars Marseille 03" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Blue_Stars_-_Marseille_04.png" alt="Blue Stars Marseille 04" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t3">
+  <h2>Centaures — Grenoble</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Centaures_-_Grenoble_01.png" alt="Centaures Grenoble 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Centaures_-_Grenoble_02.png" alt="Centaures Grenoble 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t4">
+  <h2>Diables Rouges — Villepinte</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Diables_Rouges_-_Villepinte_01.png" alt="Diables Rouges Villepinte 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Diables_Rouges_-_Villepinte_02.png" alt="Diables Rouges Villepinte 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t5">
+  <h2>Flash — La Courneuve</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Flash_-_la_Courneuve_01.png" alt="Flash La Courneuve 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Flash_-_la_Courneuve_02.png" alt="Flash La Courneuve 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t6">
+  <h2>Grizzlys — Catalans</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Grizzlys_-_Catalans_01.png" alt="Grizzlys Catalans 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Grizzlys_-_Catalans_02.png" alt="Grizzlys Catalans 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t7">
+  <h2>Iron Mask — Cannes</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Iron_Mask_-_Cannes_01.png" alt="Iron Mask Cannes 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Iron_Mask_-_Cannes_02.png" alt="Iron Mask Cannes 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t8">
+  <h2>Léopards — Rouen</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Leopards_-_Rouen_01.png" alt="Léopards Rouen 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Leopards_-_Rouen_02.png" alt="Léopards Rouen 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t9">
+  <h2>Météores — Fontenay</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Meteores_-_Fontenay_01.png" alt="Météores Fontenay 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Meteores_-_Fontenay_02.png" alt="Météores Fontenay 02" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Meteores_-_Fontenay_03.png" alt="Météores Fontenay 03" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t10">
+  <h2>Molosses — d'Asnières</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Molosses_-_d_Asnieres_01.png" alt="Molosses d'Asnières 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Molosses_-_d_Asnieres_02.png" alt="Molosses d'Asnières 02" loading="lazy">
+  </div>
+</section>
+<section class="team-section" id="t11">
+  <h2>Ours — Toulouse</h2>
+  <div class="card-row">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Ours_-_Toulouse_01.png" alt="Ours Toulouse 01" loading="lazy">
+    <img src="https://res.cloudinary.com/qwlhmio0/image/upload/Ours_-_Toulouse_02.png" alt="Ours Toulouse 02" loading="lazy">
+  </div>
+</section>
+
 <div class="contact" id="contact">
   <h2>Envie d'une carte ?</h2>
   <p>Écrivez-moi pour commander ou poser une question.</p>
   <ul>
-    <li><a href="mailto:votre-email@exemple.com">Email</a></li>
-    <li><a href="https://instagram.com/votre-compte">Instagram</a></li>
-    <li><a href="https://paypal.me/votrenom">PayPal</a></li>
+    <li><a href="mailto:marco.creafut@gmail.com">Email</a></li>
+    <li><a href="https://instagram.com/marco_crea_fut?exln=cXc3bnVtZ250eTZi">Instagram</a></li>
   </ul>
 </div>
 <footer>

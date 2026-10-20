@@ -282,7 +282,8 @@
       <a class="btn-outline" id="downloadBtn">Télécharger l'aperçu</a>
       <a class="btn-solid" id="orderBtn" href="#">Commander cette carte</a>
     </div>
-    <p class="hint">Le bouton « Commander » ouvre votre messagerie avec le récapitulatif. Pensez à joindre l'aperçu téléchargé à l'email.</p>
+    <p id="orderStatus" class="cut-status" style="text-align:center" aria-live="polite"></p>
+    <p class="hint">Le bouton « Commander » envoie vos images de façon sécurisée puis ouvre votre messagerie avec le récapitulatif et les liens de votre carte.</p>
   </div>
 
 </div>
@@ -439,6 +440,8 @@ let ctx = canvas.getContext('2d');
 const W = canvas.width, H = canvas.height;
 
 let photoImg = null;
+let photoFile = null;        // fichier d'origine déposé par le client
+let hidePhoto = false;       // true = on dessine la carte sans la photo (pour l'export)
 let photoOpaque = false; // true si la photo n'a pas de fond transparent (bords fondus)
 function detectOpaque(img){
   const c = document.createElement('canvas'); c.width = c.height = 16;
@@ -849,6 +852,7 @@ function drawBackground(){
 }
 
 function drawPhoto(){
+  if(hidePhoto) return;
   if(photoImg){
     const s = Math.min(L.photoMaxW/photoImg.width, L.photoMaxH/photoImg.height);
     const iw = Math.round(photoImg.width*s), ih = Math.round(photoImg.height*s);
@@ -930,7 +934,7 @@ function fullName(){
   return (els.name.value.trim() + ' ' + els.last.value.trim()).trim();
 }
 
-function updateOrderLink(overall){
+function updateOrderLink(overall, links){
   const clubOpt = els.club.options[els.club.selectedIndex];
   const clubName = clubOpt && clubOpt.dataset.name ? clubOpt.dataset.name : 'Aucun (fond neutre)';
   const vr = currentVariant();
@@ -949,11 +953,66 @@ function updateOrderLink(overall){
     currentStats().map(st => st.abbr + " " + st.value).join(" / "),
     "",
     "Prix : " + sizeOpt.dataset.price + " €",
-    "(photo jointe en pièce jointe)"
-  ].join("\n");
+    ""
+  ].concat(links ? [
+    "Carte montée : " + links.full,
+    "Carte sans la photo : " + links.noPhoto,
+    "Photo d'origine : " + (links.original || "(aucune photo)")
+  ] : ["(images à joindre : voir l'aperçu téléchargé)"]).join("\n");
   const link = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Commande carte personnalisée") + "&body=" + encodeURIComponent(body);
+  if(links) return link;
   document.getElementById('orderBtn').href = link;
 }
+
+// ---------- Envoi des images (Cloudinary, upload « unsigned ») ----------
+const CLOUD_NAME    = 'qwlhmio0';
+const UPLOAD_PRESET = 'creafut_commandes';   // à créer dans Cloudinary (voir explications)
+let orderBusy = false;
+
+async function uploadImage(file, orderId, name){
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', UPLOAD_PRESET);
+  fd.append('asset_folder', 'commandes/' + orderId);        // dossier du client (mode dossiers dynamiques)
+  fd.append('public_id', 'commandes/' + orderId + '/' + name); // même chemin (mode dossiers classiques)
+  const r = await fetch('https://api.cloudinary.com/v1_1/' + CLOUD_NAME + '/image/upload', { method:'POST', body: fd });
+  if(!r.ok) throw new Error('upload ' + r.status);
+  return (await r.json()).secure_url;
+}
+
+document.getElementById('orderBtn').addEventListener('click', async function(e){
+  e.preventDefault();
+  if(orderBusy) return;
+  orderBusy = true;
+  const st = document.getElementById('orderStatus');
+  st.textContent = '\u23F3 Préparation de votre commande\u2026 ne fermez pas la page.';
+  const overall = overallRating();
+  const slug = (fullName() || 'client').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase();
+  const id = slug + '-' + Date.now().toString(36);
+  try{
+    // carte montée, puis carte sans photo
+    const full = canvas.toDataURL('image/png');
+    hidePhoto = true; drawCard();
+    const noPhoto = canvas.toDataURL('image/png');
+    hidePhoto = false; drawCard();
+
+    const [uFull, uNoPhoto, uOrig] = await Promise.all([
+      uploadImage(full,    id, 'carte'),
+      uploadImage(noPhoto, id, 'sans-photo'),
+      photoFile ? uploadImage(photoFile, id, 'photo-origine') : Promise.resolve(null)
+    ]);
+    const link = updateOrderLink(overall, { full:uFull, noPhoto:uNoPhoto, original:uOrig });
+    st.innerHTML = '\u2713 Images envoyées. <a href="' + link + '" style="color:inherit;text-decoration:underline">Ouvrir ma messagerie</a>';
+    window.location.href = link;
+  }catch(err){
+    console.error(err);
+    hidePhoto = false; drawCard();
+    st.textContent = 'Envoi des images impossible : l\u2019e-mail s\u2019ouvre sans les liens. Téléchargez l\u2019aperçu et joignez-le au message.';
+    window.location.href = updateOrderLink(overall) || document.getElementById('orderBtn').href;
+  }finally{
+    orderBusy = false;
+  }
+});
 
 [els.name, els.last, els.size].forEach(el => el.addEventListener('input', drawCard));
 els.size.addEventListener('change', drawCard);
@@ -1140,6 +1199,7 @@ async function loadPhoto(file){
     return;
   }
   const token = ++photoToken;
+  photoFile = file;
   cutStatus.textContent = '';
 
   // 1) affichage immédiat de la photo d'origine

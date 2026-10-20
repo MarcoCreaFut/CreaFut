@@ -72,6 +72,9 @@
   .dropzone .dz-tip{ color:#888; }
   .dropzone.has-photo #dzSub{ color:var(--gold); }
   .dropzone input{ display:none; }
+  .autocut{ display:flex; align-items:center; gap:8px; margin-top:8px; font-family:'Work Sans',sans-serif; font-size:.8rem; color:#ccc; cursor:pointer; }
+  .autocut input{ accent-color:var(--gold); }
+  .cut-status{ min-height:1.2em; margin-top:4px; font-family:'Work Sans',sans-serif; font-size:.75rem; color:var(--gold); }
   .stats-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -207,9 +210,11 @@
       <label class="dropzone" id="dropZone" for="photoInput">
         <span class="dz-title">DÉPOSE TA PHOTO ICI</span>
         <span class="dz-sub" id="dzSub">Glisse ton image ou clique pour la choisir</span>
-        <span class="dz-sub dz-tip">Idéal : photo détourée (PNG à fond transparent)</span>
+        <span class="dz-sub dz-tip">Le fond est supprimé automatiquement</span>
         <input type="file" id="photoInput" accept="image/*">
       </label>
+      <label class="autocut"><input type="checkbox" id="autoCut" checked> Supprimer le fond automatiquement</label>
+      <div id="cutStatus" class="cut-status" aria-live="polite"></div>
     </div>
 
     <div class="field">
@@ -1115,24 +1120,57 @@ if(/[?&]verif/.test(location.search)){
 const dropZone = document.getElementById('dropZone');
 const dzSub = document.getElementById('dzSub');
 
-function loadPhoto(file){
+let bgLib = null;                 // bibliothèque de détourage, chargée à la demande
+let photoToken = 0;               // évite qu'une ancienne photo écrase la nouvelle
+const cutStatus = document.getElementById('cutStatus');
+const autoCut = document.getElementById('autoCut');
+
+function imgFromUrl(url){
+  return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+}
+
+async function removeBg(file){
+  if(!bgLib) bgLib = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm');
+  return bgLib.removeBackground(file);          // renvoie un Blob PNG transparent
+}
+
+async function loadPhoto(file){
   if(!file || !file.type || file.type.indexOf('image/') !== 0){
     dzSub.textContent = 'Ce fichier n\u2019est pas une image';
     return;
   }
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    const img = new Image();
-    img.onload = function(){
-      photoImg = img;
-      photoOpaque = detectOpaque(img);
-      dropZone.classList.add('has-photo');
-      dzSub.textContent = '\u2713 ' + file.name;
+  const token = ++photoToken;
+  cutStatus.textContent = '';
+
+  // 1) affichage immédiat de la photo d'origine
+  const origUrl = URL.createObjectURL(file);
+  let img;
+  try { img = await imgFromUrl(origUrl); }
+  catch(e){ dzSub.textContent = 'Image illisible'; return; }
+  if(token !== photoToken) return;
+  photoImg = img;
+  photoOpaque = detectOpaque(img);
+  dropZone.classList.add('has-photo');
+  dzSub.textContent = '\u2713 ' + file.name;
+  drawCard();
+
+  // 2) détourage automatique si la photo a un fond (non transparente)
+  if(photoOpaque && autoCut.checked){
+    cutStatus.textContent = '\u23F3 Suppression du fond en cours\u2026 (la 1re fois peut prendre ~20 s)';
+    try{
+      const blob = await removeBg(file);
+      const cutImg = await imgFromUrl(URL.createObjectURL(blob));
+      if(token !== photoToken) return;
+      photoImg = cutImg;
+      photoOpaque = false;                      // fond transparent : plus de bords fondus
+      cutStatus.textContent = '\u2713 Fond supprimé';
       drawCard();
-    };
-    img.src = ev.target.result;
-  };
-  reader.readAsDataURL(file);
+    }catch(e){
+      console.error(e);
+      if(token !== photoToken) return;
+      cutStatus.textContent = 'Suppression du fond impossible : photo d\u2019origine conservée.';
+    }
+  }
 }
 
 document.getElementById('photoInput').addEventListener('change', function(e){
@@ -1149,6 +1187,11 @@ document.getElementById('photoInput').addEventListener('change', function(e){
 dropZone.addEventListener('drop', e => { loadPhoto(e.dataTransfer.files[0]); });
 // évite que le navigateur ouvre l'image si elle est lâchée à côté de la zone
 ['dragover','drop'].forEach(evt => window.addEventListener(evt, e => e.preventDefault()));
+
+autoCut.addEventListener('change', function(){
+  const f = document.getElementById('photoInput').files[0];
+  if(f) loadPhoto(f);
+});
 
 document.getElementById('downloadBtn').addEventListener('click', function(){
   const link = document.createElement('a');

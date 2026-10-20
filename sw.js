@@ -4,7 +4,7 @@
  * - Images / CSS / JS / polices : cache d'abord, rafraîchi en arrière-plan.
  * Pour forcer la mise à jour chez tout le monde, changez simplement VERSION.
  */
-const VERSION = "v1";
+const VERSION = "v2";
 const CACHE = "creafut-" + VERSION;
 const MAX_RUNTIME_ENTRIES = 400; // évite de saturer le téléphone (le site a des centaines d'images)
 

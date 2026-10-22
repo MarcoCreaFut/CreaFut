@@ -8,6 +8,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.club-logo{display:flex;justify-content:center;margin:8px 0 28px}
+.club-logo img{width:clamp(110px,22vw,190px);height:auto}
+.formation{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,3vw,30px);padding:0 10px;max-width:1000px;margin:0 auto 40px}
+.f-row{display:flex;justify-content:center;gap:clamp(8px,2.4vw,28px);width:100%}
+.f-row.r-half9{transform:translateX(-22%)}
+.f-row.r-centres{transform:translateX(20%)}
+.f-row.r-wings{gap:clamp(30px,13vw,170px)}
+.slot{width:clamp(96px,24vw,200px);text-align:center;flex:0 0 auto}
+.slot .card,.slot .frame{width:100%;margin:0}
+.slot .frame img{width:100%;height:auto;display:block}
+.slot h3{font-size:clamp(.72rem,2.2vw,1rem);margin:.5em 0 .2em;line-height:1.2}
+.slot .price{margin:0 0 .4em}
+.slot.empty .ph{aspect-ratio:5/7;border:1px dashed rgba(128,128,128,.55);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4em;padding:6px;opacity:.7}
+.slot.empty .ph b{font-size:clamp(1.1rem,4vw,1.8rem);font-weight:500}
+.slot.empty .ph span{font-size:clamp(.65rem,2vw,.85rem);line-height:1.2}
+.jeux{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.jeu-btn{font:inherit;font-size:.8rem;cursor:pointer;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.6);border-radius:999px;padding:2px 10px}
+.jeu-btn.on{background:rgba(128,128,128,.28)}
+.club-cards-title{text-align:center;margin:10px 0 0;font-weight:500}
+</style>
 </head>
 <body>
 <header>
@@ -39,7 +60,54 @@
 <nav class="subnav">
   <a href="rugby-top14.html">← Retour</a>
 </nav>
+<div class="club-logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792595017/Vannes_00.png" alt="RC Vannes"></div>
 <section class="collection">
+  <div class="formation">
+    <div class="f-row r-pack">
+      <div class="slot empty"><div class="ph"><b>1</b><span>Pilier gauche</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>2</b><span>Talonneur</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>3</b><span>Pilier droit</span><span>Bientôt</span></div></div>
+    </div>
+    <div class="f-row r-lock">
+      <div class="slot empty"><div class="ph"><b>4</b><span>Deuxième ligne</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>5</b><span>Deuxième ligne</span><span>Bientôt</span></div></div>
+    </div>
+    <div class="f-row r-back">
+      <div class="slot empty"><div class="ph"><b>6</b><span>Troisième ligne aile</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>8</b><span>Troisième ligne centre</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>7</b><span>Troisième ligne aile</span><span>Bientôt</span></div></div>
+    </div>
+    <div class="f-row r-half9">
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792607223/Vannes_09_-_01.png" alt="RC Vannes Demi de Mêlée - 01">
+          <h3>Demi de Mêlée - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792607223/Vannes_09_-_01.png" data-alt="RC Vannes Demi de Mêlée - 01" data-title="Demi de Mêlée - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792641329/Vannes_09_-_02.png" data-alt="RC Vannes Demi de Mêlée - 02" data-title="Demi de Mêlée - 02">02</button></div>
+      </div>
+    </div>
+    <div class="f-row r-half10">
+      <div class="slot empty"><div class="ph"><b>10</b><span>Demi d'ouverture</span><span>Bientôt</span></div></div>
+    </div>
+    <div class="f-row r-centres">
+      <div class="slot empty"><div class="ph"><b>12</b><span>Premier centre</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>13</b><span>Deuxième centre</span><span>Bientôt</span></div></div>
+    </div>
+    <div class="f-row r-wings">
+      <div class="slot empty"><div class="ph"><b>11</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792607278/Vannes_15_-_01.png" alt="RC Vannes Arrière - 01">
+          <h3>Arrière - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792607278/Vannes_15_-_01.png" data-alt="RC Vannes Arrière - 01" data-title="Arrière - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792641330/Vannes_15_-_02.png" data-alt="RC Vannes Arrière - 02" data-title="Arrière - 02">02</button></div>
+      </div>
+      <div class="slot empty"><div class="ph"><b>14</b><span>Ailier droit</span><span>Bientôt</span></div></div>
+    </div>
+  </div>
+  <h2 class="club-cards-title">Cartes du club</h2>
   <div class="grid">
     <div class="card">
       <div class="frame">
@@ -53,34 +121,6 @@
         <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792641331/Vannes_02.png" alt="RC Vannes 02">
         <h3>RC Vannes 02</h3>
         <p class="price">20 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792607223/Vannes_09_-_01.png" alt="RC Vannes Demi de Mêlée - 01">
-        <h3>Demi de Mêlée - 01</h3>
-        <p class="price">25 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792641329/Vannes_09_-_02.png" alt="RC Vannes Demi de Mêlée - 02">
-        <h3>Demi de Mêlée - 02</h3>
-        <p class="price">25 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792607278/Vannes_15_-_01.png" alt="RC Vannes Arrière - 01">
-        <h3>Arrière - 01</h3>
-        <p class="price">25 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792641330/Vannes_15_-_02.png" alt="RC Vannes Arrière - 02">
-        <h3>Arrière - 02</h3>
-        <p class="price">25 €</p>
       </div>
     </div>
   </div>
@@ -98,5 +138,11 @@
 <footer>
   <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="footer-logo">
 </footer>
+<script>
+document.querySelectorAll('.jeu-btn').forEach(function(b){b.addEventListener('click',function(){
+var s=b.closest('.slot'),i=s.querySelector('img');
+i.src=b.dataset.src;i.alt=b.dataset.alt;s.querySelector('h3').textContent=b.dataset.title;
+s.querySelectorAll('.jeu-btn').forEach(function(x){x.classList.remove('on')});b.classList.add('on');});});
+</script>
 <script src="lightbox.js"></script></body>
 </html>

@@ -17,9 +17,11 @@
 
   var logo = "https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png";
   var page = location.pathname.split("/").pop() || "index.html";
+  // Sur une sous-page, <body data-section="animes.html"> indique la rubrique à surligner
+  var section = (document.body && document.body.getAttribute("data-section")) || page;
 
   var items = liens.map(function (l) {
-    var actif = l[0] === page ? ' class="active"' : "";
+    var actif = l[0] === section ? ' class="active"' : "";
     return '<li><a href="' + l[0] + '"' + actif + ">" + l[1] + "</a></li>";
   }).join("");
 

@@ -40,6 +40,8 @@
 .gal-x{top:4px;right:10px}
 .gal-p{left:2px;top:50%;transform:translateY(-50%)}
 .gal-n{right:2px;top:50%;transform:translateY(-50%)}
+.slot.drop{transform:translateY(clamp(34px,9vw,100px))}
+.f-row.r-att{padding-bottom:clamp(34px,9vw,100px)}
 </style>
 </head>
 <body data-section="hockey.html">
@@ -56,42 +58,25 @@
   <a href="hockey-ligue-magnus.html">← Retour</a>
 </nav>
 <section class="collection">
-  <h2 class="club-cards-title">Cartes du club</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319026/Spartiates_de_Marseille_01.png" alt="Spartiates de Marseille 01">
-        <h3>Spartiates de Marseille 01</h3>
-        <p class="price">25 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319021/Spartiates_de_Marseille_02.png" alt="Spartiates de Marseille 02">
-        <h3>Spartiates de Marseille 02</h3>
-        <p class="price">25 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319020/Spartiates_de_Marseille_03.png" alt="Spartiates de Marseille 03">
-        <h3>Spartiates de Marseille 03</h3>
-        <p class="price">25 €</p>
-      </div>
-    </div>
-  </div>
   <div class="formation">
-    <div class="f-row r-att">
-      <div class="slot empty"><div class="ph"><b>AG</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>C</b><span>Centre</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>AD</b><span>Ailier droit</span><span>Bientôt</span></div></div>
+    <div class="f-row r-gb">
+      <div class="slot empty"><div class="ph"><b>G</b><span>Gardien de but</span><span>Bientôt</span></div></div>
     </div>
     <div class="f-row r-duo">
-      <div class="slot empty"><div class="ph"><b>DG</b><span>Défenseur gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>DD</b><span>Défenseur droit</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>ARD</b><span>Arrière droit</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>ARG</b><span>Arrière gauche</span><span>Bientôt</span></div></div>
     </div>
-    <div class="f-row r-gb">
-      <div class="slot empty"><div class="ph"><b>G</b><span>Gardien</span><span>Bientôt</span></div></div>
+    <div class="f-row r-att">
+      <div class="slot empty"><div class="ph"><b>AD</b><span>Ailier droit</span><span>Bientôt</span></div></div>
+      <div class="slot drop">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319026/Spartiates_de_Marseille_01.png" alt="Spartiates de Marseille Centre - 01">
+          <h3>Centre - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319026/Spartiates_de_Marseille_01.png" data-alt="Spartiates de Marseille Centre - 01" data-title="Centre - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319021/Spartiates_de_Marseille_02.png" data-alt="Spartiates de Marseille Centre - 02" data-title="Centre - 02">02</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319020/Spartiates_de_Marseille_03.png" data-alt="Spartiates de Marseille Centre - 03" data-title="Centre - 03">03</button></div>
+      </div>
+      <div class="slot empty"><div class="ph"><b>AG</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
     </div>
   </div>
 </section>

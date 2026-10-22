@@ -40,25 +40,27 @@
 .gal-x{top:4px;right:10px}
 .gal-p{left:2px;top:50%;transform:translateY(-50%)}
 .gal-n{right:2px;top:50%;transform:translateY(-50%)}
+.slot.drop{transform:translateY(clamp(34px,9vw,100px))}
+.f-row.r-att{padding-bottom:clamp(34px,9vw,100px)}
 </style>
 </head>
 <body data-section="hockey.html">
 
 <!--
-MODÈLE HOCKEY — remplacer : NOM DU CLUB, NOM DE LA LIGUE, URL_LOGO_CLUB, URL_CARTE_CLUB_01 / 02.
+MODÈLE HOCKEY — remplacer : NOM DU CLUB (titre), NOM DE LA LIGUE, puis remplir chaque poste.
 
-Pour REMPLIR un emplacement, remplacer la ligne <div class="slot empty">…</div> par :
+Pour REMPLIR un poste, remplacer sa ligne <div class="slot empty">…</div> par (garder " drop" dans class si la ligne d'origine l'avait) :
 
       <div class="slot">
         <div class="card"><div class="frame">
-          <img src="URL_CARTE_01" alt="NOM DU CLUB Poste - 01">
+          <img src="URL_MAILLOT_01" alt="NOM DU CLUB Poste - 01">
           <h3>Poste - 01</h3>
           <p class="price">25 €</p>
         </div></div>
-        <div class="jeux"><button type="button" class="jeu-btn on" data-src="URL_CARTE_01" data-alt="NOM DU CLUB Poste - 01" data-title="Poste - 01">01</button><button type="button" class="jeu-btn" data-src="URL_CARTE_02" data-alt="NOM DU CLUB Poste - 02" data-title="Poste - 02">02</button></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="URL_MAILLOT_01" data-alt="NOM DU CLUB Poste - 01" data-title="Poste - 01">01</button><button type="button" class="jeu-btn" data-src="URL_MAILLOT_02" data-alt="NOM DU CLUB Poste - 02" data-title="Poste - 02">02</button></div>
       </div>
 
-(sans la ligne <div class="jeux">… s'il n'y a qu'une seule version de la carte)
+Un bouton par jeu de maillot ; au clic sur la carte, la galerie permet de passer d'un maillot à l'autre.
 -->
 
 <header id="site-header"></header>
@@ -72,37 +74,19 @@ Pour REMPLIR un emplacement, remplacer la ligne <div class="slot empty">…</div
 <nav class="subnav">
   <a href="hockey.html">← Retour</a>
 </nav>
-<div class="club-logo"><img src="URL_LOGO_CLUB" alt="NOM DU CLUB"></div>
 <section class="collection">
-  <h2 class="club-cards-title">Cartes du club</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="frame">
-        <img src="URL_CARTE_CLUB_01" alt="NOM DU CLUB 01">
-        <h3>NOM DU CLUB 01</h3>
-        <p class="price">20 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="URL_CARTE_CLUB_02" alt="NOM DU CLUB 02">
-        <h3>NOM DU CLUB 02</h3>
-        <p class="price">20 €</p>
-      </div>
-    </div>
-  </div>
   <div class="formation">
-    <div class="f-row r-att">
-      <div class="slot empty"><div class="ph"><b>AG</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>C</b><span>Centre</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>AD</b><span>Ailier droit</span><span>Bientôt</span></div></div>
+    <div class="f-row r-gb">
+      <div class="slot empty"><div class="ph"><b>G</b><span>Gardien de but</span><span>Bientôt</span></div></div>
     </div>
     <div class="f-row r-duo">
-      <div class="slot empty"><div class="ph"><b>DG</b><span>Défenseur gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>DD</b><span>Défenseur droit</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>ARD</b><span>Arrière droit</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>ARG</b><span>Arrière gauche</span><span>Bientôt</span></div></div>
     </div>
-    <div class="f-row r-gb">
-      <div class="slot empty"><div class="ph"><b>G</b><span>Gardien</span><span>Bientôt</span></div></div>
+    <div class="f-row r-att">
+      <div class="slot empty"><div class="ph"><b>AD</b><span>Ailier droit</span><span>Bientôt</span></div></div>
+      <div class="slot empty drop"><div class="ph"><b>C</b><span>Centre</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>AG</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
     </div>
   </div>
 </section>

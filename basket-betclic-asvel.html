@@ -28,6 +28,8 @@
 .jeu-btn{font:inherit;font-size:.8rem;cursor:pointer;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.6);border-radius:999px;padding:2px 10px}
 .jeu-btn.on{background:rgba(128,128,128,.28)}
 .club-cards-title{text-align:center;margin:10px 0 0;font-weight:500}
+.club-cards{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.club-cards .card{width:clamp(140px,40vw,220px)}
 .gal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;touch-action:pan-y}
 .gal-box{text-align:center;color:#fff;max-width:92vw}
 .gal-box img{max-height:72vh;max-width:86vw;width:auto;height:auto;border-radius:10px;transition:opacity .18s,transform .18s}
@@ -60,7 +62,7 @@
 <div class="club-logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/f_auto,q_auto,w_500/v1792559106/ASVEL_00.png" alt="ASVEL"></div>
 <section class="collection">
   <h2 class="club-cards-title">Cartes du club</h2>
-  <div class="grid">
+  <div class="grid club-cards">
     <div class="card">
       <div class="frame">
         <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792580921/ASVEL_01.png" alt="ASVEL 01">
@@ -75,24 +77,22 @@
         <p class="price">20 €</p>
       </div>
     </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792581984/ASVEL_03.png" alt="ASVEL 03">
-        <h3>ASVEL 03</h3>
-        <p class="price">20 €</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792582194/ASVEL_04.png" alt="ASVEL 04">
-        <h3>ASVEL 04</h3>
-        <p class="price">20 €</p>
-      </div>
-    </div>
   </div>
   <div class="formation">
     <div class="f-row b-solo">
-      <div class="slot empty"><div class="ph"><b>1</b><span>Meneur de jeu</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card">
+          <div class="frame">
+            <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792581984/ASVEL_03.png" alt="ASVEL 03">
+            <h3>ASVEL 03</h3>
+            <p class="price">20 €</p>
+            <div class="jeux">
+              <button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792581984/ASVEL_03.png" data-alt="ASVEL 03" data-title="ASVEL 03">Modèle 1</button>
+              <button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792582194/ASVEL_04.png" data-alt="ASVEL 04" data-title="ASVEL 04">Modèle 2</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="f-row b-duo">
       <div class="slot empty"><div class="ph"><b>2</b><span>Arrière</span><span>Bientôt</span></div></div>
@@ -125,7 +125,7 @@ s.querySelectorAll('.jeu-btn').forEach(function(x){x.classList.remove('on')});b.
 var ov,img,tt,pr,dots,hint,px,pn,items=[],idx=0,slot=null,x0=0;
 function build(){
 ov=document.createElement('div');ov.className='gal';ov.setAttribute('role','dialog');ov.hidden=true;
-ov.innerHTML='<button type="button" class="gal-x" aria-label="Fermer">\u00d7</button><button type="button" class="gal-p" aria-label="Pr\u00e9c\u00e9dent">\u2039</button><button type="button" class="gal-n" aria-label="Suivant">\u203a</button><div class="gal-box"><img alt=""><div class="gal-t"></div><div class="gal-pr"></div><div class="gal-d"></div><div class="gal-h">Glissez pour voir les autres jeux de maillot</div></div>';
+ov.innerHTML='<button type="button" class="gal-x" aria-label="Fermer">\u00d7</button><button type="button" class="gal-p" aria-label="Pr\u00e9c\u00e9dent">\u2039</button><button type="button" class="gal-n" aria-label="Suivant">\u203a</button><div class="gal-box"><img alt=""><div class="gal-t"></div><div class="gal-pr"></div><div class="gal-d"></div><div class="gal-h">Glissez pour voir les autres mod\u00e8les</div></div>';
 document.body.appendChild(ov);
 img=ov.querySelector('img');tt=ov.querySelector('.gal-t');pr=ov.querySelector('.gal-pr');dots=ov.querySelector('.gal-d');hint=ov.querySelector('.gal-h');px=ov.querySelector('.gal-p');pn=ov.querySelector('.gal-n');
 ov.querySelector('.gal-x').addEventListener('click',close);

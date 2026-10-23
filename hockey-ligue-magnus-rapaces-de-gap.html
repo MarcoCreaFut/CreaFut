@@ -8,52 +8,90 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+.club-logo{display:flex;justify-content:center;margin:8px 0 28px}
+.club-logo img{width:clamp(110px,22vw,190px);height:auto}
+.formation{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,3vw,30px);padding:0 10px;max-width:1000px;margin:0 auto 40px}
+.f-row{display:flex;justify-content:center;gap:clamp(8px,2.4vw,28px);width:100%}
+.f-row.r-half9{transform:translateX(-22%)}
+.f-row.r-centres{transform:translateX(20%)}
+.f-row.r-wings{gap:clamp(30px,13vw,170px)}
+.slot{width:clamp(96px,24vw,200px);text-align:center;flex:0 0 auto}
+.slot .card,.slot .frame{width:100%;margin:0}
+.slot .frame img{width:100%;height:auto;display:block}
+.slot h3{font-size:clamp(.72rem,2.2vw,1rem);margin:.5em 0 .2em;line-height:1.2}
+.slot .price{margin:0 0 .4em}
+.slot.empty .ph{aspect-ratio:5/7;border:1px dashed rgba(128,128,128,.55);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4em;padding:6px;opacity:.7}
+.slot.empty .ph b{font-size:clamp(1.1rem,4vw,1.8rem);font-weight:500}
+.slot.empty .ph span{font-size:clamp(.65rem,2vw,.85rem);line-height:1.2}
+.jeux{display:none}
+.jeu-btn{font:inherit;font-size:.8rem;cursor:pointer;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.6);border-radius:999px;padding:2px 10px}
+.jeu-btn.on{background:rgba(128,128,128,.28)}
+.club-cards-title{text-align:center;margin:10px 0 0;font-weight:500}
+.club-cards{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.club-cards .card{width:clamp(140px,40vw,220px)}
+.gal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.gal-box{text-align:center;color:#fff;max-width:92vw}
+.gal-box img{max-height:72vh;max-width:86vw;width:auto;height:auto;border-radius:10px;transition:opacity .18s,transform .18s}
+.gal-box img.out{opacity:0}
+.gal-t{margin-top:12px;font-size:1.15rem}
+.gal-pr{opacity:.85;margin-top:2px}
+.gal-d{display:flex;gap:9px;justify-content:center;margin-top:12px}
+.gal-d span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35)}
+.gal-d span.on{background:#fff}
+.gal-h{margin-top:10px;font-size:.8rem;opacity:.7}
+.gal-x,.gal-p,.gal-n{position:absolute;background:none;border:0;color:#fff;font-size:2.8rem;line-height:1;cursor:pointer;padding:12px}
+.gal-x{top:4px;right:10px}
+.gal-p{left:2px;top:50%;transform:translateY(-50%)}
+.gal-n{right:2px;top:50%;transform:translateY(-50%)}
+.slot{width:clamp(104px,28vw,220px)}
+.f-row.b-solo,.f-row.b-duo{gap:clamp(14px,6vw,70px)}
+.f-row.b-trio{gap:clamp(8px,3vw,40px)}
+.f-row.b-trio .slot{width:clamp(88px,27vw,210px)}
+</style>
 </head>
 <body>
-<header>
-  <div class="nav">
-    <a href="index.html" class="logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="logo-img"></a>
-    <ul class="nav-links">
-      <li><a href="foot.html">Foot</a></li>
-      <li><a href="hand.html">Hand</a></li>
-      <li><a href="basket.html">Basket</a></li>
-      <li><a href="animes.html">Animés</a></li>
-      <li><a href="gaming.html">Gaming</a></li>
-      <li><a href="personnalisation.html">Personnalisation</a></li>
-      <li><a href="graffitis.html">Graffitis</a></li>
-      <li><a href="supporters.html">Supporters</a></li>
-      <li><a href="hockey.html">Hockey</a></li>
-      <li><a href="water-polo.html">Water Polo</a></li>
-      <li><a href="rugby.html">Rugby</a></li>
-      <li><a href="foot-us.html">Foot US</a></li>
-      <li><a href="volley.html">Volley</a></li>
-    </ul>
-    <a href="index.html#contact" class="contact-badge" title="Contact">✉</a>
-  </div>
-</header>
+<header id="site-header"></header>
+<script src="nav.js"></script>
 <div class="hero">
-  <p class="eyebrow">Synergie Ligue Magnus</p>
+  <p class="eyebrow">Synergie - Ligue Magnus</p>
   <h1>Rapaces de Gap</h1>
   <div class="divider"></div>
 </div>
 <nav class="subnav">
   <a href="hockey-ligue-magnus.html">← Retour</a>
 </nav>
+<div class="club-logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/f_auto,q_auto,w_500/v1792319015/Rapaces_de_Gap_00.png" alt="Rapaces de Gap"></div>
 <section class="collection">
-  <div class="grid">
+  <h2 class="club-cards-title">Cartes du club</h2>
+  <div class="grid club-cards">
     <div class="card">
       <div class="frame">
         <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319319/Rapaces_de_Gap_01.png" alt="Rapaces de Gap 01">
-        <h3>Rapaces de Gap 01</h3>
-        <p class="price">25 €</p>
+        <h3>Rapaces 01</h3>
+        <p class="price">20 €</p>
       </div>
     </div>
     <div class="card">
       <div class="frame">
         <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319070/Rapaces_de_Gap_02.png" alt="Rapaces de Gap 02">
-        <h3>Rapaces de Gap 02</h3>
-        <p class="price">25 €</p>
+        <h3>Rapaces 02</h3>
+        <p class="price">20 €</p>
       </div>
+    </div>
+  </div>
+  <div class="formation">
+    <div class="f-row b-solo">
+      <div class="slot empty"><div class="ph"><b>1</b><span>Gardien</span><span>Bientôt</span></div></div>
+    </div>
+    <div class="f-row b-duo">
+      <div class="slot empty"><div class="ph"><b>2</b><span>Arrière gauche</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>3</b><span>Arrière droit</span><span>Bientôt</span></div></div>
+    </div>
+    <div class="f-row b-trio">
+      <div class="slot empty"><div class="ph"><b>4</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>5</b><span>Centre</span><span>Bientôt</span></div></div>
+      <div class="slot empty"><div class="ph"><b>6</b><span>Ailier droit</span><span>Bientôt</span></div></div>
     </div>
   </div>
 </section>
@@ -62,13 +100,56 @@
   <h2>Envie d'une carte ?</h2>
   <p>Écrivez-moi pour commander ou poser une question.</p>
   <ul>
-    <li><a href="mailto:votre-email@exemple.com">Email</a></li>
-    <li><a href="https://instagram.com/votre-compte">Instagram</a></li>
-    <li><a href="https://paypal.me/votrenom">PayPal</a></li>
+    <li><a href="mailto:marco.creafut@gmail.com">Email</a></li>
+    <li><a href="https://instagram.com/marco_crea_fut?exln=cXc3bnVtZ250eTZi" target="_blank" rel="noopener">Instagram</a></li>
   </ul>
 </div>
 <footer>
   <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1789019044/Logo.png" alt="CreaFut" class="footer-logo">
 </footer>
+<script>
+document.querySelectorAll('.jeu-btn').forEach(function(b){b.addEventListener('click',function(){
+var s=b.closest('.slot'),i=s.querySelector('img');
+i.src=b.dataset.src;i.alt=b.dataset.alt;s.querySelector('h3').textContent=b.dataset.title;
+s.querySelectorAll('.jeu-btn').forEach(function(x){x.classList.remove('on')});b.classList.add('on');});});
+(function(){
+var ov,img,tt,pr,dots,hint,px,pn,items=[],idx=0,slot=null,x0=0;
+function build(){
+ov=document.createElement('div');ov.className='gal';ov.setAttribute('role','dialog');ov.hidden=true;
+ov.innerHTML='<button type="button" class="gal-x" aria-label="Fermer">\u00d7</button><button type="button" class="gal-p" aria-label="Pr\u00e9c\u00e9dent">\u2039</button><button type="button" class="gal-n" aria-label="Suivant">\u203a</button><div class="gal-box"><img alt=""><div class="gal-t"></div><div class="gal-pr"></div><div class="gal-d"></div><div class="gal-h">Glissez pour voir les autres mod\u00e8les</div></div>';
+document.body.appendChild(ov);
+img=ov.querySelector('img');tt=ov.querySelector('.gal-t');pr=ov.querySelector('.gal-pr');dots=ov.querySelector('.gal-d');hint=ov.querySelector('.gal-h');px=ov.querySelector('.gal-p');pn=ov.querySelector('.gal-n');
+ov.querySelector('.gal-x').addEventListener('click',close);
+px.addEventListener('click',function(e){e.stopPropagation();go(-1)});
+pn.addEventListener('click',function(e){e.stopPropagation();go(1)});
+ov.addEventListener('click',function(e){if(e.target===ov)close()});
+ov.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+ov.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?1:-1)},{passive:true});
+}
+function show(){
+var it=items[idx];img.src=it.src;img.alt=it.title;tt.textContent=it.title;pr.textContent=it.price;
+dots.innerHTML='';var m=items.length>1;
+items.forEach(function(_,k){var s=document.createElement('span');if(k===idx)s.className='on';dots.appendChild(s)});
+dots.style.display=hint.style.display=px.style.display=pn.style.display=m?'':'none';
+}
+function go(d){if(items.length<2)return;img.classList.add('out');setTimeout(function(){idx=(idx+d+items.length)%items.length;show();img.classList.remove('out')},120)}
+function open(s){
+if(!ov)build();slot=s;var btns=s.querySelectorAll('.jeu-btn'),price=s.querySelector('.price').textContent;
+if(btns.length){items=[].map.call(btns,function(b){return{src:b.dataset.src,title:b.dataset.title,price:price}});idx=Math.max(0,[].findIndex.call(btns,function(b){return b.classList.contains('on')}))}
+else{var i=s.querySelector('img');items=[{src:i.src,title:s.querySelector('h3').textContent,price:price}];idx=0}
+show();ov.hidden=false;document.body.style.overflow='hidden';
+}
+function close(){if(!ov||ov.hidden)return;ov.hidden=true;document.body.style.overflow='';
+var btns=slot?slot.querySelectorAll('.jeu-btn'):[];if(btns.length&&btns[idx])btns[idx].click()}
+document.addEventListener('click',function(e){
+var im=e.target.closest&&e.target.closest('.slot:not(.empty) img');
+if(!im)return;e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();open(im.closest('.slot'));
+},true);
+document.addEventListener('keydown',function(e){
+if(!ov||ov.hidden)return;
+if(e.key==='Escape')close();else if(e.key==='ArrowRight')go(1);else if(e.key==='ArrowLeft')go(-1);
+});
+})();
+</script>
 <script src="lightbox.js"></script></body>
 </html>

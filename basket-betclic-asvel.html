@@ -46,6 +46,19 @@
 .gal-n{right:2px;top:50%;transform:translateY(-50%)}
 .slot{width:clamp(104px,28vw,220px)}
 .f-row.b-solo,.f-row.b-duo{gap:clamp(14px,6vw,70px)}
+.gal[hidden]{display:none}
+/* Formation en pyramide : les rangées s'écartent de plus en plus (meneur / arrière+ailier / ailier fort+pivot).
+   Tout est calculé à partir de la largeur d'une carte (--w), donc ça s'adapte à l'écran. */
+.collection{--w:clamp(100px,17vw,180px)}
+.collection .club-cards .card,.formation .slot{width:var(--w)}
+.collection .formation{gap:calc(var(--w)*.15)}
+.formation .f-row:nth-child(2){gap:calc(var(--w)*1.2)}
+.formation .f-row:nth-child(3){gap:calc(var(--w)*3.2)}
+@media(max-width:600px){
+  .collection{--w:25vw}
+  .formation .f-row:nth-child(2){gap:calc(var(--w)*.5)}
+  .formation .f-row:nth-child(3){gap:calc(var(--w)*1.5)}
+}
 </style>
 </head>
 <body>

@@ -9,6 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marcellus&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="nba.css">
+<style>
+/* Formation (même structure que basket-betclic-asvel.html) — utilisé seulement si l'équipe a un champ "formation" */
+.club-logo{display:flex;justify-content:center;margin:8px 0 28px}
+.club-logo img{width:clamp(110px,22vw,190px);height:auto}
+.formation{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,3vw,30px);padding:0 10px;max-width:1000px;margin:0 auto 40px}
+.f-row{display:flex;justify-content:center;gap:clamp(8px,2.4vw,28px);width:100%}
+.slot{width:clamp(104px,28vw,220px);text-align:center;flex:0 0 auto}
+.slot .card,.slot .frame{width:100%;margin:0}
+.slot .frame img{width:100%;height:auto;display:block}
+.slot.empty .ph{aspect-ratio:5/7;border:1px dashed rgba(128,128,128,.55);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4em;padding:6px;opacity:.7}
+.slot.empty .ph b{font-size:clamp(1.1rem,4vw,1.8rem);font-weight:500}
+.slot.empty .ph span{font-size:clamp(.65rem,2vw,.85rem);line-height:1.2}
+.club-cards-title{text-align:center;margin:10px 0 0;font-weight:500}
+.club-cards{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.club-cards .card{width:clamp(140px,40vw,220px)}
+.f-row.b-solo,.f-row.b-duo{gap:clamp(14px,6vw,70px)}
+</style>
 </head>
 <body>
 
@@ -44,8 +61,11 @@
   <a href="basket-nba.html" id="retour">← Retour</a>
 </nav>
 
+<div class="club-logo" id="club-logo" style="display:none"></div>
+
 <section class="collection">
   <div class="grid" id="cartes"></div>
+  <div id="formation-zone" style="display:none"></div>
 </section>
 
 <div class="contact" id="contact">
@@ -74,11 +94,43 @@
   var r = document.getElementById("retour");
   r.href = conf[0];
   r.textContent = "← Retour à la " + conf[1];
+
+  /* URL complète (ex. 2e compte Cloudinary) = utilisée telle quelle ; sinon nom de fichier = compte principal */
+  function src(u, w) {
+    return /^https?:\/\//.test(u) ? u : NBA_BASE + "w_" + w + ",q_auto/" + encodeURI(u) + NBA_EXT;
+  }
+
   var box = document.getElementById("cartes");
+
+  /* Équipe avec formation */
+  if (t.formation) {
+    var f = t.formation;
+    var lg = document.getElementById("club-logo");
+    lg.innerHTML = '<img src="' + src(f.logo || t.logo, 500) + '" alt="' + t.nom + '">';
+    lg.style.display = "";
+    box.style.display = "none";
+    var z = document.getElementById("formation-zone");
+    var h = '<h2 class="club-cards-title">Cartes du club</h2><div class="grid club-cards">';
+    (f.club || []).forEach(function (c) {
+      h += '<div class="card"><div class="frame"><img src="' + src(c[0], 600) + '" alt="' + c[1] + '">' +
+           '<h3>' + c[1] + '</h3><p class="price">' + (c[2] || "20 €") + '</p></div></div>';
+    });
+    h += '</div><div class="formation">' +
+         '<div class="f-row b-solo"><div class="slot empty"><div class="ph"><b>1</b><span>Meneur</span><span>Bientôt</span></div></div></div>' +
+         '<div class="f-row b-duo"><div class="slot empty"><div class="ph"><b>2</b><span>Arrière</span><span>Bientôt</span></div></div>' +
+         '<div class="slot empty"><div class="ph"><b>3</b><span>Ailier</span><span>Bientôt</span></div></div></div>' +
+         '<div class="f-row b-duo"><div class="slot empty"><div class="ph"><b>4</b><span>Ailier fort</span><span>Bientôt</span></div></div>' +
+         '<div class="slot empty"><div class="ph"><b>5</b><span>Pivot</span><span>Bientôt</span></div></div></div></div>';
+    z.innerHTML = h;
+    z.style.display = "";
+    return;
+  }
+
+  /* Équipe sans formation : grille habituelle */
   t.cartes.forEach(function (c) {
     var d = document.createElement("div");
     d.className = "card";
-    d.innerHTML = '<div class="frame"><img src="' + NBA_BASE + "w_600,q_auto/" + encodeURI(c[0]) + NBA_EXT + '" alt="' + c[0] + '">' +
+    d.innerHTML = '<div class="frame"><img src="' + src(c[0], 600) + '" alt="' + c[1] + '">' +
                   '<h3>' + c[1] + '</h3><p class="price">20 €</p></div>';
     box.appendChild(d);
   });

@@ -31,6 +31,7 @@
 .club-cards{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:2.2rem}
 .club-cards .card{width:clamp(140px,40vw,220px)}
 .gal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.gal[hidden]{display:none}
 .gal-box{text-align:center;color:#fff;max-width:92vw}
 .gal-box img{max-height:72vh;max-width:86vw;width:auto;height:auto;border-radius:10px;transition:opacity .18s,transform .18s}
 .gal-box img.out{opacity:0}
@@ -61,37 +62,86 @@
 <nav class="subnav">
   <a href="hockey-ligue-magnus.html">← Retour</a>
 </nav>
-<div class="club-logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/f_auto,q_auto,w_500/v1792319011/AIgles_de_Nice_00.png" alt="Aigles de Nice"></div>
+<div class="club-logo"><img src="https://res.cloudinary.com/djephzgo/image/upload/f_auto,q_auto,w_500/v1792815100/AIgles_de_Nice_00.png" alt="Aigles de Nice"></div>
 <section class="collection">
   <h2 class="club-cards-title">Cartes du club</h2>
   <div class="grid club-cards">
     <div class="card">
       <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319023/AIgles_de_Nice_01.png" alt="Aigles de Nice 01">
+        <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792911958/Aigles_de_Nice_01_-_00.png" alt="Aigles de Nice 01">
         <h3>Aigles 01</h3>
         <p class="price">20 €</p>
       </div>
     </div>
     <div class="card">
       <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319074/AIgles_de_Nice_02.png" alt="Aigles de Nice 02">
+        <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792911963/Aigles_de_Nice_02_-_00.png" alt="Aigles de Nice 02">
         <h3>Aigles 02</h3>
+        <p class="price">20 €</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="frame">
+        <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792911964/Aigles_de_Nice_03_-_00.png" alt="Aigles de Nice 03">
+        <h3>Aigles 03</h3>
         <p class="price">20 €</p>
       </div>
     </div>
   </div>
   <div class="formation">
     <div class="f-row b-solo">
-      <div class="slot empty"><div class="ph"><b>1</b><span>Gardien</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792815275/AIgles_de_Nice_01_-_Gardien.png" alt="Aigles de Nice Gardien - 01">
+          <h3>Gardien - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815275/AIgles_de_Nice_01_-_Gardien.png" data-alt="Aigles de Nice Gardien - 01" data-title="Gardien - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815246/AIgles_de_Nice_02_-_Gardien.png" data-alt="Aigles de Nice Gardien - 02" data-title="Gardien - 02">02</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815161/AIgles_de_Nice_03_-_Gardien.png" data-alt="Aigles de Nice Gardien - 03" data-title="Gardien - 03">03</button></div>
+      </div>
     </div>
     <div class="f-row b-duo">
-      <div class="slot empty"><div class="ph"><b>2</b><span>Arrière gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>3</b><span>Arrière droit</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792815245/AIgles_de_Nice_01_-_Arri%C3%A8re_Gauche.png" alt="Aigles de Nice Arrière gauche - 01">
+          <h3>Arrière gauche - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815245/AIgles_de_Nice_01_-_Arri%C3%A8re_Gauche.png" data-alt="Aigles de Nice Arrière gauche - 01" data-title="Arrière gauche - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815241/AIgles_de_Nice_02_-_Arri%C3%A8re_Gauche.png" data-alt="Aigles de Nice Arrière gauche - 02" data-title="Arrière gauche - 02">02</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815317/AIgles_de_Nice_03_-_Arri%C3%A8re_Gauche.png" data-alt="Aigles de Nice Arrière gauche - 03" data-title="Arrière gauche - 03">03</button></div>
+      </div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792815167/AIgles_de_Nice_01_-_Arri%C3%A8re_Droit.png" alt="Aigles de Nice Arrière droit - 01">
+          <h3>Arrière droit - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815167/AIgles_de_Nice_01_-_Arri%C3%A8re_Droit.png" data-alt="Aigles de Nice Arrière droit - 01" data-title="Arrière droit - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815172/AIgles_de_Nice_02_-_Arri%C3%A8re_Droit.png" data-alt="Aigles de Nice Arrière droit - 02" data-title="Arrière droit - 02">02</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815175/AIgles_de_Nice_03_-_Arri%C3%A8re_Droit.png" data-alt="Aigles de Nice Arrière droit - 03" data-title="Arrière droit - 03">03</button></div>
+      </div>
     </div>
     <div class="f-row b-trio">
-      <div class="slot empty"><div class="ph"><b>4</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>5</b><span>Centre</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>6</b><span>Ailier droit</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792815188/AIgles_de_Nice_01_-_Ailier_Gauche.png" alt="Aigles de Nice Ailier gauche - 01">
+          <h3>Ailier gauche - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815188/AIgles_de_Nice_01_-_Ailier_Gauche.png" data-alt="Aigles de Nice Ailier gauche - 01" data-title="Ailier gauche - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815191/AIgles_de_Nice_02_-_Ailier_Gauche.png" data-alt="Aigles de Nice Ailier gauche - 02" data-title="Ailier gauche - 02">02</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815236/AIgles_de_Nice_03_-_Ailier_Gauche.png" data-alt="Aigles de Nice Ailier gauche - 03" data-title="Ailier gauche - 03">03</button></div>
+      </div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792815234/AIgles_de_Nice_01_-_Centre.png" alt="Aigles de Nice Centre - 01">
+          <h3>Centre - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815234/AIgles_de_Nice_01_-_Centre.png" data-alt="Aigles de Nice Centre - 01" data-title="Centre - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815288/AIgles_de_Nice_02_-_Centre.png" data-alt="Aigles de Nice Centre - 02" data-title="Centre - 02">02</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815174/AIgles_de_Nice_03_-_Centre.png" data-alt="Aigles de Nice Centre - 03" data-title="Centre - 03">03</button></div>
+      </div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792815151/AIgles_de_Nice_01_-_Ailier_Droit.png" alt="Aigles de Nice Ailier droit - 01">
+          <h3>Ailier droit - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815151/AIgles_de_Nice_01_-_Ailier_Droit.png" data-alt="Aigles de Nice Ailier droit - 01" data-title="Ailier droit - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815230/AIgles_de_Nice_02_-_Ailier_Droit.png" data-alt="Aigles de Nice Ailier droit - 02" data-title="Ailier droit - 02">02</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792815308/AIgles_de_Nice_03_-_Ailier_Droit.png" data-alt="Aigles de Nice Ailier droit - 03" data-title="Ailier droit - 03">03</button></div>
+      </div>
     </div>
   </div>
 </section>

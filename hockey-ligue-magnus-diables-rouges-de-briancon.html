@@ -31,6 +31,7 @@
 .club-cards{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:2.2rem}
 .club-cards .card{width:clamp(140px,40vw,220px)}
 .gal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.gal[hidden]{display:none}
 .gal-box{text-align:center;color:#fff;max-width:92vw}
 .gal-box img{max-height:72vh;max-width:86vw;width:auto;height:auto;border-radius:10px;transition:opacity .18s,transform .18s}
 .gal-box img.out{opacity:0}
@@ -61,37 +62,79 @@
 <nav class="subnav">
   <a href="hockey-ligue-magnus.html">← Retour</a>
 </nav>
-<div class="club-logo"><img src="https://res.cloudinary.com/qwlhmio0/image/upload/f_auto,q_auto,w_500/v1792319080/Diables_Rouges_de_Brian%C3%A7on_00.png" alt="Diables Rouges de Briançon"></div>
+<div class="club-logo"><img src="https://res.cloudinary.com/djephzgo/image/upload/f_auto,q_auto,w_500/v1792816630/Diables_Rouges_de_Brian%C3%A7on_00.png" alt="Diables Rouges de Briançon"></div>
 <section class="collection">
   <h2 class="club-cards-title">Cartes du club</h2>
   <div class="grid club-cards">
     <div class="card">
       <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319220/Diables_Rouges_de_Brian%C3%A7on_01.png" alt="Diables Rouges de Briançon 01">
-        <h3>Diables Rouges 01</h3>
+        <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792911997/Diables_Rouges_de_Brian%C3%A7on_01_-_00.png" alt="Diables Rouges de Briançon 01">
+        <h3>Diables 01</h3>
         <p class="price">20 €</p>
       </div>
     </div>
     <div class="card">
       <div class="frame">
-        <img src="https://res.cloudinary.com/qwlhmio0/image/upload/v1792319316/Diables_Rouges_de_Brian%C3%A7on_02.png" alt="Diables Rouges de Briançon 02">
-        <h3>Diables Rouges 02</h3>
+        <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792912001/Diables_Rouges_de_Brian%C3%A7on_02_-_00.png" alt="Diables Rouges de Briançon 02">
+        <h3>Diables 02</h3>
         <p class="price">20 €</p>
       </div>
     </div>
   </div>
   <div class="formation">
     <div class="f-row b-solo">
-      <div class="slot empty"><div class="ph"><b>1</b><span>Gardien</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792816770/Diables_Rouges_de_Brian%C3%A7on_01_-_Gardien.png" alt="Diables Rouges de Briançon Gardien - 01">
+          <h3>Gardien - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816770/Diables_Rouges_de_Brian%C3%A7on_01_-_Gardien.png" data-alt="Diables Rouges de Briançon Gardien - 01" data-title="Gardien - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816765/Diables_Rouges_de_Brian%C3%A7on_02_-_Gardien.png" data-alt="Diables Rouges de Briançon Gardien - 02" data-title="Gardien - 02">02</button></div>
+      </div>
     </div>
     <div class="f-row b-duo">
-      <div class="slot empty"><div class="ph"><b>2</b><span>Arrière gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>3</b><span>Arrière droit</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792816768/Diables_Rouges_de_Brian%C3%A7on_01_-_Arri%C3%A8re_Gauche.png" alt="Diables Rouges de Briançon Arrière gauche - 01">
+          <h3>Arrière gauche - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816768/Diables_Rouges_de_Brian%C3%A7on_01_-_Arri%C3%A8re_Gauche.png" data-alt="Diables Rouges de Briançon Arrière gauche - 01" data-title="Arrière gauche - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816688/Diables_Rouges_de_Brian%C3%A7on_02_-_Arri%C3%A8re_Gauche.png" data-alt="Diables Rouges de Briançon Arrière gauche - 02" data-title="Arrière gauche - 02">02</button></div>
+      </div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792816681/Diables_Rouges_de_Brian%C3%A7on_01_-_Arri%C3%A8re_Droit.png" alt="Diables Rouges de Briançon Arrière droit - 01">
+          <h3>Arrière droit - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816681/Diables_Rouges_de_Brian%C3%A7on_01_-_Arri%C3%A8re_Droit.png" data-alt="Diables Rouges de Briançon Arrière droit - 01" data-title="Arrière droit - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816749/Diables_Rouges_de_Brian%C3%A7on_02_-_Arri%C3%A8re_Droit.png" data-alt="Diables Rouges de Briançon Arrière droit - 02" data-title="Arrière droit - 02">02</button></div>
+      </div>
     </div>
     <div class="f-row b-trio">
-      <div class="slot empty"><div class="ph"><b>4</b><span>Ailier gauche</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>5</b><span>Centre</span><span>Bientôt</span></div></div>
-      <div class="slot empty"><div class="ph"><b>6</b><span>Ailier droit</span><span>Bientôt</span></div></div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792816680/Diables_Rouges_de_Brian%C3%A7on_01_-_Ailier_Gauche.png" alt="Diables Rouges de Briançon Ailier gauche - 01">
+          <h3>Ailier gauche - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816680/Diables_Rouges_de_Brian%C3%A7on_01_-_Ailier_Gauche.png" data-alt="Diables Rouges de Briançon Ailier gauche - 01" data-title="Ailier gauche - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816686/Diables_Rouges_de_Brian%C3%A7on_02_-_Ailier_Gauche.png" data-alt="Diables Rouges de Briançon Ailier gauche - 02" data-title="Ailier gauche - 02">02</button></div>
+      </div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792816761/Diables_Rouges_de_Brian%C3%A7on_01_-_Centre.png" alt="Diables Rouges de Briançon Centre - 01">
+          <h3>Centre - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816761/Diables_Rouges_de_Brian%C3%A7on_01_-_Centre.png" data-alt="Diables Rouges de Briançon Centre - 01" data-title="Centre - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816761/Diables_Rouges_de_Brian%C3%A7on_02_-_Centre.png" data-alt="Diables Rouges de Briançon Centre - 02" data-title="Centre - 02">02</button></div>
+      </div>
+      <div class="slot">
+        <div class="card"><div class="frame">
+          <img src="https://res.cloudinary.com/djephzgo/image/upload/v1792816679/Diables_Rouges_de_Brian%C3%A7on_01_-_Ailier_Droit.png" alt="Diables Rouges de Briançon Ailier droit - 01">
+          <h3>Ailier droit - 01</h3>
+          <p class="price">25 €</p>
+        </div></div>
+        <div class="jeux"><button type="button" class="jeu-btn on" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816679/Diables_Rouges_de_Brian%C3%A7on_01_-_Ailier_Droit.png" data-alt="Diables Rouges de Briançon Ailier droit - 01" data-title="Ailier droit - 01">01</button><button type="button" class="jeu-btn" data-src="https://res.cloudinary.com/djephzgo/image/upload/v1792816685/Diables_Rouges_de_Brian%C3%A7on_02_-_Ailier_Droit.png" data-alt="Diables Rouges de Briançon Ailier droit - 02" data-title="Ailier droit - 02">02</button></div>
+      </div>
     </div>
   </div>
 </section>

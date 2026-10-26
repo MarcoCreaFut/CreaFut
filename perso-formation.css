@@ -1,0 +1,37 @@
+/* Pages perso des clubs locaux : logo, cartes vierges, formation en losange (foot à 5) */
+.club-logo{display:flex;justify-content:center;margin:8px 0 28px}
+.club-logo img{width:clamp(110px,22vw,190px);height:auto}
+.club-cards-title{text-align:center;margin:10px 0 0;font-weight:500}
+.club-cards{display:flex;justify-content:center;gap:1.3rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.club-cards .card{width:clamp(140px,40vw,220px)}
+.formation{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,3vw,30px);padding:0 10px;max-width:1000px;margin:0 auto 40px}
+.formation-title{text-align:center;margin:10px 0 18px;font-weight:500}
+.f-row{display:flex;justify-content:center;gap:clamp(8px,2.4vw,28px);width:100%}
+.f-row.b-solo{gap:clamp(14px,6vw,70px)}
+.f-row.b-wings{gap:clamp(40px,22vw,260px)}
+.slot{width:clamp(104px,28vw,220px);text-align:center;flex:0 0 auto}
+.slot .card,.slot .frame{width:100%;margin:0}
+.slot .frame img{width:100%;height:auto;display:block}
+.slot h3{font-size:clamp(.72rem,2.2vw,1rem);margin:.5em 0 .2em;line-height:1.2}
+.slot .price{margin:0 0 .4em}
+.slot.empty .ph{aspect-ratio:5/7;border:1px dashed rgba(128,128,128,.55);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4em;padding:6px;opacity:.7}
+.slot.empty .ph b{font-size:clamp(.9rem,3.2vw,1.4rem);font-weight:500}
+.slot.empty .ph span{font-size:clamp(.65rem,2vw,.85rem);line-height:1.2}
+.jeux{display:none}
+.jeu-btn{font:inherit;font-size:.8rem;cursor:pointer;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.6);border-radius:999px;padding:2px 10px}
+.jeu-btn.on{background:rgba(128,128,128,.28)}
+.gal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.gal[hidden]{display:none}
+.gal-box{text-align:center;color:#fff;max-width:92vw}
+.gal-box img{max-height:72vh;max-width:86vw;width:auto;height:auto;border-radius:10px;transition:opacity .18s,transform .18s}
+.gal-box img.out{opacity:0}
+.gal-t{margin-top:12px;font-size:1.15rem}
+.gal-pr{opacity:.85;margin-top:2px}
+.gal-d{display:flex;gap:9px;justify-content:center;margin-top:12px}
+.gal-d span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35)}
+.gal-d span.on{background:#fff}
+.gal-h{margin-top:10px;font-size:.8rem;opacity:.7}
+.gal-x,.gal-p,.gal-n{position:absolute;background:none;border:0;color:#fff;font-size:2.8rem;line-height:1;cursor:pointer;padding:12px}
+.gal-x{top:4px;right:10px}
+.gal-p{left:2px;top:50%;transform:translateY(-50%)}
+.gal-n{right:2px;top:50%;transform:translateY(-50%)}

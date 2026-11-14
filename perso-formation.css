@@ -6,7 +6,7 @@
 .club-cards .card{width:clamp(140px,40vw,220px)}
 .formation{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,3vw,30px);padding:0 10px;max-width:1000px;margin:0 auto 40px}
 .formation-title{text-align:center;margin:10px 0 18px;font-weight:500}
-.f-row{display:flex;justify-content:center;gap:clamp(8px,2.4vw,28px);width:100%}
+.f-row{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(8px,2.4vw,28px);width:100%}
 .f-row.b-solo{gap:clamp(14px,6vw,70px)}
 .f-row.b-wings{gap:clamp(40px,22vw,260px)}
 .slot{width:clamp(104px,28vw,220px);text-align:center;flex:0 0 auto}
